@@ -1,0 +1,43 @@
+﻿@model CorriAndMike.ViewModels.AddInvitationViewModel
+
+@{
+    ViewBag.Title = "AddInvitation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    #add-invitation td{
+        padding: 5px;
+    }
+    
+    #Invitation_MaxNumberOfGuests { width: 30px !important; }
+</style>
+
+<table id="add-invitation">
+    <tr>
+        <td>Invitation Id:</td>
+        <td>@Html.TextBoxFor(m => m.Invitation.InvitationId, new { @disabled = "disabled" })</td>
+    </tr>
+    <tr>
+        <td>Type:</td>
+        <td>@Html.DropDownList("InvitationType", Model.InvitationSelectType, new {} )</td>
+    </tr>
+    <tr>
+        <td>Password:</td>
+        <td>@Html.TextBoxFor(m => m.Invitation.Password, new { @disabled = "disabled" })</td>
+    </tr>
+    <tr>
+        <td>Number of guests:</td>
+        <td>
+            @Html.TextBoxFor(m => m.Invitation.MaxNumberOfGuests)
+            &nbsp;<a id="add-guest">Add Guest</a>
+        </td>
+    </tr>
+    <tr>
+        <td>Guests:</td>
+        <td>@Html.DropDownListFor(m => m.AvailableGuests, Model.AvailableGuests.Select(g => new SelectListItem() { Selected = false, Text = string.Concat(g.FirstName, g.LastName), Value = g.Id }))</td>
+    </tr>
+    <tr>
+        <td colspan="2"><input type="button" id="submit-new-invitation" value="Submit"/></td>
+    </tr>
+</table>

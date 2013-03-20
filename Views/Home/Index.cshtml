@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+@ViewBag.GuestGroup.Id <br/>
+
+@foreach(var guest in ViewBag.GuestGroup.Guests)
+{
+    @guest.FirstName @guest.LastName <br/>
+}
+
+
+

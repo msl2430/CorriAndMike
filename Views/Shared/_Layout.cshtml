@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <script src="~/Content/Scripts/jQuery/jquery-1.9.1.js"></script>
+    <script src="~/Content/Scripts/jQueryUi/jquery-ui-1.10.2.custom.min.js"></script>
+    
+    <link href="~/Content/Scripts/jQueryUi/css/eggplant/jquery-ui-1.10.2.custom.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+<body>
+    @RenderBody()
+
+    
+    <script type="text/javascript">
+        $(function() {
+            $("input[type=button]").button();
+            $("select").addClass("ui-corner-all");
+        });
+    </script>
+</body>
+</html>
