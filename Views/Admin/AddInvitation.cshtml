@@ -1,4 +1,5 @@
-﻿@model CorriAndMike.ViewModels.AddInvitationViewModel
+﻿@using CorriAndMike.Models
+@model CorriAndMike.ViewModels.AddInvitationViewModel
 
 @{
     ViewBag.Title = "AddInvitation";
@@ -8,9 +9,13 @@
 <style type="text/css">
     #add-invitation td{
         padding: 5px;
+        vertical-align: top;
     }
-    
     #Invitation_MaxNumberOfGuests { width: 30px !important; }
+    #added-guest-list {
+        list-style-type: none;
+        padding-left: 20px;
+    }
 </style>
 
 <table id="add-invitation">
@@ -29,15 +34,76 @@
     <tr>
         <td>Number of guests:</td>
         <td>
-            @Html.TextBoxFor(m => m.Invitation.MaxNumberOfGuests)
-            &nbsp;<a id="add-guest">Add Guest</a>
+            @Html.TextBoxFor(m => m.Invitation.MaxNumberOfGuests)            
         </td>
     </tr>
     <tr>
         <td>Guests:</td>
-        <td>@Html.DropDownListFor(m => m.AvailableGuests, Model.AvailableGuests.Select(g => new SelectListItem() { Selected = false, Text = string.Concat(g.FirstName, g.LastName), Value = g.Id }))</td>
+        <td>
+            @Html.DropDownListFor(m => m.AvailableGuests, Model.AvailableGuests.OrderBy(g => g.FirstName).Select(g => new SelectListItem() { Selected = false, Text = string.Concat(g.FirstName, " ", g.LastName), Value = g.Id }))
+            <input type="button" id="add-guest-invitation" value="+"/>&nbsp;&nbsp;<a id="add-guest-link">Add Guest</a>
+            <br/>
+            <ul id="added-guest-list">
+                
+            </ul>
+        </td>
     </tr>
     <tr>
         <td colspan="2"><input type="button" id="submit-new-invitation" value="Submit"/></td>
     </tr>
 </table>
+
+<div id="add-guest-modal" title="Add Guest">
+    @Html.Partial("_AddGuest", new Guest())
+</div>
+
+<script type="text/javascript">
+    var addedGuests = [];
+    
+    $("#add-guest-modal").dialog({
+        modal: true,
+        resizable: false,
+        width: 350,
+        height: 250,
+        autoOpen: false,
+        buttons: { "Add Guest": function () {
+            AddGuest();
+            $("#add-guest-modal").dialog('close');
+        }
+        }
+    });
+    
+    $("#add-guest-link").click(function () {
+        $("#add-guest-modal").dialog("open");
+    });
+
+    $("#add-guest-invitation").click(function() {
+        var selectedItem = $("#AvailableGuests>option:selected");
+        if ($.inArray(selectedItem.val(), addedGuests) == -1) {
+            AddGuestToInvitation(selectedItem.val(), selectedItem.text());
+            selectedItem.attr('disabled', 'disabled');
+        }
+    });
+
+    function AddGuest() {
+        $.ajax({
+            type: "POST",
+            url: "@(Url.Content("~/api/Guest"))",
+            data: { FirstName: $("#FirstName").val(), LastName: $("#LastName").val() },
+            success: function (data, text, xhr) {
+                switch(xhr.status) {
+                case 201:
+                    $("#AvailableGuests").append(new Option(data.FirstName + " " + data.LastName, data.Id));
+                    $("#AvailableGuests").val(data.Id);
+                    break;
+                }
+            }
+        });
+    }
+    
+    function AddGuestToInvitation(guestId, guestName) {
+        var item = $("<li></li>").attr("id", guestId).html("<input type=\"button\" guestId = \"" + guestId + "\" value=\"x\" />&nbsp;&nbsp;" + guestName);
+        $("#added-guest-list").append(item);
+        addedGuests.push(guestId);
+    }
+</script>

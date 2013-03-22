@@ -14,7 +14,7 @@ namespace CorriAndMike.Models
 
         public int Type { get; set; }
 
-        public string Password { get; internal set; }
+        public string Password { get { return "party"; } }
 
         public string Email { get; set; }
 
@@ -36,7 +36,6 @@ namespace CorriAndMike.Models
         {
             var rand = new Random(DateTime.Now.Millisecond);
             InvitationId = string.Concat("CM", rand.Next(9), rand.Next(9), rand.Next(9));
-            Password = System.Web.Security.Membership.GeneratePassword(6, 0);
         }
     }
 }

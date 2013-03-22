@@ -4,10 +4,17 @@ body {
 }
 
 input[type=text] { width: 200px; }
+
 select { width: 208px; }
 a { font-weight: bold; }
+
 a:hover
 {
     text-decoration: underline;
     cursor: pointer;
+}
+
+.ui-button-text-only, input.ui-button, .ui-dialog-buttonpane button {
+    padding: 5px !important;
+    font-size: 14pt;
 }

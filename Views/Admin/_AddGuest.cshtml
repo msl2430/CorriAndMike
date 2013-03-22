@@ -1,0 +1,25 @@
+﻿@model CorriAndMike.Models.Guest
+
+@{
+    ViewBag.Title = "AddGuest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    #add-user-table {
+        font-size: 12pt;
+    }
+    #add-user-table td { padding: 4px; }
+</style>
+
+<table id="add-user-table">
+    <tr>
+        <td>First Name:</td>
+        <td>@Html.TextBoxFor(m => m.FirstName)</td>
+    </tr>
+    <tr>
+        <td>Last Name:</td>
+        <td>@Html.TextBoxFor(m => m.LastName)</td>
+    </tr>
+</table>
+@Html.HiddenFor(m => m.Id)

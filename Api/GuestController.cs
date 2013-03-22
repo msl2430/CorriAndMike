@@ -20,11 +20,12 @@ namespace CorriAndMike.Api
                 return Request.CreateResponse(HttpStatusCode.Conflict);
             }
 
-            RavenHelper.CurrentSession().Store(new Guest() { FirstName = model.FirstName, LastName = model.LastName, Type = Guest.GuestTypes.Guest });
+            var newGuest = new Guest() {FirstName = model.FirstName, LastName = model.LastName, Type = Guest.GuestTypes.Guest};
+            RavenHelper.CurrentSession().Store(newGuest);
 
             RavenHelper.CurrentSession().SaveChanges();
 
-            return Request.CreateResponse(HttpStatusCode.Created);
+            return Request.CreateResponse(HttpStatusCode.Created, newGuest);
         }
 
     }
