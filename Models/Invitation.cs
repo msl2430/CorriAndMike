@@ -14,7 +14,7 @@ namespace CorriAndMike.Models
 
         public int Type { get; set; }
 
-        public string Password { get { return "party"; } }
+        public string Password { get { return "corri&mike"; } }
 
         public string Email { get; set; }
 
@@ -22,9 +22,7 @@ namespace CorriAndMike.Models
 
         public int AttendingGuests { get; set; }
 
-        public DateTime RsvpDate { get; set; }
-
-        public List<Guest> Guests { get; set; } 
+        public DateTime? RsvpDate { get; set; }
 
         public enum InvitationType
         {

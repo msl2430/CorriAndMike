@@ -10,9 +10,9 @@ namespace CorriAndMike.Controllers
 {
     public class AdminController : CorriAndMikeBaseController
     {
-        public ActionResult AddGuest()
+        public ActionResult Test()
         {
-            return View(new Guest());
+            return View();
         }
 
         public ActionResult AddInvitation()
@@ -23,6 +23,18 @@ namespace CorriAndMike.Controllers
                                 AvailableGuests = RavenSession.Query<Guest>().ToList(),
                             };
             return View(model);
+        }
+
+        [HttpPost]
+        public void AddGuestToInvitation(IList<string> guestIds, string invitationId)
+        {
+            var udpateGuests = RavenHelper.CurrentSession().Include<Guest>(g => g.Id)
+                .Load(guestIds);
+            foreach (var guest in udpateGuests)
+            {
+                var g = RavenHelper.CurrentSession().Load<Guest>(guest.Id);
+                g.Invitations.Add(invitationId);
+            }
         }
     }
 }

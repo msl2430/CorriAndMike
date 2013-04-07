@@ -34,7 +34,7 @@
     <tr>
         <td>Number of guests:</td>
         <td>
-            @Html.TextBoxFor(m => m.Invitation.MaxNumberOfGuests)            
+            @Html.TextBoxFor(m => m.Invitation.MaxNumberOfGuests)
         </td>
     </tr>
     <tr>
@@ -59,6 +59,10 @@
 
 <script type="text/javascript">
     var addedGuests = [];
+
+    $(function() {
+        $("#Invitation_MaxNumberOfGuests").val(0);
+    });
     
     $("#add-guest-modal").dialog({
         modal: true,
@@ -67,9 +71,8 @@
         height: 250,
         autoOpen: false,
         buttons: { "Add Guest": function () {
-            AddGuest();
-            $("#add-guest-modal").dialog('close');
-        }
+            AddGuest();            
+            }
         }
     });
     
@@ -79,10 +82,13 @@
 
     $("#add-guest-invitation").click(function() {
         var selectedItem = $("#AvailableGuests>option:selected");
-        if ($.inArray(selectedItem.val(), addedGuests) == -1) {
+        if ($.inArray(selectedItem.val(), addedGuests) == -1 && selectedItem.val() != null) {
             AddGuestToInvitation(selectedItem.val(), selectedItem.text());
             selectedItem.attr('disabled', 'disabled');
         }
+    });
+    $("#submit-new-invitation").click(function() {
+        AddInvitation();
     });
 
     function AddGuest() {
@@ -92,11 +98,34 @@
             data: { FirstName: $("#FirstName").val(), LastName: $("#LastName").val() },
             success: function (data, text, xhr) {
                 switch(xhr.status) {
-                case 201:
-                    $("#AvailableGuests").append(new Option(data.FirstName + " " + data.LastName, data.Id));
-                    $("#AvailableGuests").val(data.Id);
-                    break;
+                    case 201:
+                        var name = data.FirstName + " " + data.LastName;
+                        $("#AvailableGuests").append(new Option(name, data.Id));
+                        $("#AvailableGuests").val(data.Id);
+                        AddGuestToInvitation(data.Id, name);
+                        break;
                 }
+                $("#add-guest-modal").dialog('close');
+            }
+        });
+    }
+    
+    function AddInvitationToGuest(guestId, invitationId) {
+        $.post("@(Url.Action("AddGuestToInvitation", "Admin"))", { guestIds: addedGuests, InvitationId: invitationId }, function (data) {
+        });
+    }
+    
+    function AddInvitation() {
+        $.ajax({
+            type: "POST",
+            url: "@(Url.Content("~/api/Invitation"))",
+            data: {
+                InvitationId: $("#Invitation_InvitationId").val(),
+                Type: $("#InvitationType").val(),
+                MaxNumberOfGuests: $("#Invitation_MaxNumberOfGuests").val()
+            },
+            success: function (data, text, xhr) {
+                AddInvitationToGuest(addedGuests, data.Id);
             }
         });
     }
@@ -105,5 +134,6 @@
         var item = $("<li></li>").attr("id", guestId).html("<input type=\"button\" guestId = \"" + guestId + "\" value=\"x\" />&nbsp;&nbsp;" + guestName);
         $("#added-guest-list").append(item);
         addedGuests.push(guestId);
+        $("#Invitation_MaxNumberOfGuests").val(parseInt($("#Invitation_MaxNumberOfGuests").val()) + 1);
     }
 </script>

@@ -15,6 +15,8 @@ namespace CorriAndMike.Models
 
         public string Type { get; set; }
 
+        public IList<string> Invitations { get; set; } 
+
         public class GuestTypes
         {
             public const string Guest = "guest";

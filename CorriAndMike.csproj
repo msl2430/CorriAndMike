@@ -133,6 +133,7 @@
   <ItemGroup>
     <Compile Include="Api\CorriAndMikeBaseApiController.cs" />
     <Compile Include="Api\GuestController.cs" />
+    <Compile Include="Api\InvitationController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -208,6 +209,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\Scripts\jQuery\" />
     <Folder Include="Content\Styles\" />
+    <Folder Include="Models\Indexes\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
