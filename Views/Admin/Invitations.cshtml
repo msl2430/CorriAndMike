@@ -1,0 +1,94 @@
+﻿@using CorriAndMike.Models
+@model CorriAndMike.ViewModels.Admin.InvitationsViewModel
+@{
+    ViewBag.Title = "Invitations";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    #button-panel input {
+        display: inline-block;
+    }
+</style>
+
+<h2>Invitation Control Panel</h2>
+
+<fieldset>
+    <legend>Options</legend>
+    <div id="button-panel">
+        <input type="button" id="add-single-guest" value="Add Guest" />
+        <input type="button" id="add-invitation" value="Add Invitation" />
+    </div>
+</fieldset>
+
+<fieldset>
+    <legend>Invitations</legend>
+    <div id="invitation-table">@Html.Partial("_InvitationTable", Model.InvitationTable)</div>
+</fieldset>
+
+<div id="add-invitation-model" title="Add New Invitation">Loading...</div>
+<div id="add-single-guest-modal" title="Add Guest">
+    @Html.Partial("_AddGuest", new Guest())
+</div>
+<script type="text/javascript">
+    var newInviteDialog;
+    var guestDialog;
+    $("#add-invitation").click(function () {
+        newInviteDialog = $("#add-invitation-model");
+        GetNewInvitation();
+        newInviteDialog.dialog('open');
+    });
+    $("#add-single-guest").click(function() {
+        guestDialog = $("#add-single-guest-modal");
+        guestDialog.dialog('open');
+    });
+
+    $(function () {
+        $("#add-invitation-model").dialog({
+            modal: true,
+            resizable: false,
+            width: 600,
+            height: 400,
+            autoOpen: false,
+            buttons: {
+                "Add Invitation": function () {
+                    AddInvitation();
+                    newInviteDialog.dialog('close');
+                }
+            }
+        });
+        $("#add-single-guest-modal").dialog({
+            modal: true,
+            resizable: false,
+            width: 350,
+            height: 250,
+            autoOpen: false,
+            buttons: {
+                "Add Guest": function () {
+                    AddSingleGuest();
+                }
+            }
+        });
+    });
+    
+    function GetNewInvitation() {
+        $.post("@Url.Action("GetAddInvitationModel", "Admin")", {}, function(data) {
+            $("#add-invitation-model").html(data);
+        });
+    }
+
+    function AddSingleGuest() {
+        $.ajax({
+            type: "POST",
+            url: "@(Url.Content("~/api/Guest"))",
+            data: { FirstName: $("#FirstName").val(), LastName: $("#LastName").val() },
+            success: function(data, text, xhr) {
+                switch (xhr.status) {
+                    case 201:
+                        guestDialog.dialog('close');
+                    break;
+                }
+            }
+        });
+    }
+</script>

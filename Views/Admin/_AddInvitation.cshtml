@@ -1,11 +1,6 @@
 ﻿@using CorriAndMike.Models
 @model CorriAndMike.ViewModels.Admin.AddInvitationViewModel
 
-@{
-    ViewBag.Title = "AddInvitation";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
 <style type="text/css">
     #add-invitation td{
         padding: 5px;
@@ -48,14 +43,7 @@
             </ul>
         </td>
     </tr>
-    <tr>
-        <td colspan="2"><input type="button" id="submit-new-invitation" value="Submit"/></td>
-    </tr>
 </table>
-
-<div id="table-container">
-    
-</div>
 
 <div id="add-guest-modal" title="Add Guest">
     @Html.Partial("_AddGuest", new Guest())
@@ -66,7 +54,6 @@
 
     $(function() {
         $("#Invitation_MaxNumberOfGuests").val(0);
-        RefreshInvitationTable();
     });
     
     $("#add-guest-modal").dialog({
@@ -133,7 +120,8 @@
                 MaxNumberOfGuests: $("#Invitation_MaxNumberOfGuests").val()
             },
             success: function (data, text, xhr) {
-                AddInvitationToGuest(addedGuests, data.Id);               
+                AddInvitationToGuest(addedGuests, data.Id);
+                addedGuests = [];
             }
         });
     }
@@ -147,7 +135,7 @@
     
     function RefreshInvitationTable() {
         $.post("@Url.Action("GetInvitationTable", "Admin")", {}, function (data) {
-            $("#table-container").html(data);
+            $("#invitation-table").html(data);
         });
     }
 </script>

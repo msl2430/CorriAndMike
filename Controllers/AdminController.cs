@@ -29,14 +29,25 @@ namespace CorriAndMike.Controllers
             return View();
         }
 
-        public ActionResult AddInvitation()
+        public ActionResult Invitations()
+        {
+            var model = new InvitationsViewModel()
+                {
+                    InvitationTable = GetInvitationTableModel(),
+                };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult GetAddInvitationModel()
         {
             var model = new AddInvitationViewModel()
                             {
                                 Invitation = new Invitation(),
-                                AvailableGuests = RavenSession.Query<Guest>().Where(g => g.Invitations == null).ToList(),
+                                AvailableGuests = RavenSession.Query<Guest>().Where(g => g.Invitations.Count == 0).ToList(),
                             };
-            return View(model);
+            return PartialView("_AddInvitation", model);
         }
 
         [HttpPost]
@@ -55,6 +66,11 @@ namespace CorriAndMike.Controllers
         [HttpPost]
         public ActionResult GetInvitationTable()
         {
+            return PartialView("_InvitationTable", GetInvitationTableModel());
+        }
+
+        private IList<InvitationTableViewModel> GetInvitationTableModel()
+        {
             var model = new List<InvitationTableViewModel>();
             var guestWithInvitation = RavenHelper.CurrentSession().Query<Guest>()
                                                  .Customize(g => g.Include<Invitation>(i => i.InvitationId))
@@ -72,15 +88,15 @@ namespace CorriAndMike.Controllers
                     else
                     {
                         model.Add(new InvitationTableViewModel
-                            {
-                                Invitation = RavenHelper.CurrentSession().Load<Invitation>(invite),
-                                Guests = new List<Guest>() {guest}
-                            });
+                        {
+                            Invitation = RavenHelper.CurrentSession().Load<Invitation>(invite),
+                            Guests = new List<Guest>() { guest }
+                        });
                     }
                 }
             }
 
-            return PartialView("_InvitationTable", model);
-        }
+            return model;
+        } 
     }
 }
