@@ -1,5 +1,5 @@
 ﻿@using CorriAndMike.Models
-@model CorriAndMike.ViewModels.AddInvitationViewModel
+@model CorriAndMike.ViewModels.Admin.AddInvitationViewModel
 
 @{
     ViewBag.Title = "AddInvitation";
@@ -53,6 +53,10 @@
     </tr>
 </table>
 
+<div id="table-container">
+    
+</div>
+
 <div id="add-guest-modal" title="Add Guest">
     @Html.Partial("_AddGuest", new Guest())
 </div>
@@ -62,6 +66,7 @@
 
     $(function() {
         $("#Invitation_MaxNumberOfGuests").val(0);
+        RefreshInvitationTable();
     });
     
     $("#add-guest-modal").dialog({
@@ -103,6 +108,8 @@
                         $("#AvailableGuests").append(new Option(name, data.Id));
                         $("#AvailableGuests").val(data.Id);
                         AddGuestToInvitation(data.Id, name);
+                        $("#FirstName").val('');
+                        $("#LastName").val('');
                         break;
                 }
                 $("#add-guest-modal").dialog('close');
@@ -111,7 +118,8 @@
     }
     
     function AddInvitationToGuest(guestId, invitationId) {
-        $.post("@(Url.Action("AddGuestToInvitation", "Admin"))", { guestIds: addedGuests, InvitationId: invitationId }, function (data) {
+        $.post("@(Url.Action("AddGuestToInvitation", "Admin"))", { guestIds: addedGuests.join(","), InvitationId: invitationId }, function (data) {
+            RefreshInvitationTable();
         });
     }
     
@@ -125,7 +133,7 @@
                 MaxNumberOfGuests: $("#Invitation_MaxNumberOfGuests").val()
             },
             success: function (data, text, xhr) {
-                AddInvitationToGuest(addedGuests, data.Id);
+                AddInvitationToGuest(addedGuests, data.Id);               
             }
         });
     }
@@ -135,5 +143,11 @@
         $("#added-guest-list").append(item);
         addedGuests.push(guestId);
         $("#Invitation_MaxNumberOfGuests").val(parseInt($("#Invitation_MaxNumberOfGuests").val()) + 1);
+    }
+    
+    function RefreshInvitationTable() {
+        $.post("@Url.Action("GetInvitationTable", "Admin")", {}, function (data) {
+            $("#table-container").html(data);
+        });
     }
 </script>

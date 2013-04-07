@@ -1,0 +1,38 @@
+﻿@using CorriAndMike.Models
+@model IList<CorriAndMike.ViewModels.Admin.InvitationTableViewModel>
+<table id="invitation-table">
+    <thead>
+        <th>Id</th>
+        <th>Type</th>
+        <th>Attending / Invited</th>
+        <th>Email</th>
+        <th>RSVP Date</th>
+        <th>Guests</th>
+    </thead>
+        @foreach (var invitation in Model.OrderBy(i => i.Invitation.Type))
+        {
+            <tr>
+                <td>@invitation.Invitation.InvitationId</td>
+                <td>
+                    @switch (invitation.Invitation.Type)
+                    {
+                        case (int)Invitation.InvitationType.EngagementParty:
+                            <label>Engagement Party</label>
+                            break;
+                        case (int)Invitation.InvitationType.Wedding:
+                            <label>Wedding</label>
+                            break;
+                    }
+                </td>
+                <td>@invitation.Invitation.AttendingGuests / @invitation.Invitation.MaxNumberOfGuests</td>
+                <td>@invitation.Invitation.Email</td>
+                <td>@invitation.Invitation.RsvpDate</td>
+                <td>
+                    @foreach (var guest in invitation.Guests.OrderBy(g => g.FirstName).ThenBy(g => g.LastName))
+                    {
+                        <label>@guest.FirstName&nbsp;@guest.LastName</label><br/>
+                    }
+                </td>
+            </tr>
+        }
+</table>

@@ -40,17 +40,26 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Optimization">
+      <HintPath>packages\Microsoft.Web.Optimization.0.1\lib\net40\Microsoft.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Raven.Abstractions">
-      <HintPath>..\packages\RavenDB.Database.2.0.2288-Unstable\lib\net40\Raven.Abstractions.dll</HintPath>
+      <HintPath>packages\RavenDB.Database.2.0.2330\lib\net40\Raven.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Client.Embedded">
+      <HintPath>packages\RavenDB.Embedded.2.0.2330\lib\net40\Raven.Client.Embedded.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Client.Lightweight">
-      <HintPath>..\packages\RavenDB.Client.2.0.2288-Unstable\lib\net40\Raven.Client.Lightweight.dll</HintPath>
+      <HintPath>packages\RavenDB.Client.2.0.2330\lib\net40\Raven.Client.Lightweight.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Database">
-      <HintPath>..\packages\RavenDB.Database.2.0.2288-Unstable\lib\net40\Raven.Database.dll</HintPath>
+      <HintPath>packages\RavenDB.Database.2.0.2330\lib\net40\Raven.Database.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Web">
-      <HintPath>..\packages\RavenDB.AspNetHost.2.0.2288-Unstable\lib\net40\Raven.Web.dll</HintPath>
+      <HintPath>packages\RavenDB.AspNetHost.2.0.2330\lib\net40\Raven.Web.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -63,6 +72,9 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Providers">
+      <HintPath>packages\Microsoft.AspNet.Providers.Core.1.2\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -72,15 +84,9 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http">
     </Reference>
@@ -102,9 +108,6 @@
     <Reference Include="System.Web.Optimization">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Providers">
-      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.1.1\lib\net40\System.Web.Providers.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll</HintPath>
@@ -120,14 +123,6 @@
     <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
-    </Reference>
-    <Reference Include="WebGrease">
-      <Private>True</Private>
-      <HintPath>..\packages\WebGrease.1.1.0\lib\WebGrease.dll</HintPath>
-    </Reference>
-    <Reference Include="Antlr3.Runtime">
-      <Private>True</Private>
-      <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -148,9 +143,11 @@
     <Compile Include="Models\Guest.cs" />
     <Compile Include="Models\RavenHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\AddInvitationViewModel.cs" />
+    <Compile Include="ViewModels\Admin\AddInvitationViewModel.cs" />
+    <Compile Include="ViewModels\Admin\InvitationTableViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Scripts\jQuery\jquery-1.9.1.js" />
     <Content Include="Content\Scripts\jQueryUi\css\eggplant\images\animated-overlay.gif" />
     <Content Include="Content\Scripts\jQueryUi\css\eggplant\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\Scripts\jQueryUi\css\eggplant\images\ui-bg_flat_0_eeeeee_40x100.png" />
@@ -204,10 +201,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Admin\_AddGuest.cshtml" />
     <Content Include="Views\Admin\AddInvitation.cshtml" />
+    <Content Include="Views\Admin\Test.cshtml" />
+    <Content Include="Views\Admin\_InvitationTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Scripts\jQuery\" />
     <Folder Include="Content\Styles\" />
     <Folder Include="Models\Indexes\" />
   </ItemGroup>
