@@ -9,7 +9,9 @@ namespace CorriAndMike.ViewModels.Admin
     {
         public Invitation Invitation { get; set; }
 
-        public List<Guest> AvailableGuests { get; set; } 
+        public List<Guest> AvailableGuests { get; set; }
+
+        public List<Guest> InvitedGuests { get; set; } 
 
         public IEnumerable<SelectListItem> InvitationSelectType
         {

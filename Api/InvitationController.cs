@@ -40,7 +40,7 @@ namespace CorriAndMike.Api
                 //    g.Invitations.Add(newInvitation.Id);
                 //}
 
-                RavenHelper.CurrentSession().SaveChanges();
+                RavenHelper.SaveChanges();
 
                 return Request.CreateResponse(HttpStatusCode.Created, newInvitation);
             } catch (Exception ex)

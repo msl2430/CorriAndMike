@@ -9,6 +9,9 @@
     #button-panel input {
         display: inline-block;
     }
+    fieldset {
+        width: 500px;
+    }
 </style>
 
 <h2>Invitation Control Panel</h2>
@@ -21,54 +24,64 @@
     </div>
 </fieldset>
 
-<fieldset>
+<fieldset style="width: 750px;">
     <legend>Invitations</legend>
-    <div id="invitation-table">@Html.Partial("_InvitationTable", Model.InvitationTable)</div>
+    <div id="invitation-table-container">@Html.Partial("_InvitationTable", Model.InvitationTable)</div>
 </fieldset>
 
 <div id="add-invitation-model" title="Add New Invitation">Loading...</div>
+<div id="edit-invitation-model" title="Edit Invitation">Loading...</div>
 <div id="add-single-guest-modal" title="Add Guest">
     @Html.Partial("_AddGuest", new Guest())
 </div>
 <script type="text/javascript">
     var newInviteDialog;
+    var editInviteDialog;
     var guestDialog;
     $("#add-invitation").click(function () {
-        newInviteDialog = $("#add-invitation-model");
         GetNewInvitation();
         newInviteDialog.dialog('open');
     });
     $("#add-single-guest").click(function() {
-        guestDialog = $("#add-single-guest-modal");
+        
         guestDialog.dialog('open');
     });
 
     $(function () {
-        $("#add-invitation-model").dialog({
+        var dialogOptions = {
             modal: true,
             resizable: false,
             width: 600,
-            height: 400,
-            autoOpen: false,
-            buttons: {
-                "Add Invitation": function () {
-                    AddInvitation();
-                    newInviteDialog.dialog('close');
-                }
-            }
-        });
+            height: 450,
+            autoOpen: false
+        };
+        $("#add-invitation-model").dialog(dialogOptions);
+        $("#edit-invitation-model").dialog(dialogOptions);
         $("#add-single-guest-modal").dialog({
             modal: true,
             resizable: false,
             width: 350,
             height: 250,
-            autoOpen: false,
-            buttons: {
-                "Add Guest": function () {
-                    AddSingleGuest();
-                }
-            }
+            autoOpen: false
         });
+        newInviteDialog = $("#add-invitation-model");
+        guestDialog = $("#add-single-guest-modal");
+        editInviteDialog = $("#edit-invitation-model");
+
+        newInviteDialog.dialog("option", "buttons", [{
+            text: "Add Invitation",
+            click: function() {
+                AddInvitation();
+                newInviteDialog.dialog('close');
+            }
+        }]);
+        editInviteDialog.dialog("option", "buttons", [{
+            text: "Update Invitation",
+            click: function () {
+                UpdateInvitation();
+                editInviteDialog.dialog('close');
+            }
+        }]);
     });
     
     function GetNewInvitation() {
@@ -90,5 +103,12 @@
                 }
             }
         });
+    }
+    
+    function OpenExistingInvitation(invitationId) {
+        $.post("@Url.Action("GetInvitationModel", "Admin")", {invitationId: invitationId}, function (data) {
+            $("#edit-invitation-model").html(data);
+        });
+        editInviteDialog.dialog('open');
     }
 </script>

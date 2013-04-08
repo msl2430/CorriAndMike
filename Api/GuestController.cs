@@ -33,7 +33,7 @@ namespace CorriAndMike.Api
 
                 RavenHelper.CurrentSession().Store(newGuest);
 
-                RavenHelper.CurrentSession().SaveChanges();
+                RavenHelper.SaveChanges();
 
                 return Request.CreateResponse(HttpStatusCode.Created, newGuest);
             }

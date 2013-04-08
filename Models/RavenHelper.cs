@@ -9,16 +9,24 @@ namespace CorriAndMike.Models
 {
     public static class RavenHelper
     {
-        private static readonly IDocumentSession RavenSession;
+        private static IDocumentSession _ravenSession;
         
         static RavenHelper()
         {
-            RavenSession = MvcApplication.Store.OpenSession();
+            _ravenSession = MvcApplication.Store.OpenSession();
         }
 
         public static IDocumentSession CurrentSession()
         {
-            return RavenSession;
+            _ravenSession.SaveChanges();
+            _ravenSession = MvcApplication.Store.OpenSession();
+            return _ravenSession;
+        }
+
+        public static void SaveChanges()
+        {
+            _ravenSession.SaveChanges();
+            _ravenSession = MvcApplication.Store.OpenSession();
         }
     }
 }

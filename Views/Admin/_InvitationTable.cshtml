@@ -1,5 +1,15 @@
 ﻿@using CorriAndMike.Models
 @model IList<CorriAndMike.ViewModels.Admin.InvitationTableViewModel>
+<style type="text/css">
+    #invitation-table {
+        width: 700px;
+        table-layout: fixed;
+    }
+   .DataTables_sort_icon { float: right; }
+   .dataTables_length {
+       display: none;
+   }
+</style>
 <table id="invitation-table">
     <thead>
         <th>Id</th>
@@ -11,7 +21,7 @@
     </thead>
     @foreach (var invitation in Model.OrderBy(i => i.Invitation.Type))
     {
-        <tr>
+        <tr invitationId="@invitation.Invitation.Id">
             <td>@invitation.Invitation.InvitationId</td>
             <td>
                 @switch (invitation.Invitation.Type)
@@ -24,7 +34,7 @@
                         break;
                 }
             </td>
-            <td>@invitation.Invitation.AttendingGuests / @invitation.Invitation.MaxNumberOfGuests</td>
+            <td style="text-align: center;">@invitation.Invitation.AttendingGuests / @invitation.Invitation.MaxNumberOfGuests</td>
             <td>@invitation.Invitation.Email</td>
             <td>@invitation.Invitation.RsvpDate</td>
             <td>
@@ -37,3 +47,24 @@
     }
 </table>
 
+<script type="text/javascript">
+    $(function() {
+        $("#invitation-table").dataTable({
+            "bJQueryUI": true,
+            "bFilter": false,
+            "aoColumns": [
+                { "sWidth": '50px' },
+                { "sWidth": '150px' },
+                { "sWidth": '200px' },
+                { "sWidth": '150px' },
+                { "sWidth": '100px' },
+                { "sWidth": '250px' },
+            ]
+        });
+    });
+
+    $("tbody>tr").click(function() {
+        var id = $(this).attr('invitationId');
+        OpenExistingInvitation(id);
+    });
+</script>

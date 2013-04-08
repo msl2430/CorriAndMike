@@ -45,8 +45,22 @@ namespace CorriAndMike.Controllers
             var model = new AddInvitationViewModel()
                             {
                                 Invitation = new Invitation(),
-                                AvailableGuests = RavenSession.Query<Guest>().Where(g => g.Invitations.Count == 0).ToList(),
+                                AvailableGuests = RavenHelper.CurrentSession().Query<Guest>().Where(g => g.Invitations.Count == 0).ToList(),
+                                InvitedGuests = new List<Guest>()
                             };
+            return PartialView("_AddInvitation", model);
+        }
+
+        [HttpPost]
+        public ActionResult GetInvitationModel(string invitationId)
+        {
+            var model = new AddInvitationViewModel()
+                {
+                    Invitation = RavenHelper.CurrentSession().Load<Invitation>(invitationId),
+                    AvailableGuests = RavenHelper.CurrentSession().Query<Guest>().Where(g => g.Invitations.Count == 0).ToList(),
+                    InvitedGuests = RavenHelper.CurrentSession().Query<Guest>().Where(g => g.Invitations.Any(id => id == invitationId)).ToList()
+                };
+
             return PartialView("_AddInvitation", model);
         }
 
@@ -59,7 +73,7 @@ namespace CorriAndMike.Controllers
             {
                 var g = RavenHelper.CurrentSession().Load<Guest>(guest.Id);
                 g.Invitations.Add(invitationId);
-                RavenHelper.CurrentSession().SaveChanges();
+                RavenHelper.SaveChanges();
             }
         }
 
@@ -67,6 +81,29 @@ namespace CorriAndMike.Controllers
         public ActionResult GetInvitationTable()
         {
             return PartialView("_InvitationTable", GetInvitationTableModel());
+        }
+
+        [HttpPost]
+        public void UpdateInvitation(Invitation invitation, string guestIds)
+        {
+            var invite = RavenHelper.CurrentSession().Load<Invitation>(invitation.Id);
+            var updatedGuests = RavenHelper.CurrentSession().Include<Guest>(g => g.Id).Load(guestIds.Split(','));
+            var existingGuests = RavenHelper.CurrentSession().Query<Guest>().Where(g => g.Invitations.Any(i => i == invitation.Id)).ToList();
+            if (invite != null)
+            {
+                invite.Type = invitation.Type;
+                invite.MaxNumberOfGuests = invitation.MaxNumberOfGuests;
+            }
+            foreach (var existing in existingGuests.Where(eg => guestIds.Split(',').Contains(eg.Id) == false))
+            {
+                existing.Invitations.Remove(invitation.Id);
+                RavenHelper.SaveChanges();
+            }
+            foreach (var updated in updatedGuests.Where(ug => existingGuests.Select(eg => eg.Id).Contains(ug.Id) == false))
+            {
+                updated.Invitations.Add(invitation.Id);
+                RavenHelper.SaveChanges();
+            }
         }
 
         private IList<InvitationTableViewModel> GetInvitationTableModel()

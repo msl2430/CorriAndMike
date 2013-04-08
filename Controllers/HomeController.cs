@@ -29,8 +29,8 @@ namespace CorriAndMike.Controllers
             //                     };
             //RavenSession.Store(guestGroup);
             //RavenSession.SaveChanges();
-            var ravenUser = RavenSession.Load<Invitation>("guestgroups/1");
-            ViewBag.GuestGroup = ravenUser;
+            //var ravenUser = RavenSession.Load<Invitation>("guestgroups/1");
+            //ViewBag.GuestGroup = ravenUser;
             return View();
         }
 

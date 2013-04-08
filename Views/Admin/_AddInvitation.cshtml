@@ -39,7 +39,10 @@
             <input type="button" id="add-guest-invitation" value="+"/>&nbsp;&nbsp;<a id="add-guest-link">Add Guest</a>
             <br/>
             <ul id="added-guest-list">
-                
+                @foreach (var invitee in Model.InvitedGuests)
+                {
+                    <li id="@invitee.Id" guestId="@invitee.Id">@invitee.FirstName&nbsp;@invitee.LastName</li>
+                }
             </ul>
         </td>
     </tr>
@@ -49,11 +52,18 @@
     @Html.Partial("_AddGuest", new Guest())
 </div>
 
+@Html.HiddenFor(m => m.Invitation.Id)
+
 <script type="text/javascript">
     var addedGuests = [];
 
-    $(function() {
-        $("#Invitation_MaxNumberOfGuests").val(0);
+    $(function () {
+        $("#Invitation_MaxNumberOfGuests").val(@(Model.InvitedGuests.Count));
+        $("#added-guest-list>li").each(function() {
+            if ($(this).attr('guestId') != null) {
+                addedGuests.push($(this).attr('guestId'));
+            }
+        });
     });
     
     $("#add-guest-modal").dialog({
@@ -118,6 +128,24 @@
                 InvitationId: $("#Invitation_InvitationId").val(),
                 Type: $("#InvitationType").val(),
                 MaxNumberOfGuests: $("#Invitation_MaxNumberOfGuests").val()
+            },
+            success: function (data, text, xhr) {
+                AddInvitationToGuest(addedGuests, data.Id);
+                addedGuests = [];
+            }
+        });
+    }
+
+    function UpdateInvitation() {
+        $.ajax({
+            type: "POST",
+            url: "@(Url.Action("UpdateInvitation", "Admin"))",
+            data: {
+                Id: $("#Invitation_Id").val(),
+                InvitationId: $("#Invitation_InvitationId").val(),
+                Type: $("#InvitationType").val(),
+                MaxNumberOfGuests: $("#Invitation_MaxNumberOfGuests").val(),
+                guestIds: addedGuests.join(',')
             },
             success: function (data, text, xhr) {
                 AddInvitationToGuest(addedGuests, data.Id);

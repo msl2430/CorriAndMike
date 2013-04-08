@@ -148,6 +148,7 @@
     <Compile Include="ViewModels\Admin\InvitationTableViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Scripts\DataTables\jquery.dataTables.min.js" />
     <Content Include="Content\Scripts\jQuery\jquery-1.9.1.js" />
     <Content Include="Content\Scripts\jQueryUi\css\eggplant\images\animated-overlay.gif" />
     <Content Include="Content\Scripts\jQueryUi\css\eggplant\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -168,6 +169,7 @@
     <Content Include="Content\Scripts\jQueryUi\css\eggplant\jquery-ui-1.10.2.custom.css" />
     <Content Include="Content\Scripts\jQueryUi\css\eggplant\jquery-ui-1.10.2.custom.min.css" />
     <Content Include="Content\Scripts\jQueryUi\jquery-ui-1.10.2.custom.min.js" />
+    <Content Include="Content\Styles\DataTables\jquery.dataTables.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
@@ -208,7 +210,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Styles\" />
     <Folder Include="Models\Indexes\" />
   </ItemGroup>
   <ItemGroup>
