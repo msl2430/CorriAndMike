@@ -11,6 +11,10 @@
         list-style-type: none;
         padding-left: 20px;
     }
+    #add-user-table-invite {
+        font-size: 12pt;
+    }
+    #add-user-table-invite td { padding: 4px; }
 </style>
 
 <table id="add-invitation">
@@ -49,16 +53,38 @@
 </table>
 
 <div id="add-guest-modal" title="Add Guest">
-    @Html.Partial("_AddGuest", new Guest())
+    <table id="add-user-table-invite">
+    <tr>
+        <td>First Name:</td>
+        <td><input type="text" id="first-name" /></td>
+    </tr>
+    <tr>
+        <td>Last Name:</td>
+        <td><input type="text" id="last-name" /></td>
+    </tr>
+</table>
 </div>
 
 @Html.HiddenFor(m => m.Invitation.Id)
 
 <script type="text/javascript">
     var addedGuests = [];
-
+    var addGuestInvitation;
     $(function () {
-        $("#Invitation_MaxNumberOfGuests").val(@(Model.InvitedGuests.Count));
+        $("#add-guest-modal").dialog({
+            modal: true,
+            resizable: false,
+            width: 350,
+            height: 250,
+            autoOpen: false,
+            buttons: {
+                "Add Guest": function () {
+                    AddGuest();
+                }
+            }
+        });
+        addGuestInvitation = $("#add-guest-modal");
+        $("#Invitation_MaxNumberOfGuests").val(@(Model.Invitation.MaxNumberOfGuests));
         $("#added-guest-list>li").each(function() {
             if ($(this).attr('guestId') != null) {
                 addedGuests.push($(this).attr('guestId'));
@@ -66,18 +92,8 @@
         });
     });
     
-    $("#add-guest-modal").dialog({
-        modal: true,
-        resizable: false,
-        width: 350,
-        height: 250,
-        autoOpen: false,
-        buttons: { "Add Guest": function () {
-            AddGuest();            
-            }
-        }
-    });
     
+df
     $("#add-guest-link").click(function () {
         $("#add-guest-modal").dialog("open");
     });
@@ -94,12 +110,15 @@
     });
 
     function AddGuest() {
-        $.ajax({
-            type: "POST",
-            url: "@(Url.Content("~/api/Guest"))",
-            data: { FirstName: $("#FirstName").val(), LastName: $("#LastName").val() },
-            success: function (data, text, xhr) {
-                switch(xhr.status) {
+        if ($("#first-name").val() == '' || $("#last-name").val() == '') {
+            alert("shit");
+        } else {
+            $.ajax({
+                type: "POST",
+                url: "@(Url.Content("~/api/Guest"))",
+                data: { FirstName: $("#first-name").val(), LastName: $("#last-name").val() },
+                success: function(data, text, xhr) {
+                    switch (xhr.status) {
                     case 201:
                         var name = data.FirstName + " " + data.LastName;
                         $("#AvailableGuests").append(new Option(name, data.Id));
@@ -108,10 +127,11 @@
                         $("#FirstName").val('');
                         $("#LastName").val('');
                         break;
+                    }
+                    addGuestInvitation.dialog('close');
                 }
-                $("#add-guest-modal").dialog('close');
-            }
-        });
+            });
+        }
     }
     
     function AddInvitationToGuest(guestId, invitationId) {
@@ -162,8 +182,9 @@
     }
     
     function RefreshInvitationTable() {
-        $.post("@Url.Action("GetInvitationTable", "Admin")", {}, function (data) {
-            $("#invitation-table").html(data);
-        });
+        //$.post("@Url.Action("GetInvitationTable", "Admin")", {}, function (data) {
+        //    $("#invitation-table").html(data);
+        //});
+        window.location.reload();
     }
 </script>

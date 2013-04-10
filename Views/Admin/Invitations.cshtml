@@ -10,18 +10,33 @@
         display: inline-block;
     }
     fieldset {
-        width: 500px;
+        width: 375px;
+        height: 75px;
     }
 </style>
 
 <h2>Invitation Control Panel</h2>
 
-<fieldset>
+<fieldset style="float:left;">
     <legend>Options</legend>
     <div id="button-panel">
         <input type="button" id="add-single-guest" value="Add Guest" />
         <input type="button" id="add-invitation" value="Add Invitation" />
     </div>
+</fieldset>
+
+<fieldset style="float:left;">
+    <legend>Stats</legend>
+    <table>
+        <tr>
+            <td>Total Invited Guests</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Total Attending Guests</td>
+            <td></td>
+        </tr>
+    </table>
 </fieldset>
 
 <fieldset style="width: 750px;">
@@ -43,7 +58,6 @@
         newInviteDialog.dialog('open');
     });
     $("#add-single-guest").click(function() {
-        
         guestDialog.dialog('open');
     });
 
@@ -80,6 +94,15 @@
             click: function () {
                 UpdateInvitation();
                 editInviteDialog.dialog('close');
+            }
+        }]);
+        guestDialog.dialog("option", "buttons", [{
+            text: "Add Guset",
+            click: function() {
+                AddSingleGuest();
+                $("#FirstName").val('');
+                $("#LastName").val('');
+                guestDialog.dialog('close');
             }
         }]);
     });

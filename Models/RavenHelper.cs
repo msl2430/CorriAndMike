@@ -18,7 +18,7 @@ namespace CorriAndMike.Models
 
         public static IDocumentSession CurrentSession()
         {
-            _ravenSession.SaveChanges();
+            //_ravenSession.SaveChanges();
             _ravenSession = MvcApplication.Store.OpenSession();
             return _ravenSession;
         }
