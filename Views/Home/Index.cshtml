@@ -3,14 +3,64 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<style type="text/css">
+    body {
+        background: url('@(Url.Content("~/Content/Images/cruisebg.JPG"))') no-repeat fixed center center;
+        background-size: cover;
+        margin: 0px;
+    }
+    #main-container {
+        width: 900px;
+        position: relative;
+    }
+    #left-menu {
+        background: url('@(Url.Content("~/Content/Images/menu-background.png"))') no-repeat;
+        width: 375px;
+        height: 800px;
+        display: block;
+        margin-left: 30px;
+    }
+    #menu-list {
+        list-style-type: none;
+        margin: 10px 0px 0px;
+        padding: 0px;
+    }
+    #menu-list li {
+        height: 50px;
+        width: 100%;
+        margin: 10px 0px 0px;      
+    }
+    #menu-list li a {
+        color: black;
+        font-size: 14pt;
+        font-family: Trebuchet;
+        text-decoration: none;
+        width: 250px;
+        height: 50px;
+        display: block;
+        padding-top: 12px;
+        text-align: center;
+    }
+    #menu-list li a.active-link {
+        background: url('@(Url.Content("~/Content/Images/menuarrows.png"))') no-repeat -291px 0px;
+        color: white;
+    }
+    #menu-list li a:hover {
+        background: url('@(Url.Content("~/Content/Images/menuarrows.png"))') no-repeat -37px 0px;
+    }
+    #menu-list li a.active-link:hover {
+        background: url('@(Url.Content("~/Content/Images/menuarrows.png"))') no-repeat -291px 0px;
+        color: white;
+    }
+</style>
 
-@ViewBag.GuestGroup.Id <br/>
-
-@foreach(var guest in ViewBag.GuestGroup.Guests)
-{
-    @guest.FirstName @guest.LastName <br/>
-}
-
-
-
+<div id="main-container">
+    <div id="left-menu">
+        <img id="header-logo" src="~/Content/Images/tall-header.png" style="margin-left: -30px;"/>
+        <ul id="menu-list">
+            <li><a href="#" class="active-link">Home</a></li>
+            <li><a href="#">About the couple</a></li>
+            <li><a href="#">RSVP</a></li>
+        </ul>
+    </div>
+</div>
