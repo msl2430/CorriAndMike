@@ -34,10 +34,10 @@ namespace CorriAndMike.Controllers
             return View();
         }
 
-        public ActionResult Test()
+        [HttpPost]
+        public ActionResult Home()
         {
-            return View();
+            return PartialView("_Home");
         }
-
     }
 }

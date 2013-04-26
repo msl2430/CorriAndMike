@@ -1,0 +1,46 @@
+﻿@model CorriAndMike.ViewModels.Rsvp.LoginViewModel
+
+<style type="text/css">
+     #login-container {
+         width: 500px;
+         height: 570px;
+         text-align: center;
+     }
+     #instructions {
+         width: 400px;
+         margin: auto;
+         padding: 50px;
+         font-size: 21px;
+     }
+     #auth-table {
+         width: 300px;
+         margin: 0px auto;
+         padding-top: 40px;
+     }
+     #auth-table td {
+         padding: 3px 5px;
+     }
+     #InvitationId { width: 100px; }
+     #Password { width: 150px; }
+     #rsvp-login {
+         margin-top: 5px;
+     }
+ </style>
+
+<div id="login-container" class="content ui-corner-all">
+    <div id="instructions">Please enter you invitation number and password found in your invitation.</div>
+    <table id="auth-table">        
+        <tr><td>Invitation Number</td></tr>
+        <tr><td>@Html.TextBoxFor(m => m.InvitationId)</td></tr>
+        <tr><td>Password</td></tr>
+        <tr><td>@Html.PasswordFor(m => m.Password)</td></tr>
+        <tr><td><input type="button" id="rsvp-login" value="Login" /></td></tr>
+    </table>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("input[type=button]").button();
+        $("select").addClass("ui-corner-all");
+    });
+</script>
