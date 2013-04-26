@@ -34,5 +34,10 @@ namespace CorriAndMike.Controllers
             return View();
         }
 
+        public ActionResult Test()
+        {
+            return View();
+        }
+
     }
 }

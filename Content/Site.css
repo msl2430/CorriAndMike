@@ -1,6 +1,6 @@
 ﻿/*Core styles*/
-body {
-    font-family: Georgia;
+body, a, label, input {
+    font-family: Trebuchet;
 }
 
 input[type=text] { width: 200px; }

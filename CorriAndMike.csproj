@@ -170,7 +170,30 @@
     <Content Include="Content\Scripts\jQueryUi\css\eggplant\jquery-ui-1.10.2.custom.css" />
     <Content Include="Content\Scripts\jQueryUi\css\eggplant\jquery-ui-1.10.2.custom.min.css" />
     <Content Include="Content\Scripts\jQueryUi\jquery-ui-1.10.2.custom.min.js" />
+    <Content Include="Content\Scripts\Supersized\img\back.png" />
+    <Content Include="Content\Scripts\Supersized\img\bg-black.png" />
+    <Content Include="Content\Scripts\Supersized\img\bg-hover.png" />
+    <Content Include="Content\Scripts\Supersized\img\button-tray-down.png" />
+    <Content Include="Content\Scripts\Supersized\img\button-tray-up.png" />
+    <Content Include="Content\Scripts\Supersized\img\forward.png" />
+    <Content Include="Content\Scripts\Supersized\img\nav-bg.png" />
+    <Content Include="Content\Scripts\Supersized\img\nav-dot.png" />
+    <Content Include="Content\Scripts\Supersized\img\pause.png" />
+    <Content Include="Content\Scripts\Supersized\img\play.png" />
+    <Content Include="Content\Scripts\Supersized\img\progress-back.png" />
+    <Content Include="Content\Scripts\Supersized\img\progress-bar.png" />
+    <Content Include="Content\Scripts\Supersized\img\progress.gif" />
+    <Content Include="Content\Scripts\Supersized\img\supersized-logo.png" />
+    <Content Include="Content\Scripts\Supersized\img\thumb-back.png" />
+    <Content Include="Content\Scripts\Supersized\img\thumb-forward.png" />
+    <Content Include="Content\Scripts\Supersized\jquery.easing.min.js" />
+    <Content Include="Content\Scripts\Supersized\supersized.3.2.7.min.js" />
+    <Content Include="Content\Scripts\Supersized\supersized.core.3.2.1.min.js" />
+    <Content Include="Content\Scripts\Supersized\supersized.shutter.min.js" />
     <Content Include="Content\Styles\DataTables\jquery.dataTables.css" />
+    <Content Include="Content\Styles\Supersized\supersized.core.css" />
+    <Content Include="Content\Styles\Supersized\supersized.css" />
+    <Content Include="Content\Styles\Supersized\supersized.shutter.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
@@ -209,6 +232,7 @@
     <Content Include="Views\Admin\_InvitationTable.cshtml" />
     <Content Include="Views\Admin\Invitations.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
