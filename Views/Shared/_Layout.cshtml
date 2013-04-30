@@ -27,16 +27,19 @@
                     <a id="show-slideshow"><span class="ui-icon ui-icon-circlesmall-minus"></span>&nbsp;<span style="text-decoration: underline;">Hide menu</span></a>
                 </div>
             </div>
-            <div id="menu-container" class="ui-corner-br ui-corner-bl">
-                <img id="header-logo" src="~/Content/Images/tall-header.png" style="margin-left: -30px;"/>
-                <ul id="menu-list">
-                    <li><a id="home-link" class="nav-link" linkId="@(GlobalConstants.NavigationLinks.Home)">Home</a></li>
-                    <li><a id="about-us-link" class="nav-link" linkId="@(GlobalConstants.NavigationLinks.AboutTheCouple)">About the couple</a></li>
-                    <li><a id="rsvp-link" class="nav-link" linkId="@(GlobalConstants.NavigationLinks.Rsvp)">RSVP</a></li>
-                </ul>
-            </div>
-            <div id="content-container" class="ui-corner-all">
-                @RenderBody()        
+            <div style="clear:both;"></div>
+            <div style="width: 1050px; display: block;">
+                <div id="menu-container" class="ui-corner-br ui-corner-bl">
+                    <img id="header-logo" src="~/Content/Images/tall-header.png" style="margin-left: -30px;"/>
+                    <ul id="menu-list">
+                        <li><a id="home-link" class="nav-link" linkId="@(GlobalConstants.NavigationLinks.Home)">Home</a></li>
+                        <li><a id="about-us-link" class="nav-link" linkId="@(GlobalConstants.NavigationLinks.AboutTheCouple)">About the couple</a></li>
+                        <li><a id="rsvp-link" class="nav-link" linkId="@(GlobalConstants.NavigationLinks.Rsvp)">RSVP</a></li>
+                    </ul>
+                </div>
+                    <div id="content-container" class="ui-corner-all">
+                        @RenderBody()        
+                    </div>
             </div>
         </div>
     

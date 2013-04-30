@@ -2,7 +2,7 @@
 @model CorriAndMike.ViewModels.Admin.InvitationsViewModel
 @{
     ViewBag.Title = "Invitations";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <style type="text/css">
@@ -12,6 +12,8 @@
     fieldset {
         width: 375px;
         height: 75px;
+        margin: 10px 5px;
+        padding: 5px;
     }
 </style>
 
@@ -39,7 +41,9 @@
     </table>
 </fieldset>
 
-<fieldset style="width: 750px;">
+<div style="clear:both;"></div>
+
+<fieldset style="width: 750px; height:500px;">
     <legend>Invitations</legend>
     <div id="invitation-table-container">@Html.Partial("_InvitationTable", Model.InvitationTable)</div>
 </fieldset>

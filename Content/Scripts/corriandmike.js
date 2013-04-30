@@ -4,7 +4,10 @@ $(function() {
     $("#top-bar").show("slide", 1000);
     setTimeout(function () { $("#menu-container").slideDown(700); }, 500);
     setTimeout(function () {
-        $("#content-container").show("slide", 700);
+        $.post(homeUrl, {}, function (data) {
+            $("#content-container").html(data);
+            $("#content-container").show("slide", 700);
+        }); 
         $("#home-link").addClass("active-link");
         activeMenuItem = $("#home-link");
     }, 1500);
@@ -36,8 +39,8 @@ $(function() {
             }
             $.post(dataSrc, {}, function (data) {
                 $("#content-container").html(data);
+                $("#content-container").show('slide', 700);
             });
-            $("#content-container").show('slide', 700);
         }, 700);
     });
 });
