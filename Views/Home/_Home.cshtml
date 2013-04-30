@@ -1,4 +1,58 @@
-﻿
+﻿@model CorriAndMike.ViewModels.Rsvp.RsvpInvitationViewModel
+
+<style type="text/css">
+     #home-container {
+         width: 500px;
+         height: 570px;
+         text-align: center;
+     }
+     .guest-name {
+         width: 125px !important;
+     }
+     #rsvp-invited-guests {
+         margin: auto;
+         width: 450px;
+     }
+     #rsvp-invited-guests td {
+         font-family: Trebuchet;
+         letter-spacing: normal;
+     }
+     #slider {
+         width: 42px;
+         display: inline-block;
+     }
+ </style>
 <div id="home-container" class="content ui-corner-all">
-    <h2>Home</h2>
+    Invitation Number: @Model.Invitation.InvitationId
+    <table id="rsvp-invited-guests">
+        @foreach (var guest in Model.InvitationGuests)
+        {
+            <tr>
+                <td style="width: 225px;">Yes<div id="slider"></div>No</td>
+                <td style="width: 225px;"><input type="text" readonly="readonly" guestId="@(guest.Id)" class="guest-name" value="@(string.Concat(guest.FirstName, " ", guest.LastName))" /></td>
+                @*<table>
+                        <tr><td><input type="radio" guestId="@(guest.Id)" class="yes-check" name="rsvp-answer" />&nbsp;will be there!</td></tr>
+                        <tr><td><input type="radio" guestId="@(guest.Id)" class="no-check" name="rsvp-answer" />&nbsp;won't make it.</td></tr>
+                    </table>*@                
+            </tr>
+            @*<tr>
+                <td>@(string.Concat(guest.FirstName, " ", guest.LastName)) will <input type="button" class="yes-button" value="be there" />&nbsp;<input type="button" class="no-button" value="not be there"/>.</td>
+            </tr>*@
+        }
+        <tr>
+            <td></td>
+        </tr>
+    </table>
 </div>
+
+<script type="text/javascript">
+    $(function() {
+        $("input[type=button]").button();
+        $("#slider").slider({
+            min: 1,
+            max: 2,
+            value: 1,
+            slide: function () { console.log($("#slider").val()); }
+        });
+    });
+</script>

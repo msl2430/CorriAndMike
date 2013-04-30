@@ -8,7 +8,7 @@ body, a, label {
     letter-spacing: 2px;
 }
 
-input { font-family: Trebuchet; }
+input { font-family: Trebuchet;letter-spacing: normal;}
 
 input[type=text] { width: 200px; }
 
@@ -44,7 +44,9 @@ a:hover
 }
 
 .content {
-        background-color: #262626;
+    min-height: 300px;
+    width: 500px;
+    background-color: #262626;
     opacity:0.9;
     filter:alpha(opacity=90); /* For IE8 and earlier */
 }

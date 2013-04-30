@@ -150,6 +150,7 @@
     <Compile Include="ViewModels\Admin\InvitationsViewModel.cs" />
     <Compile Include="ViewModels\Admin\InvitationTableViewModel.cs" />
     <Compile Include="ViewModels\Rsvp\LoginViewModel.cs" />
+    <Compile Include="ViewModels\Rsvp\RsvpInvitationViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Images\Layout\header.png" />

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CorriAndMike.Models;
+using CorriAndMike.ViewModels.Rsvp;
 using Raven.Client.Connection;
 using Raven.Client.Document;
 
@@ -37,7 +38,40 @@ namespace CorriAndMike.Controllers
         [HttpPost]
         public ActionResult Home()
         {
-            return PartialView("_Home");
+            var model = new RsvpInvitationViewModel();
+            const string invitationId = "CM471";
+            var invitation = RavenHelper.CurrentSession().Query<Invitation>().SingleOrDefault(i => i.InvitationId == invitationId);
+            if (invitation != null)
+            {
+                model.Invitation = invitation;
+                model.InvitationGuests = RavenHelper.CurrentSession().Query<Guest>().Where(g => g.Invitations.Any(id => id == invitation.Id)).ToList();
+            }
+
+            return PartialView("_Home", model);
+            //var guestWithInvitation = RavenHelper.CurrentSession().Query<Guest>()
+            //                                     .Customize(g => g.Include<Invitation>(i => i.InvitationId))
+            //                                     .Where(g => g.Invitations != null)
+            //                                     .ToList();
+
+            //foreach (var guest in guestWithInvitation)
+            //{
+            //    foreach (var invite in guest.Invitations)
+            //    {
+            //        if (model.Any(m => m.Invitation.Id == invite))
+            //        {
+            //            model.FirstOrDefault(m => m.Invitation.Id == invite).Guests.Add(guest);
+            //        }
+            //        else
+            //        {
+            //            model.Add(new InvitationTableViewModel
+            //            {
+            //                Invitation = RavenHelper.CurrentSession().Load<Invitation>(invite),
+            //                Guests = new List<Guest>() { guest }
+            //            });
+            //        }
+            //    }
+            //}
+            //return PartialView("_Home");
         }
     }
 }

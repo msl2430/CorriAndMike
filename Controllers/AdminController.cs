@@ -42,12 +42,20 @@ namespace CorriAndMike.Controllers
         [HttpPost]
         public ActionResult GetAddInvitationModel()
         {
+            var rand = new Random(DateTime.Now.Millisecond);
+            var invitationId = string.Concat("CM", rand.Next(9), rand.Next(9), rand.Next(9));
+            while (RavenHelper.CurrentSession().Query<Invitation>().Any(i => i.InvitationId == invitationId))
+            {
+                invitationId = string.Concat("CM", rand.Next(9), rand.Next(9), rand.Next(9));
+            }
+        
             var model = new AddInvitationViewModel()
                             {
-                                Invitation = new Invitation(),
+                                Invitation = new Invitation() {InvitationId = invitationId},
                                 AvailableGuests = RavenHelper.CurrentSession().Query<Guest>().Where(g => g.Invitations.Count == 0).ToList(),
                                 InvitedGuests = new List<Guest>()
                             };
+
             return PartialView("_AddInvitation", model);
         }
 

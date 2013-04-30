@@ -10,7 +10,7 @@ namespace CorriAndMike.Models
     {
         public string Id { get; set; }
 
-        public string InvitationId { get; internal set; }
+        public string InvitationId { get; set; }
 
         public int Type { get; set; }
 
@@ -20,7 +20,7 @@ namespace CorriAndMike.Models
 
         public int MaxNumberOfGuests { get; set; }
 
-        public int AttendingGuests { get; set; }
+        public List<string> AttendingGuests { get; set; }
 
         public DateTime? RsvpDate { get; set; }
 
@@ -28,12 +28,6 @@ namespace CorriAndMike.Models
         {
             EngagementParty,
             Wedding
-        }
-
-        public Invitation()
-        {
-            var rand = new Random(DateTime.Now.Millisecond);
-            InvitationId = string.Concat("CM", rand.Next(9), rand.Next(9), rand.Next(9));
         }
     }
 }

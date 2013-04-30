@@ -56,10 +56,12 @@ function MinimizeAllWindows() {
     setTimeout(function () {
         activeMenuItem.removeClass("active-link");
         $("#menu-container").slideUp(700);
+        setTimeout(function () { $("#top-bar").addClass("ui-corner-bl"); }, 710);
         $("#show-slideshow").html("<span class=\"ui-icon ui-icon-circlesmall-plus\"></span>&nbsp;<span style=\"text-decoration: underline;\">Show menu</span>");
     }, 710);
 }
 function MaximizeAllWindows() {
+    $("#top-bar").removeClass("ui-corner-bl");
     $("#menu-container").slideDown(700);
     setTimeout(function () {
         activeMenuItem.addClass("active-link");

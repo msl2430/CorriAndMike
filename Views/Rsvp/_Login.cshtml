@@ -35,12 +35,19 @@
         <tr><td>Password</td></tr>
         <tr><td>@Html.PasswordFor(m => m.Password)</td></tr>
         <tr><td><input type="button" id="rsvp-login" value="Login" /></td></tr>
+        <tr><td><label id="login-error-msg" style="color:red; font-family: trebuchet;"></label></td></tr>
     </table>
 </div>
 
 <script type="text/javascript">
-    $(function () {
+    $(function () {        
         $("input[type=button]").button();
         $("select").addClass("ui-corner-all");
+        $("#rsvp-login").click(function () {
+            $("#login-error-msg").text('');
+            var test = $.get("@(Url.Content("~/api/Invitation"))", { InvitationId: $("#InvitationId").val(), Password: $("#Password").val() }, function (data, text, xhr) {
+                alert('yay');
+            }).fail(function () { $("#login-error-msg").text("Invalid invitation number or password. Please try again."); });
+        });
     });
 </script>
