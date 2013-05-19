@@ -78,8 +78,8 @@ $(function () {
         autoplay: 1,			// Slideshow starts playing automatically
         start_slide: 1,			// Start slide (0 is random)
         stop_loop: 0,			// Pauses slideshow on last slide
-        random: 0,			// Randomize slide order (Ignores start slide)
-        slide_interval: 3000,		// Length between transitions
+        random: 1,			// Randomize slide order (Ignores start slide)
+        slide_interval: 5000,		// Length between transitions
         transition: 1, 			// 0-None, 1-Fade, 2-Slide Top, 3-Slide Right, 4-Slide Bottom, 5-Slide Left, 6-Carousel Right, 7-Carousel Left
         transition_speed: 2000,		// Speed of transition
         new_window: 1,			// Image links open in new window/tab
@@ -102,11 +102,17 @@ $(function () {
         thumb_links: 1,			// Individual thumb links for each slide
         thumbnail_navigation: 0,			// Thumbnail navigation
         slides: [			// Slideshow Images
-                { image: 'http://placekitten.com/1200/600', title: 'Dog1' },
-                { image: 'http://placekitten.com/1200/601', title: 'Dog2' },
-                { image: 'http://placekitten.com/1200/602', title: 'Dog3' },
-                { image: 'http://placekitten.com/1200/603', title: 'Dog4' },
-                { image: 'http://placekitten.com/1200/604', title: 'Dog5' },
+                { image: 'Content/Images/Slideshow/levine1142.jpg', title: 'Cruise1' },
+                { image: 'Content/Images/Slideshow/levine1003.jpg', title: 'Cruise1' },
+                { image: 'Content/Images/Slideshow/levine1009.jpg', title: 'Cruise1' },
+                { image: 'Content/Images/Slideshow/levine1014.jpg', title: 'Cruise1' },
+                { image: 'Content/Images/Slideshow/levine1044.jpg', title: 'Cruise1' },
+                { image: 'Content/Images/Slideshow/levine1054.jpg', title: 'Cruise1' },
+                { image: 'Content/Images/Slideshow/levine1096.jpg', title: 'Cruise1' },
+                { image: 'Content/Images/Slideshow/levine1100.jpg', title: 'Cruise1' },
+                { image: 'Content/Images/Slideshow/levine1118.jpg', title: 'Cruise1' },
+                { image: 'Content/Images/Slideshow/levine1124.jpg', title: 'Cruise1' },
+                { image: 'Content/Images/Slideshow/levine1161.jpg', title: 'Cruise1' }
             ],
 
         // Theme Options			   

@@ -95,6 +95,8 @@
     
 
     $("#add-guest-link").click(function () {
+        $("#first-name").val('');
+        $("#last-name").val('');
         $("#add-guest-modal").dialog("open");
     });
 
@@ -119,16 +121,23 @@
                 data: { FirstName: $("#first-name").val(), LastName: $("#last-name").val() },
                 success: function(data, text, xhr) {
                     switch (xhr.status) {
-                    case 201:
-                        var name = data.FirstName + " " + data.LastName;
-                        $("#AvailableGuests").append(new Option(name, data.Id));
-                        $("#AvailableGuests").val(data.Id);
-                        AddGuestToInvitation(data.Id, name);
-                        $("#FirstName").val('');
-                        $("#LastName").val('');
-                        break;
+                        case 201:
+                            var name = data.FirstName + " " + data.LastName;
+                            $("#AvailableGuests").append(new Option(name, data.Id));
+                            $("#AvailableGuests").val(data.Id);
+                            AddGuestToInvitation(data.Id, name);
+                            $("#FirstName").val('');
+                            $("#LastName").val('');
+                            break;
                     }
                     addGuestInvitation.dialog('close');
+                },
+                error: function (xhr, status, error) {
+                    switch (xhr.status) {
+                        case 409:
+                            alert('Guest exists!');
+                            break;
+                    }
                 }
             });
         }

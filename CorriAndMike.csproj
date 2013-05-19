@@ -155,6 +155,17 @@
   <ItemGroup>
     <Content Include="Content\Images\Layout\header.png" />
     <Content Include="Content\Images\Layout\menuarrows.png" />
+    <Content Include="Content\Images\Slideshow\Levine1003.jpg" />
+    <Content Include="Content\Images\Slideshow\Levine1009.jpg" />
+    <Content Include="Content\Images\Slideshow\Levine1014.jpg" />
+    <Content Include="Content\Images\Slideshow\Levine1044.jpg" />
+    <Content Include="Content\Images\Slideshow\Levine1054.jpg" />
+    <Content Include="Content\Images\Slideshow\Levine1096.jpg" />
+    <Content Include="Content\Images\Slideshow\Levine1100.jpg" />
+    <Content Include="Content\Images\Slideshow\Levine1118.jpg" />
+    <Content Include="Content\Images\Slideshow\Levine1124.jpg" />
+    <Content Include="Content\Images\Slideshow\Levine1142.jpg" />
+    <Content Include="Content\Images\Slideshow\Levine1161.jpg" />
     <Content Include="Content\Scripts\corriandmike.js" />
     <Content Include="Content\Scripts\DataTables\jquery.dataTables.min.js" />
     <Content Include="Content\Scripts\jQuery\jquery-1.9.1.js" />

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using CorriAndMike.Models;
+using CorriAndMike.ViewModels.Admin;
 using CorriAndMike.ViewModels.Rsvp;
-using Raven.Client.Connection;
-using Raven.Client.Document;
 
 namespace CorriAndMike.Controllers
 {
@@ -39,7 +36,7 @@ namespace CorriAndMike.Controllers
         public ActionResult Home()
         {
             var model = new RsvpInvitationViewModel();
-            const string invitationId = "CM471";
+            const string invitationId = "CM306";
             var invitation = RavenHelper.CurrentSession().Query<Invitation>().SingleOrDefault(i => i.InvitationId == invitationId);
             if (invitation != null)
             {
@@ -47,7 +44,7 @@ namespace CorriAndMike.Controllers
                 model.InvitationGuests = RavenHelper.CurrentSession().Query<Guest>().Where(g => g.Invitations.Any(id => id == invitation.Id)).ToList();
             }
 
-            return PartialView("_Home", model);
+            //return PartialView("_Home", model);
             //var guestWithInvitation = RavenHelper.CurrentSession().Query<Guest>()
             //                                     .Customize(g => g.Include<Invitation>(i => i.InvitationId))
             //                                     .Where(g => g.Invitations != null)
@@ -57,7 +54,7 @@ namespace CorriAndMike.Controllers
             //{
             //    foreach (var invite in guest.Invitations)
             //    {
-            //        if (model.Any(m => m.Invitation.Id == invite))
+            //        if (model.Invitation.Any(m => m.Invitation.Id == invite))
             //        {
             //            model.FirstOrDefault(m => m.Invitation.Id == invite).Guests.Add(guest);
             //        }
@@ -71,7 +68,7 @@ namespace CorriAndMike.Controllers
             //        }
             //    }
             //}
-            //return PartialView("_Home");
+            return PartialView("_Home", model);
         }
     }
 }

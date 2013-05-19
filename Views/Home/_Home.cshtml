@@ -10,49 +10,129 @@
          width: 125px !important;
      }
      #rsvp-invited-guests {
-         margin: auto;
+         margin: 2px auto;
          width: 450px;
      }
-     #rsvp-invited-guests td {
-         font-family: Trebuchet;
-         letter-spacing: normal;
+     #rsvp-invited-guests p {
+         font-family: lobster;
+         letter-spacing: 2px;
+         text-align: center;
+         color: #CCCCFF;
+         font-size: 20pt;
+         line-height: 37px;
+         margin-bottom: 10px;
      }
-     #slider {
+     #rsvp-invited-guests td {
+         
+         letter-spacing: normal;
+         text-align: left;
+         font-size: 12pt;
+     }
+     .rsvp-slider {
          width: 42px;
          display: inline-block;
      }
+     .rsvp-message {
+         font-family: lobster;
+         font-size: 19px;
+     }
+     .guest-table {
+         margin: auto;
+         width: 400px;
+         table-layout: fixed;
+     }
+     .guest-table td {
+         padding-top: 10px;
+     }
+     #submit-rsvp {
+         margin-top: 20px;
+     }
+     address {
+         font-family: lobster;
+         font-size: 18pt;
+         margin-left: 10px;
+         color: #CCCCFF;
+     }
+     #iron-monkey-link {
+         font-size: 12pt;
+         color: white;
+     }
  </style>
 <div id="home-container" class="content ui-corner-all">
-    Invitation Number: @Model.Invitation.InvitationId
+     Invitation Number: @Model.Invitation.InvitationId
     <table id="rsvp-invited-guests">
+        <tr>
+            <td colspan="2">
+                <p>
+                    Corri <span style="color:#9f4d95;">&</span> Mike
+                    <br/>
+                    are getting married!
+                    <br/>
+                    Please join us in
+                    <br />
+                    celebrating our engagement
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="http://www.ironmonkey.com"><img src="@(Url.Content("~/Content/Images/ironmonkey.jpg"))" alt="iron monkey" width="225"/></a>
+            </td>
+            <td >
+                <address>
+                    <span style="color:#9f4d95;">The Iron Monkey</span> <br/>
+                    97 Greene St <br/>
+                    Jersey City, NJ <br/>
+                    <a id="iron-monkey-link" href="http://www.ironmonkey.com">www.ironmonkey.com</a>
+                </address>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 220px; vertical-align: middle;"><br />@(string.IsNullOrEmpty(Model.Invitation.Email) ? "Enter an email for this invitation" : "This is the email you gave us"):</td>
+            <td style="vertical-align: middle;"><br />@Html.TextBoxFor(m => m.Invitation.Email)</td>
+        </tr>
         @foreach (var guest in Model.InvitationGuests)
         {
             <tr>
-                <td style="width: 225px;">Yes<div id="slider"></div>No</td>
-                <td style="width: 225px;"><input type="text" readonly="readonly" guestId="@(guest.Id)" class="guest-name" value="@(string.Concat(guest.FirstName, " ", guest.LastName))" /></td>
-                @*<table>
-                        <tr><td><input type="radio" guestId="@(guest.Id)" class="yes-check" name="rsvp-answer" />&nbsp;will be there!</td></tr>
-                        <tr><td><input type="radio" guestId="@(guest.Id)" class="no-check" name="rsvp-answer" />&nbsp;won't make it.</td></tr>
-                    </table>*@                
+                <td colspan="2">
+                    <table class="guest-table">
+                        <tr>
+                            <td class="guest-name" style="width: 150px;">@guest.FirstName&nbsp;@guest.LastName</td>
+                            <td style="width: 250px;"><span class="rsvp-message">Yes</span>&nbsp;&nbsp;&nbsp;&nbsp;<div id="slider-@(guest.FirstName + guest.LastName)" class="rsvp-slider"></div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="rsvp-message">No</span></td>
+                        </tr>
+                    </table>
+                </td>
             </tr>
-            @*<tr>
-                <td>@(string.Concat(guest.FirstName, " ", guest.LastName)) will <input type="button" class="yes-button" value="be there" />&nbsp;<input type="button" class="no-button" value="not be there"/>.</td>
-            </tr>*@
+        }
+        @if(Model.InvitationGuests.Count < Model.Invitation.MaxNumberOfGuests)
+        {
+            <tr>
+                <td colspan="2">
+                    <table class="guest-table">
+                        <tr>
+                            <td class="guest-name" style="width: 150px;"><input type="text" id="additional-guest-name" /></td>
+                            <td style="width: 250px;"><span class="rsvp-message">Yes</span>&nbsp;&nbsp;&nbsp;&nbsp;<div id="slider-plus-one" class="rsvp-slider"></div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="rsvp-message">No</span></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
         }
         <tr>
-            <td></td>
+            <td colspan="2" style="text-align: center;">
+                <input type="submit" id="submit-rsvp" value="Submit" />
+            </td>
         </tr>
     </table>
 </div>
 
 <script type="text/javascript">
-    $(function() {
-        $("input[type=button]").button();
-        $("#slider").slider({
+    $(function () {
+        $("input[type=button], input[type=submit]").button();
+        $(".rsvp-slider").slider({
             min: 1,
             max: 2,
             value: 1,
-            slide: function () { console.log($("#slider").val()); }
+            change: function () { console.log($(this).slider("option", "value")); }
         });
     });
 </script>
