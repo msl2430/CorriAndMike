@@ -1,53 +1,23 @@
 ﻿@model CorriAndMike.ViewModels.Rsvp.LoginViewModel
 
-<style type="text/css">
-     #login-container {
-         width: 500px;
-         height: 570px;
-         text-align: center;
-     }
-     #instructions {
-         width: 400px;
-         margin: auto;
-         padding: 50px;
-         font-size: 21px;
-     }
-     #auth-table {
-         width: 300px;
-         margin: 0px auto;
-         padding-top: 40px;
-     }
-     #auth-table td {
-         padding: 3px 5px;
-     }
-     #InvitationId { width: 100px; }
-     #Password { width: 150px; }
-     #rsvp-login {
-         margin-top: 5px;
-     }
- </style>
+<link href="~/Content/Styles/Rsvp/rsvp.css" rel="stylesheet" />
 
 <div id="login-container" class="content ui-corner-all">
-    <div id="instructions">Please enter you invitation number and password found in your invitation.</div>
+    <div id="instructions">Please enter you invitation number found on your invitation.</div>
     <table id="auth-table">        
         <tr><td>Invitation Number</td></tr>
         <tr><td>@Html.TextBoxFor(m => m.InvitationId)</td></tr>
-        <tr><td>Password</td></tr>
-        <tr><td>@Html.PasswordFor(m => m.Password)</td></tr>
+        @*<tr><td>Password</td></tr>
+        <tr><td>@Html.PasswordFor(m => m.Password)</td></tr>*@
         <tr><td><input type="button" id="rsvp-login" value="Login" /></td></tr>
         <tr><td><label id="login-error-msg" style="color:red; font-family: trebuchet;"></label></td></tr>
     </table>
 </div>
 
 <script type="text/javascript">
-    $(function () {        
-        $("input[type=button]").button();
-        $("select").addClass("ui-corner-all");
-        $("#rsvp-login").click(function () {
-            $("#login-error-msg").text('');
-            var test = $.get("@(Url.Content("~/api/Invitation"))", { InvitationId: $("#InvitationId").val(), Password: $("#Password").val() }, function (data, text, xhr) {
-                alert('yay');
-            }).fail(function () { $("#login-error-msg").text("Invalid invitation number or password. Please try again."); });
-        });
-    });
+    var checkInvitationUrl = "@(Url.Content("~/api/Invitation"))";
+    var getInvitationUrl = "@(Url.Action("GetInvitation", "Rsvp"))";
+    $(function() { $("#InvitationId").focus(); });
 </script>
+
+<script src="~/Content/Scripts/Rsvp/rsvp.js"></script>

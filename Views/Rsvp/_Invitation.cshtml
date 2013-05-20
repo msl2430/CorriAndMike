@@ -1,0 +1,93 @@
+﻿@model CorriAndMike.ViewModels.Rsvp.RsvpInvitationViewModel
+
+<link href="~/Content/Styles/Rsvp/rsvp.css" rel="stylesheet" />
+
+<div id="invitation-container" class="content ui-corner-all">
+    Invitation Number: @Model.Invitation.InvitationId
+    <table id="rsvp-invited-guests">
+        <tr>
+            <td colspan="2">
+                <p>
+                    Corri <span style="color:#9f4d95;">&</span> Mike
+                    <br/>
+                    are getting married!
+                    <br/>
+                    Please join us in
+                    <br />
+                    celebrating our engagement.
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="http://www.ironmonkey.com"><img src="@(Url.Content("~/Content/Images/ironmonkey.jpg"))" alt="iron monkey" width="225"/></a>
+            </td>
+            <td >
+                <address>
+                    <span style="color:#9f4d95;">The Iron Monkey</span> <br/>
+                    97 Greene St <br/>
+                    Jersey City, NJ <br/>
+                    <a id="iron-monkey-link" href="http://www.ironmonkey.com">www.ironmonkey.com</a>
+                </address>
+            </td>
+        </tr>
+    </table>
+    <fieldset class="ui-corner-all" style="border: solid 1px #9F4D95;width: 95%;margin: auto;">
+        <legend style="color: #CCCCFF; margin-left: 20px;">RSVP</legend>
+        <div id="rsvp-response-container">
+            <table>
+                <tr>
+                    <td style="width: 260px; vertical-align: middle;"><br />@(string.IsNullOrEmpty(Model.Invitation.Email) ? "Enter an email address" : "This is the email you gave us"):</td>
+                    <td style="vertical-align: middle;"><br />@Html.TextBoxFor(m => m.Invitation.Email)</td>
+                </tr>
+                @foreach (var guest in Model.InvitationGuests)
+                {
+                    <tr>
+                        <td colspan="2">
+                            <table class="guest-table">
+                                <tr>
+                                    <td class="guest-name" style="width: 150px;">@guest.FirstName&nbsp;@guest.LastName</td>
+                                    <td style="width: 250px;"><span class="rsvp-message">Yes</span>&nbsp;&nbsp;&nbsp;&nbsp;<div id="slider-@(guest.FirstName + guest.LastName)" class="rsvp-slider" guestId="@(guest.Id)"></div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="rsvp-message">No</span></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                }
+                @if(Model.InvitationGuests.Count < Model.Invitation.MaxNumberOfGuests)
+                {
+                    <tr>
+                        <td colspan="2">
+                            <table class="guest-table">
+                                <tr>
+                                    <td class="guest-name" style="width: 150px;"><input type="text" id="additional-guest-name" /></td>
+                                    <td style="width: 250px;"><span class="rsvp-message">Yes</span>&nbsp;&nbsp;&nbsp;&nbsp;<div id="slider-plus-one" class="rsvp-slider"></div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="rsvp-message">No</span></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <td colspan="2" style="text-align: center;">
+                        <input type="submit" id="submit-rsvp" value="Submit" /><br/>
+                        <label id="rsvp-message"></label>
+                        <br/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </fieldset>
+</div>
+
+<script type="text/javascript">
+    var submitInvitationUrl = "@(Url.Action("SubmitInvitation"))";
+    var addSingleGuestUrl = "@(Url.Content("~/api/Guest"))";
+    var invitationId = "@(Model.Invitation.InvitationId)";
+    var ravenInvitationId = "@(Model.Invitation.Id)";
+    var attendingGuests = "@(string.Join(",", Model.Invitation.AttendingGuests))";
+    
+    $(function() {
+        SetExistingGuestsSlider();
+    });
+</script>
+
+<script src="~/Content/Scripts/Rsvp/rsvp.js"></script>

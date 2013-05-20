@@ -28,7 +28,7 @@ namespace CorriAndMike.Api
                                        FirstName = model.FirstName, 
                                        LastName = model.LastName, 
                                        Type = Guest.GuestTypes.Guest,
-                                       Invitations = new List<string>()
+                                       Invitations = model.Invitations ?? new List<string>() 
                                    };
 
                 RavenHelper.CurrentSession().Store(newGuest);

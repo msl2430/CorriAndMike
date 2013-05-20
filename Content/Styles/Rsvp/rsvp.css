@@ -1,0 +1,102 @@
+﻿/* Login */
+#login-container {
+    width: 500px;
+    height: 570px;
+    text-align: center;
+}
+#instructions {
+    width: 400px;
+    margin: auto;
+    padding: 50px;
+    font-size: 21px;
+}
+#auth-table {
+    width: 300px;
+    margin: 0px auto;
+    padding-top: 40px;
+}
+#auth-table td {
+    padding: 3px 5px;
+}
+#InvitationId { width: 100px; }
+#Password { width: 150px; }
+#rsvp-login {
+    margin-top: 5px;
+}
+
+/* Invitation */
+#invitation-container {
+    width: 500px;
+    height: 570px;
+    text-align: center;
+}
+.guest-name {
+    width: 125px !important;
+}
+#rsvp-invited-guests {
+    margin: 2px auto;
+    width: 450px;
+}
+#rsvp-invited-guests p {
+    font-family: lobster;
+    letter-spacing: 2px;
+    text-align: center;
+    color: #CCCCFF;
+    font-size: 20pt;
+    line-height: 37px;
+    margin-bottom: 10px;
+}
+#rsvp-invited-guests td {
+         
+    letter-spacing: normal;
+    text-align: left;
+    font-size: 12pt;
+}
+.rsvp-slider {
+    width: 42px;
+    display: inline-block;
+}
+.rsvp-message {
+    font-family: lobster;
+    font-size: 19px;
+}
+.guest-table {
+    margin: auto;
+    width: 400px;
+    table-layout: fixed;
+}
+.guest-table td {
+    padding-top: 10px;
+}
+#submit-rsvp {
+    margin-top: 20px;
+}
+#rsvp-message {
+    color: red;
+    font-family: Trebuchet;
+}
+address {
+    font-family: lobster;
+    font-size: 18pt;
+    margin-left: 10px;
+    color: #CCCCFF;
+}
+
+#iron-monkey-link {
+    font-size: 12pt;
+    color: white;
+}
+
+#rsvp-response-container .response-msg {
+    display: block;
+    font-size: 25px;
+    height: 200px;
+    line-height: 62px;
+    margin: auto;
+    text-align: center;
+    width: 400px;
+}
+
+#additional-guest-name {
+    width: 125px;
+}

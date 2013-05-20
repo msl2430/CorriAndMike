@@ -11,8 +11,7 @@
     <script src="~/Content/Scripts/Supersized/supersized.core.3.2.1.min.js"></script>
     <script src="~/Content/Scripts/Supersized/jquery.easing.min.js"></script>
     <script src="~/Content/Scripts/Supersized/supersized.3.2.7.min.js"></script>
-    <script src="~/Content/Scripts/Supersized/supersized.shutter.min.js"></script>
-
+    
     <link href="~/Content/Scripts/jQueryUi/css/eggplant/jquery-ui-1.10.2.custom.min.css" rel="stylesheet" />
     <link href="~/Content/Styles/DataTables/jquery.dataTables.css" rel="stylesheet"/>
     <link href="~/Content/Styles/Site.css" rel="stylesheet" />
@@ -51,7 +50,9 @@
             var homeUrl = "@(Url.Action("Home", "Home"))";
             var aboutUrl = "@(Url.Action("AboutTheCouple", "About"))";
             var rsvpUrl = "@(Url.Action("Login", "Rsvp"))";
-            
+
+            var spinnerImgSrc = "@(Url.Content("~/Content/Images/Spinner/sprites.gif"))";
+
             $(function() {
                 $("input[type=button]").button();
                 $("select").addClass("ui-corner-all");

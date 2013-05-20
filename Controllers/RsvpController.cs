@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 using CorriAndMike.Models;
+using CorriAndMike.ViewModels.Rsvp;
 
 
 namespace CorriAndMike.Controllers
@@ -20,17 +21,41 @@ namespace CorriAndMike.Controllers
         }
 
         [HttpPost]
-        public HttpResponseMessage RsvpLogin(string invitationId, string password)
+        public ActionResult GetInvitation(string invitationId)
         {
-            if (password == ConfigurationManager.AppSettings["UniversalPassword"])
+            var model = new RsvpInvitationViewModel();
+            var invitation = RavenHelper.CurrentSession().Query<Invitation>().SingleOrDefault(i => i.InvitationId == invitationId);
+            if (invitation != null)
             {
-                var invitation = RavenHelper.CurrentSession().Query<Invitation>().SingleOrDefault(i => i.InvitationId == invitationId);
-                if (invitation != null)
-                {
-                    return new HttpResponseMessage(HttpStatusCode.OK);
-                } 
+                model.Invitation = invitation;
+                model.InvitationGuests = RavenHelper.CurrentSession().Query<Guest>().Where(g => g.Invitations.Any(id => id == invitation.Id)).ToList();
             }
-            return new HttpResponseMessage(HttpStatusCode.Unauthorized);
+            else
+            {
+                TempData["LoginError"] = "There was an error retrieving your invitation.";
+                return PartialView("_Login");
+            }
+
+            return PartialView("_Invitation", model);
+        }
+
+        [HttpPost]
+        public HttpResponseMessage SubmitInvitation(string invitationId, string email, string attendingGuests)
+        {
+            var yesGuests = attendingGuests.Split(',').Any() ? attendingGuests.Split(',').ToList() : new List<string>();
+            var invitation = RavenHelper.CurrentSession().Query<Invitation>().SingleOrDefault(i => i.InvitationId == invitationId);
+            if (invitationId != null)
+            {
+                invitation.Email = email;
+                invitation.RsvpDate = DateTime.Now;
+                invitation.AttendingGuests.Clear();
+                foreach (var guest in yesGuests)
+                {
+                    invitation.AttendingGuests.Add(guest);
+                }
+            }
+            RavenHelper.SaveChanges();
+            return new HttpResponseMessage(HttpStatusCode.OK);
         }
     }
 }

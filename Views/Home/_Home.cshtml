@@ -1,138 +1,30 @@
-﻿@model CorriAndMike.ViewModels.Rsvp.RsvpInvitationViewModel
-
-<style type="text/css">
+﻿<style type="text/css">
      #home-container {
          width: 500px;
          height: 570px;
          text-align: center;
-     }
-     .guest-name {
-         width: 125px !important;
-     }
-     #rsvp-invited-guests {
-         margin: 2px auto;
-         width: 450px;
-     }
-     #rsvp-invited-guests p {
-         font-family: lobster;
-         letter-spacing: 2px;
-         text-align: center;
-         color: #CCCCFF;
-         font-size: 20pt;
-         line-height: 37px;
-         margin-bottom: 10px;
-     }
-     #rsvp-invited-guests td {
-         
-         letter-spacing: normal;
-         text-align: left;
-         font-size: 12pt;
-     }
-     .rsvp-slider {
-         width: 42px;
-         display: inline-block;
-     }
-     .rsvp-message {
-         font-family: lobster;
-         font-size: 19px;
-     }
-     .guest-table {
-         margin: auto;
-         width: 400px;
-         table-layout: fixed;
-     }
-     .guest-table td {
-         padding-top: 10px;
-     }
-     #submit-rsvp {
-         margin-top: 20px;
-     }
-     address {
-         font-family: lobster;
-         font-size: 18pt;
-         margin-left: 10px;
-         color: #CCCCFF;
-     }
-     #iron-monkey-link {
-         font-size: 12pt;
-         color: white;
+         position: relative;
+     }     
+     #countdown-footer {
+         position: absolute;
+         bottom: 20px;
+         left: 70px;
+         font-size: 20px;
      }
  </style>
+
 <div id="home-container" class="content ui-corner-all">
-     Invitation Number: @Model.Invitation.InvitationId
-    <table id="rsvp-invited-guests">
-        <tr>
-            <td colspan="2">
-                <p>
-                    Corri <span style="color:#9f4d95;">&</span> Mike
-                    <br/>
-                    are getting married!
-                    <br/>
-                    Please join us in
-                    <br />
-                    celebrating our engagement
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <a href="http://www.ironmonkey.com"><img src="@(Url.Content("~/Content/Images/ironmonkey.jpg"))" alt="iron monkey" width="225"/></a>
-            </td>
-            <td >
-                <address>
-                    <span style="color:#9f4d95;">The Iron Monkey</span> <br/>
-                    97 Greene St <br/>
-                    Jersey City, NJ <br/>
-                    <a id="iron-monkey-link" href="http://www.ironmonkey.com">www.ironmonkey.com</a>
-                </address>
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 220px; vertical-align: middle;"><br />@(string.IsNullOrEmpty(Model.Invitation.Email) ? "Enter an email for this invitation" : "This is the email you gave us"):</td>
-            <td style="vertical-align: middle;"><br />@Html.TextBoxFor(m => m.Invitation.Email)</td>
-        </tr>
-        @foreach (var guest in Model.InvitationGuests)
+    <div id="countdown-footer">
+        @{ var daysLeft = Math.Abs(DateTime.Now.Subtract(new DateTime(2013, 7, 6)).Days); }
+        @if (daysLeft >= 2)
         {
-            <tr>
-                <td colspan="2">
-                    <table class="guest-table">
-                        <tr>
-                            <td class="guest-name" style="width: 150px;">@guest.FirstName&nbsp;@guest.LastName</td>
-                            <td style="width: 250px;"><span class="rsvp-message">Yes</span>&nbsp;&nbsp;&nbsp;&nbsp;<div id="slider-@(guest.FirstName + guest.LastName)" class="rsvp-slider"></div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="rsvp-message">No</span></td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
+            @:<span style="color: #9f4d95;">@daysLeft</span>&nbsp;days until our <span style="color: #CCCCFF">Engagment Party!</span>   
         }
-        @if(Model.InvitationGuests.Count < Model.Invitation.MaxNumberOfGuests)
+        else
         {
-            <tr>
-                <td colspan="2">
-                    <table class="guest-table">
-                        <tr>
-                            <td class="guest-name" style="width: 150px;"><input type="text" id="additional-guest-name" /></td>
-                            <td style="width: 250px;"><span class="rsvp-message">Yes</span>&nbsp;&nbsp;&nbsp;&nbsp;<div id="slider-plus-one" class="rsvp-slider"></div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="rsvp-message">No</span></td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
+            @:<span style="color: #9f4d95;">@daysLeft</span>&nbsp;day left until our Engagment Party! 
         }
-        <tr>
-            <td colspan="2" style="text-align: center;">
-                <input type="submit" id="submit-rsvp" value="Submit" />
-            </td>
-        </tr>
-    </table>
+        <br/><span style="font-size: 15px;">Have you <a id="rsvp-countdown-link" style="color:  #CCCCFF;">RSVPed</a>?</span>
+    </div>
 </div>
 
-<script type="text/javascript">
-    $(function () {
-        $("input[type=button], input[type=submit]").button();
-        $(".rsvp-slider").slider({
-            min: 1,
-            max: 2,
-            value: 1,
-            change: function () { console.log($(this).slider("option", "value")); }
-        });
-    });
-</script>

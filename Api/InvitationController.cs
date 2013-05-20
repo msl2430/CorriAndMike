@@ -51,16 +51,14 @@ namespace CorriAndMike.Api
         }
 
         [HttpGet]
-        public HttpResponseMessage Get(string invitationId, string password)
+        public HttpResponseMessage Get(string invitationId)
         {
-            if (password == ConfigurationManager.AppSettings["UniversalPassword"])
+            var invitation = RavenHelper.CurrentSession().Query<Invitation>().SingleOrDefault(i => i.InvitationId == invitationId);
+            if (invitation != null)
             {
-                var invitation = RavenHelper.CurrentSession().Query<Invitation>().SingleOrDefault(i => i.InvitationId == invitationId);
-                if (invitation != null)
-                {
-                    return new HttpResponseMessage(HttpStatusCode.OK);
-                }
+                return new HttpResponseMessage(HttpStatusCode.OK);
             }
+            
             return new HttpResponseMessage(HttpStatusCode.Unauthorized);
         }
     }
