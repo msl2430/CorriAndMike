@@ -194,22 +194,6 @@
     <Content Include="Content\Scripts\jQueryUi\css\eggplant\jquery-ui-1.10.2.custom.min.css" />
     <Content Include="Content\Scripts\jQueryUi\jquery-ui-1.10.2.custom.min.js" />
     <Content Include="Content\Scripts\Rsvp\rsvp.js" />
-    <Content Include="Content\Scripts\Supersized\img\back.png" />
-    <Content Include="Content\Scripts\Supersized\img\bg-black.png" />
-    <Content Include="Content\Scripts\Supersized\img\bg-hover.png" />
-    <Content Include="Content\Scripts\Supersized\img\button-tray-down.png" />
-    <Content Include="Content\Scripts\Supersized\img\button-tray-up.png" />
-    <Content Include="Content\Scripts\Supersized\img\forward.png" />
-    <Content Include="Content\Scripts\Supersized\img\nav-bg.png" />
-    <Content Include="Content\Scripts\Supersized\img\nav-dot.png" />
-    <Content Include="Content\Scripts\Supersized\img\pause.png" />
-    <Content Include="Content\Scripts\Supersized\img\play.png" />
-    <Content Include="Content\Scripts\Supersized\img\progress-back.png" />
-    <Content Include="Content\Scripts\Supersized\img\progress-bar.png" />
-    <Content Include="Content\Scripts\Supersized\img\progress.gif" />
-    <Content Include="Content\Scripts\Supersized\img\supersized-logo.png" />
-    <Content Include="Content\Scripts\Supersized\img\thumb-back.png" />
-    <Content Include="Content\Scripts\Supersized\img\thumb-forward.png" />
     <Content Include="Content\Scripts\Supersized\jquery.easing.min.js" />
     <Content Include="Content\Scripts\Supersized\supersized.3.2.7.min.js" />
     <Content Include="Content\Scripts\Supersized\supersized.core.3.2.1.min.js" />
@@ -224,22 +208,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Styles\Fonts\Lobster_1.3.otf" />
     <Content Include="Content\Styles\Fonts\Lobster_1.ttf" />
-    <None Include="Scripts\jquery-1.7.1.intellisense.js" />
-    <Content Include="Scripts\jquery-1.7.1.js" />
-    <Content Include="Scripts\jquery-1.7.1.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery-ui-1.8.20.js" />
-    <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\knockout-2.1.0.debug.js" />
-    <Content Include="Scripts\knockout-2.1.0.js" />
-    <Content Include="Scripts\modernizr-2.5.3.js" />
-    <Content Include="Scripts\_references.js" />
+    <None Include="Properties\PublishProfiles\Publish Locally.pubxml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -267,11 +236,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Scripts\Supersized\img\" />
     <Folder Include="Models\Indexes\" />
     <Folder Include="ViewModels\Home\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="packages.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

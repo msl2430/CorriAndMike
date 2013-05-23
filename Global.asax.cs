@@ -34,7 +34,6 @@ namespace CorriAndMike
             Store.Initialize();
 
             IndexCreation.CreateIndexes(Assembly.GetCallingAssembly(), Store);
-            IndexCreation.CreateIndexes(typeof(AbstractIndexCreationTask).Assembly, Store);
         }
     }
 }
