@@ -29,11 +29,12 @@
             <div style="clear:both;"></div>
             <div style="width: 1050px; display: block;">
                 <div id="menu-container" class="ui-corner-br ui-corner-bl">
-                    <img id="header-logo" src="~/Content/Images/tall-header.png" style="margin-left: -30px;"/>
+                    <img id="header-logo" src="~/Content/Images/Layout/header.png" style="margin-left: -30px;"/>
                     <ul id="menu-list">
                         <li><a id="home-link" class="nav-link" linkId="@(GlobalConstants.NavigationLinks.Home)">Home</a></li>
                         <li><a id="about-us-link" class="nav-link" linkId="@(GlobalConstants.NavigationLinks.AboutTheCouple)">About the couple</a></li>
                         <li><a id="rsvp-link" class="nav-link" linkId="@(GlobalConstants.NavigationLinks.Rsvp)">RSVP</a></li>
+                        <li><a id="engagement-party-link" class="nav-link" linkId="@(GlobalConstants.NavigationLinks.EngagementParty)">Engagement Party&nbsp;&nbsp;</a></li>
                     </ul>
                 </div>
                     <div id="content-container" class="ui-corner-all">
@@ -46,10 +47,12 @@
             var homeLink = "@(GlobalConstants.NavigationLinks.Home)";
             var aboutLink = "@(GlobalConstants.NavigationLinks.AboutTheCouple)";
             var rsvpLink = "@(GlobalConstants.NavigationLinks.Rsvp)";
+            var engagementPartyLink = "@(GlobalConstants.NavigationLinks.EngagementParty)";
 
             var homeUrl = "@(Url.Action("Home", "Home"))";
             var aboutUrl = "@(Url.Action("AboutTheCouple", "About"))";
             var rsvpUrl = "@(Url.Action("Login", "Rsvp"))";
+            var engagementPartyUrl = "@(Url.Action("EngagementParty", "Events"))";
 
             var spinnerImgSrc = "@(Url.Content("~/Content/Images/Spinner/sprites.gif"))";
 
@@ -59,5 +62,16 @@
             });
         </script>
         <script type="text/javascript" src="~/Content/Scripts/corriandmike.js"></script>
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+            ga('create', 'UA-41157913-1', 'corriandmike.com');
+            ga('send', 'pageview');
+        </script>
     </body>
 </html>

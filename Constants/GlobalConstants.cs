@@ -11,7 +11,8 @@ namespace CorriAndMike.Constants
         {
             Home,
             AboutTheCouple,
-            Rsvp
+            Rsvp,
+            EngagementParty
         }
     }
 }

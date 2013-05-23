@@ -8,5 +8,9 @@ namespace CorriAndMike.ViewModels.Admin
     public class InvitationsViewModel
     {
         public IList<InvitationTableViewModel> InvitationTable { get; set; }
+
+        public int TotalInvitedGuests { get; set; }
+
+        public int TotalAttendingGuests { get; set; }
     }
 }

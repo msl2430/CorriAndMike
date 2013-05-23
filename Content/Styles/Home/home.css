@@ -1,0 +1,32 @@
+﻿#home-container {
+    width: 500px;
+    height: 570px;
+    text-align: center;
+    position: relative;
+}     
+#countdown-footer {
+    position: absolute;
+    bottom: 20px;
+    left: 70px;
+    font-size: 20px;
+}
+#welcome-header {
+    font-size: 30pt;
+    color: #ccccff;
+    width: 450px;
+    text-align: center;
+    margin: auto;
+}
+#message-container {
+    width: 450px;
+    margin: auto;
+    line-height: 25px;
+}
+#home-image-container {
+    margin-top: 10px;    
+}
+
+#home-image-container, #home-image-container img {
+    opacity: .99;
+    filter:alpha(opacity=99);
+}

@@ -20,16 +20,16 @@
 <table id="add-invitation">
     <tr>
         <td>Invitation Id:</td>
-        <td>@Html.TextBoxFor(m => m.Invitation.InvitationId, new { @disabled = "disabled" })</td>
+        <td>@Html.TextBoxFor(m => m.Invitation.InvitationId, new { })</td>
     </tr>
     <tr>
         <td>Type:</td>
         <td>@Html.DropDownList("InvitationType", Model.InvitationSelectType, new {} )</td>
     </tr>
-    <tr>
+    @*<tr>
         <td>Password:</td>
         <td>@Html.TextBoxFor(m => m.Invitation.Password, new { @disabled = "disabled" })</td>
-    </tr>
+    </tr>*@
     <tr>
         <td>Number of guests:</td>
         <td>

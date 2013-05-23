@@ -1,19 +1,19 @@
-﻿<style type="text/css">
-     #home-container {
-         width: 500px;
-         height: 570px;
-         text-align: center;
-         position: relative;
-     }     
-     #countdown-footer {
-         position: absolute;
-         bottom: 20px;
-         left: 70px;
-         font-size: 20px;
-     }
- </style>
+﻿<link href="~/Content/Styles/Home/home.css" rel="stylesheet" />
 
 <div id="home-container" class="content ui-corner-all">
+    <div id="welcome-header">
+        <h2>Welcome</h2>
+    </div>
+    <div id="message-container">
+        <p>
+            Glad you made it!<br/><br/>
+            We are very excited about our engagement and cannot wait to celebrate with you.<br/><br/>
+            This site will be updated with new information frequently so be sure to check back.
+        </p>
+    </div>
+    <div id="home-image-container">
+        <img src="@Url.Content("~/Content/Images/ringandshoes.png")" class="ui-corner-all" style="width: 300px;" title="The Ring...and the Shoes" />
+    </div>
     <div id="countdown-footer">
         @{ var daysLeft = Math.Abs(DateTime.Now.Subtract(new DateTime(2013, 7, 6)).Days); }
         @if (daysLeft >= 2)

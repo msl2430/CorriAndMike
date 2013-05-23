@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using CorriAndMike.Models;
 using CorriAndMike.ViewModels;
 using CorriAndMike.ViewModels.Admin;
+using Raven.Client;
 
 namespace CorriAndMike.Controllers
 {
@@ -30,10 +31,13 @@ namespace CorriAndMike.Controllers
         }
 
         public ActionResult Invitations()
-        {
+        {            
+            var stats = new RavenQueryStatistics();
             var model = new InvitationsViewModel()
                 {
                     InvitationTable = GetInvitationTableModel(),
+                    TotalInvitedGuests = RavenHelper.CurrentSession().Query<Guest>().Customize(x => x.WaitForNonStaleResults()).Statistics(out stats).Count(),
+                    TotalAttendingGuests = RavenHelper.CurrentSession().Query<Invitation>().Select(i => new { i.InvitationId, i.AttendingGuests.Count }).ToList().Sum(x => x.Count)
                 };
 
             return View(model);
@@ -42,16 +46,9 @@ namespace CorriAndMike.Controllers
         [HttpPost]
         public ActionResult GetAddInvitationModel()
         {
-            var rand = new Random(DateTime.Now.Millisecond);
-            var invitationId = string.Concat("CM", rand.Next(9), rand.Next(9), rand.Next(9));
-            while (RavenHelper.CurrentSession().Query<Invitation>().Any(i => i.InvitationId == invitationId))
-            {
-                invitationId = string.Concat("CM", rand.Next(9), rand.Next(9), rand.Next(9));
-            }
-        
             var model = new AddInvitationViewModel()
                             {
-                                Invitation = new Invitation() {InvitationId = invitationId},
+                                Invitation = new Invitation(),
                                 AvailableGuests = RavenHelper.CurrentSession().Query<Guest>().Where(g => g.Invitations.Count == 0).ToList(),
                                 InvitedGuests = new List<Guest>()
                             };
