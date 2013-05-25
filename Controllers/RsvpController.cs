@@ -85,7 +85,7 @@ namespace CorriAndMike.Controllers
             bodyContent.Append("Guests attending: <br/>");
             foreach (var guest in guestNames)
             {
-                bodyContent.AppendFormat("&nbsp;&nbsp;&nbsp;{0}<br/", guest);
+                bodyContent.AppendFormat("&nbsp;&nbsp;&nbsp;{0}<br/>", guest);
             }
             email.Body = bodyContent.ToString();
 
