@@ -18,6 +18,21 @@ $(function() {
             MaximizeAllWindows();
         }
     });
+    $("input[type=button]").button();
+    $("select").addClass("ui-corner-all");
+    $("#show-slideshow").qtip({
+        content: { text: 'Click here to hide all menus and view the slideshow.' },
+        style: { width: 160, classes: 'qtip-slideshow' },
+        position: {
+            my: 'top-right',
+            at: 'bottom-center'
+        },
+        effect: function () { $(this).animate({ width: 0, opacity: 0 }, { duration: 500 }); }
+    });
+    setTimeout(function () {
+        $("#show-slideshow").qtip('show');
+        setTimeout(function () { $("#show-slideshow").qtip('hide').qtip('disable'); }, 6000);
+    }, 2000);
 });
 
 $(function () {
@@ -120,17 +135,17 @@ $(function () {
         thumb_links: 1,			// Individual thumb links for each slide
         thumbnail_navigation: 0,			// Thumbnail navigation
         slides: [			// Slideshow Images
-                { image: 'Content/Images/Slideshow/levine1142.jpg', title: 'Cruise1' },
-                { image: 'Content/Images/Slideshow/levine1003.jpg', title: 'Cruise1' },
-                { image: 'Content/Images/Slideshow/levine1009.jpg', title: 'Cruise1' },
-                { image: 'Content/Images/Slideshow/levine1014.jpg', title: 'Cruise1' },
-                { image: 'Content/Images/Slideshow/levine1044.jpg', title: 'Cruise1' },
-                { image: 'Content/Images/Slideshow/levine1054.jpg', title: 'Cruise1' },
-                { image: 'Content/Images/Slideshow/levine1096.jpg', title: 'Cruise1' },
-                { image: 'Content/Images/Slideshow/levine1100.jpg', title: 'Cruise1' },
-                { image: 'Content/Images/Slideshow/levine1118.jpg', title: 'Cruise1' },
-                { image: 'Content/Images/Slideshow/levine1124.jpg', title: 'Cruise1' },
-                { image: 'Content/Images/Slideshow/levine1161.jpg', title: 'Cruise1' }
+                { image: 'Content/Images/Slideshow/levine1142.jpg', title: 'EngagementPhoto1' },
+                { image: 'Content/Images/Slideshow/levine1003.jpg', title: 'EngagementPhoto2' },
+                { image: 'Content/Images/Slideshow/levine1009.jpg', title: 'EngagementPhoto3' },
+                { image: 'Content/Images/Slideshow/levine1014.jpg', title: 'EngagementPhoto4' },
+                { image: 'Content/Images/Slideshow/levine1044.jpg', title: 'EngagementPhoto5' },
+                { image: 'Content/Images/Slideshow/levine1054.jpg', title: 'EngagementPhoto6' },
+                { image: 'Content/Images/Slideshow/levine1096.jpg', title: 'EngagementPhoto7' },
+                { image: 'Content/Images/Slideshow/levine1100.jpg', title: 'EngagementPhoto8' },
+                { image: 'Content/Images/Slideshow/levine1118.jpg', title: 'EngagementPhoto9' },
+                { image: 'Content/Images/Slideshow/levine1124.jpg', title: 'EngagementPhoto10' },
+                { image: 'Content/Images/Slideshow/levine1161.jpg', title: 'EngagementPhoto11' }
             ],
 
         // Theme Options			   

@@ -7,11 +7,13 @@
     <meta name="description" content="Corri & Mike's official wedding website."/>
     <title>Corri & Mike</title>
     <script src="~/Content/Scripts/jQuery/jquery-1.9.1.js"></script>
+    <script src="~/Content/Scripts/jQuery/jquery-migrate-1.2.1.js"></script>
     <script src="~/Content/Scripts/jQueryUi/jquery-ui-1.10.2.custom.min.js"></script>
     <script src="~/Content/Scripts/DataTables/jquery.datatables.min.js"></script>
     <script src="~/Content/Scripts/Supersized/supersized.core.3.2.1.min.js"></script>
     <script src="~/Content/Scripts/Supersized/jquery.easing.min.js"></script>
     <script src="~/Content/Scripts/Supersized/supersized.3.2.7.min.js"></script>
+    <script src="~/Content/Scripts/qTip/jquery.qtip.min.js"></script>
     
     <link href="~/Content/Scripts/jQueryUi/css/eggplant/jquery-ui-1.10.2.custom.min.css" rel="stylesheet" />
     <link href="~/Content/Styles/DataTables/jquery.dataTables.css" rel="stylesheet"/>
@@ -19,6 +21,7 @@
     <link href="~/Content/Styles/Supersized/supersized.core.css" rel="stylesheet" />
     <link href="~/Content/Styles/Supersized/supersized.css" rel="stylesheet" />
     <link href="~/Content/Styles/Supersized/supersized.shutter.css" rel="stylesheet" />
+    <link href="~/Content/Styles/qTip/jquery.qtip.min.css" rel="stylesheet" />
 </head>
     <body>
         <div id="main-container">
@@ -55,12 +58,7 @@
             var rsvpUrl = "@(Url.Action("Login", "Rsvp"))";
             var engagementPartyUrl = "@(Url.Action("EngagementParty", "Events"))";
 
-            var spinnerImgSrc = "@(Url.Content("~/Content/Images/Spinner/sprites.gif"))";
-
-            $(function() {
-                $("input[type=button]").button();
-                $("select").addClass("ui-corner-all");
-            });
+            var spinnerImgSrc = "@(Url.Content("~/Content/Images/Spinner/sprites.gif"))";            
         </script>
         <script type="text/javascript" src="~/Content/Scripts/corriandmike.js"></script>
         <script>

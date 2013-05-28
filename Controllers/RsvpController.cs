@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -47,22 +48,42 @@ namespace CorriAndMike.Controllers
         {
             var yesGuests = attendingGuests.Split(',').Any() ? attendingGuests.Split(',').ToList() : new List<string>();
             var invitation = RavenHelper.CurrentSession().Query<Invitation>().SingleOrDefault(i => i.InvitationId == invitationId);
+            var isNew = true;
             if (invitationId != null)
             {
+                isNew = string.IsNullOrEmpty(invitation.Email);
                 invitation.Email = email;
                 invitation.RsvpDate = DateTime.Now;
                 invitation.AttendingGuests.Clear();
-                foreach (var guest in yesGuests)
+                foreach (var guest in yesGuests.Where(yg => !string.IsNullOrEmpty(yg)))
                 {
                     invitation.AttendingGuests.Add(guest);
                 }
             }
             RavenHelper.SaveChanges();
-            SendRsvpEmailNotification(yesGuests, invitation);
+            if(isNew)
+                SendRsvpResponse(invitation.InvitationId, invitation.Email, yesGuests.Any());
+            SendRsvpEmailNotification(yesGuests, invitation, isNew);
             return new HttpResponseMessage(HttpStatusCode.OK);
         }
 
-        private void SendRsvpEmailNotification(List<string> guests, Invitation invitation)
+        private void SendRsvpResponse(string invitationId, string emailAddress, bool isComing)
+        {
+            var email = new MailMessage { From = new MailAddress("do-not-reply@corriandmike.com", "CorriAndMike.com") };
+            var bodyContent = new StringWriter();
+            email.To.Add(emailAddress);
+            email.Subject = string.Format("Thank you for your RSVP. (Invitation Id: {0})", invitationId);
+            email.IsBodyHtml = true;
+            
+            var viewResult = ViewEngines.Engines.FindPartialView(ControllerContext, "_RsvpEmail");
+            ViewData.Model = isComing;
+            viewResult.View.Render(new ViewContext(ControllerContext, viewResult.View, ViewData, TempData, bodyContent), bodyContent);
+            
+            email.Body = bodyContent.ToString();
+
+            MailService.SendEmail(email);
+        }
+        private void SendRsvpEmailNotification(List<string> guests, Invitation invitation, bool isNew)
         {
             var email = new MailMessage { From = new MailAddress("do-not-reply@corriandmike.com", "CorriAndMike.com") };
             var bodyContent = new StringBuilder();
@@ -74,8 +95,9 @@ namespace CorriAndMike.Controllers
             }
             
             email.To.Add("me@mikeslevine.com");
-            //email.To.Add("corri.skinner@gmail.com");
-            email.Subject = string.Format("Invitation {0} just RSVPed! ({1} attending)", invitation.InvitationId, guests.Count == 1 ? "1 guest" : guests.Count + " guests");
+            email.To.Add("corri.skinner@gmail.com");
+            email.Subject = string.Format("Invitation {0} just {1}! ({2} attending)", invitation.InvitationId, isNew ? "RSVPed" : "updated their RSVP", guests.Count == 1 ? "1 guest" : guests.Count + " guests");
+            
             email.IsBodyHtml = true;
 
             bodyContent.AppendFormat("Invitation {0} <br/><br/>", invitation.InvitationId);
@@ -89,7 +111,8 @@ namespace CorriAndMike.Controllers
             }
             email.Body = bodyContent.ToString();
 
-            MailService.SendEmail(email);
+            if(Convert.ToBoolean(ConfigurationManager.AppSettings["SendEmail"]))
+                MailService.SendEmail(email);
         }
     }
 }

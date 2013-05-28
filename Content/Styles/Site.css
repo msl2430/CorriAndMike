@@ -113,9 +113,20 @@ a:hover
     font-size: 12pt;
     top: 12px;
     right: 15px;
+    font-family: Trebuchet;
+    letter-spacing: 1px;
 }
 #show-slideshow:hover {
     color: #9a9ac1;
     text-decoration: none;
 }
 .ui-icon { float: left;}
+
+.qtip-slideshow, .qtip-content {
+    font-size: 12pt;
+    line-height: 23px;
+    text-align: center;
+    background-color: #ccccff;
+    border: solid 1px #9a9ac1;
+    letter-spacing: 1px;
+}

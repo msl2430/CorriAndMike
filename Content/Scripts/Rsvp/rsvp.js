@@ -28,24 +28,32 @@ $("#submit-rsvp").on('click', function () {
                 yesGuests.push($(this).attr('guestId'));
             }
         });
-        if ($("#additional-guest-name").length > 0 && $("#additional-guest-name").val() !== '') {
-            var fullName = $("#additional-guest-name").val().split(' ');
-            $.ajax({
-                type: "POST",
-                url: addSingleGuestUrl,
-                data: { FirstName: fullName[0], LastName: fullName[1] == null ? "" : fullName[1], Invitations: [ravenInvitationId] },
-                success: function(data) {
-                    yesGuests.push(data.Id);
-                    SubmitRsvp(yesGuests);
-                },
-                error: function(xhr) {
-                    switch (xhr.status) {
-                    case 409:
-                        alert('Guest exists!');
-                        break;
+        if ($("#additional-guest-name").length > 0) {
+            console.log($("#slider-plus-one").slider("option", "value") !== 2);
+            if ($("#additional-guest-name").val() !== '' && $("#slider-plus-one").slider("option", "value") == 1) {
+                var fullName = $("#additional-guest-name").val().split(' ');
+                $.ajax({
+                    type: "POST",
+                    url: addSingleGuestUrl,
+                    data: { FirstName: fullName[0], LastName: fullName[1] == null ? "" : fullName[1], Invitations: [ravenInvitationId] },
+                    success: function(data) {
+                        yesGuests.push(data.Id);
+                        SubmitRsvp(yesGuests);
+                    },
+                    error: function(xhr) {
+                        switch (xhr.status) {
+                        case 409:
+                            alert('Guest exists!');
+                            break;
+                        }
                     }
-                }
-            });
+                });
+            } else if ($("#additional-guest-name").val() !== '') {
+                $("#rsvp-message").text("Please provide a name for your guest.");
+                $("#additional-guest-name").css('background-color', 'red');
+            } else {
+                SubmitRsvp(yesGuests);
+            }
         } else {
             SubmitRsvp(yesGuests);
         }

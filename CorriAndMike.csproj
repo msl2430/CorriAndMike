@@ -193,6 +193,8 @@
     <Content Include="Content\Scripts\jQueryUi\css\eggplant\jquery-ui-1.10.2.custom.css" />
     <Content Include="Content\Scripts\jQueryUi\css\eggplant\jquery-ui-1.10.2.custom.min.css" />
     <Content Include="Content\Scripts\jQueryUi\jquery-ui-1.10.2.custom.min.js" />
+    <Content Include="Content\Scripts\jQuery\jquery-migrate-1.2.1.js" />
+    <Content Include="Content\Scripts\qTip\jquery.qtip.min.js" />
     <Content Include="Content\Scripts\Rsvp\rsvp.js" />
     <Content Include="Content\Scripts\Supersized\jquery.easing.min.js" />
     <Content Include="Content\Scripts\Supersized\supersized.3.2.7.min.js" />
@@ -200,6 +202,7 @@
     <Content Include="Content\Scripts\Supersized\supersized.shutter.min.js" />
     <Content Include="Content\Styles\DataTables\jquery.dataTables.css" />
     <Content Include="Content\Styles\Home\home.css" />
+    <Content Include="Content\Styles\qTip\jquery.qtip.min.css" />
     <Content Include="Content\Styles\Rsvp\rsvp.css" />
     <Content Include="Content\Styles\Site.css" />
     <Content Include="Content\Styles\Supersized\supersized.core.css" />
@@ -233,6 +236,7 @@
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Rsvp\_Invitation.cshtml" />
     <Content Include="Views\Events\_EngagementParty.cshtml" />
+    <Content Include="Views\Rsvp\_RsvpEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

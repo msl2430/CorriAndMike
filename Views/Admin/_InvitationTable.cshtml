@@ -36,7 +36,7 @@
             </td>
             <td style="text-align: center;">@invitation.Invitation.AttendingGuests.Count / @invitation.Invitation.MaxNumberOfGuests</td>
             <td>@invitation.Invitation.Email</td>
-            <td>@invitation.Invitation.RsvpDate</td>
+            <td>@(invitation.Invitation.RsvpDate != null ? TimeZoneInfo.ConvertTimeFromUtc(Convert.ToDateTime(invitation.Invitation.RsvpDate), TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time")).ToString() : "")</td>
             <td>
                 @foreach (var guest in invitation.Guests.OrderBy(g => g.FirstName).ThenBy(g => g.LastName))
                 {

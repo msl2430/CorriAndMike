@@ -1,0 +1,34 @@
+﻿@model bool
+<img src="http://www.corriandmike.com/Content/Images/Layout/header.png" />
+<br/>
+<br/>
+We received your RSVP!
+<br/>
+@if (Model)
+{
+    <p>
+        We cannot wait to see you there! The information for the party is below, feel free to contact us if you have any questions and check back on the site for updates.
+    </p>
+    <p>
+        Saturday July 6, 2013<br/>
+        12:00pm - 3:00pm
+    </p>
+    <address>
+        <span style="color:#9f4d95;">The Iron Monkey</span><br/>
+        97 Greene St <br/>
+        Jersey City, NJ <br/>
+        <a id="iron-monkey-link" href="http://www.ironmonkey.com">www.ironmonkey.com</a>
+    </address>
+    <a href="http://goo.gl/maps/Zi1QW">Google Map</a>
+    <br/><br/>
+}
+else
+{
+    <p>
+        We are going to miss you at the party, but please come back to the website for updates.
+    </p>
+}
+<br/>
+Corri & Mike
+<br/>
+<a href="http://www.corriandmike.com">www.CorriAndMike.com</a>
