@@ -200,6 +200,7 @@
     <Content Include="Content\Scripts\Supersized\supersized.3.2.7.min.js" />
     <Content Include="Content\Scripts\Supersized\supersized.core.3.2.1.min.js" />
     <Content Include="Content\Scripts\Supersized\supersized.shutter.min.js" />
+    <Content Include="Content\Styles\About\aboutthecouple.css" />
     <Content Include="Content\Styles\DataTables\jquery.dataTables.css" />
     <Content Include="Content\Styles\Home\home.css" />
     <Content Include="Content\Styles\qTip\jquery.qtip.min.css" />
