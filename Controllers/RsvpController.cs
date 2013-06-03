@@ -18,6 +18,10 @@ namespace CorriAndMike.Controllers
 {
     public class RsvpController : CorriAndMikeBaseController
     {
+        public ActionResult _RsvpEmail()
+        {
+            return View(true);
+        }
         [HttpPost]
         public ActionResult Login()
         {

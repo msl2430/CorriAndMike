@@ -37,8 +37,10 @@
                     <ul id="menu-list">
                         <li><a id="home-link" class="nav-link" linkId="@(GlobalConstants.NavigationLinks.Home)">Home</a></li>
                         <li><a id="about-us-link" class="nav-link" linkId="@(GlobalConstants.NavigationLinks.AboutTheCouple)">About the couple</a></li>
+                        <li><a id="engagement-link" class="nav-link" linkId="@(GlobalConstants.NavigationLinks.Engagement)">The Engagement&nbsp;&nbsp;</a></li>
+                        <li><a id="wedding-link" class="nav-link" linkId="@(GlobalConstants.NavigationLinks.Wedding)">The Wedding&nbsp;&nbsp;</a></li>
                         <li><a id="rsvp-link" class="nav-link" linkId="@(GlobalConstants.NavigationLinks.Rsvp)">RSVP</a></li>
-                        <li><a id="engagement-party-link" class="nav-link" linkId="@(GlobalConstants.NavigationLinks.EngagementParty)">Engagement Party&nbsp;&nbsp;</a></li>
+                        <li><a id="engagement-party-link" class="nav-link" linkId="@(GlobalConstants.NavigationLinks.EngagementParty)">Engagement Party&nbsp;&nbsp;</a></li>                        
                     </ul>
                 </div>
                     <div id="content-container" class="ui-corner-all">
@@ -51,12 +53,16 @@
             var homeLink = "@(GlobalConstants.NavigationLinks.Home)";
             var aboutLink = "@(GlobalConstants.NavigationLinks.AboutTheCouple)";
             var rsvpLink = "@(GlobalConstants.NavigationLinks.Rsvp)";
-            var engagementPartyLink = "@(GlobalConstants.NavigationLinks.EngagementParty)";
+            var engagementPartyLink = "@(GlobalConstants.NavigationLinks.EngagementParty)"
+            var engagementLink = "@(GlobalConstants.NavigationLinks.Engagement)";
+            var weddingLink = "@(GlobalConstants.NavigationLinks.Wedding)";
 
             var homeUrl = "@(Url.Action("Home", "Home"))";
             var aboutUrl = "@(Url.Action("AboutTheCouple", "About"))";
             var rsvpUrl = "@(Url.Action("Login", "Rsvp"))";
             var engagementPartyUrl = "@(Url.Action("EngagementParty", "Events"))";
+            var engagementUrl = "@(Url.Action("Engagement", "About"))";
+            var weddingUrl = "@(Url.Action("Wedding", "About"))";
 
             var spinnerImgSrc = "@(Url.Content("~/Content/Images/Spinner/sprites.gif"))";            
         </script>

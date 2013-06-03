@@ -14,5 +14,16 @@ namespace CorriAndMike.Controllers
             return PartialView("_AboutTheCouple");
         }
 
+        [HttpPost]
+        public ActionResult Engagement()
+        {
+            return PartialView("_Engagement");
+        }
+
+        [HttpPost]
+        public ActionResult Wedding()
+        {
+            return PartialView("_Wedding");
+        }
     }
 }

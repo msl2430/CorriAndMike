@@ -12,7 +12,9 @@ namespace CorriAndMike.Constants
             Home,
             AboutTheCouple,
             Rsvp,
-            EngagementParty
+            EngagementParty,
+            Engagement,
+            Wedding
         }
     }
 }

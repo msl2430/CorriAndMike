@@ -212,6 +212,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Styles\Fonts\Lobster_1.3.otf" />
     <Content Include="Content\Styles\Fonts\Lobster_1.ttf" />
+    <None Include="Properties\PublishProfiles\Local Publish.pubxml" />
     <None Include="Properties\PublishProfiles\Publish Locally.pubxml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -238,6 +239,8 @@
     <Content Include="Views\Rsvp\_Invitation.cshtml" />
     <Content Include="Views\Events\_EngagementParty.cshtml" />
     <Content Include="Views\Rsvp\_RsvpEmail.cshtml" />
+    <Content Include="Views\About\_Engagement.cshtml" />
+    <Content Include="Views\About\_Wedding.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -3,6 +3,7 @@
     width: 500px;
     height: 570px;
     text-align: center;
+    position: relative;
 }
 #instructions {
     width: 400px;
@@ -22,6 +23,10 @@
 #Password { width: 150px; }
 #rsvp-login {
     margin-top: 5px;
+}
+#contact-container label {
+    width: 250px; 
+    margin: 100px auto 0px;
 }
 
 /* Invitation */

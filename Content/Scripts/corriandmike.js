@@ -51,6 +51,10 @@ $(function () {
                 dataSrc = aboutUrl; break;
             case engagementPartyLink:
                 dataSrc = engagementPartyUrl; break;
+            case engagementLink:
+                dataSrc = engagementUrl; break;
+            case weddingLink:
+                dataSrc = weddingUrl; break;
         }
         LoadPage(dataSrc);
     });

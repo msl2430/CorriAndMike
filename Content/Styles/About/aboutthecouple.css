@@ -14,3 +14,20 @@ p {
 h2 {
     color: #ccccff;
 }
+#engagement-container {
+    width: 500px;
+    height: 570px;
+    text-align: center;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;   
+}
+
+#wedding-container {
+    width: 500px;
+    height: 570px;
+    text-align: center;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;   
+}
