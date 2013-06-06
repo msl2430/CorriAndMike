@@ -66,7 +66,7 @@ namespace CorriAndMike.Controllers
             }
             RavenHelper.SaveChanges();
             if(isNew)
-                SendRsvpResponse(invitation.InvitationId, invitation.Email, yesGuests.Any());
+                SendRsvpResponse(invitation.InvitationId, invitation.Email, yesGuests.Any(yg => !string.IsNullOrEmpty(yg)));
             SendRsvpEmailNotification(yesGuests, invitation, isNew);
             return new HttpResponseMessage(HttpStatusCode.OK);
         }
@@ -85,14 +85,15 @@ namespace CorriAndMike.Controllers
             
             email.Body = bodyContent.ToString();
 
-            MailService.SendEmail(email);
+            if (Convert.ToBoolean(ConfigurationManager.AppSettings["SendEmail"]))
+                MailService.SendEmail(email);
         }
         private void SendRsvpEmailNotification(List<string> guests, Invitation invitation, bool isNew)
         {
             var email = new MailMessage { From = new MailAddress("do-not-reply@corriandmike.com", "CorriAndMike.com") };
             var bodyContent = new StringBuilder();
             var guestNames = new List<string>();
-            foreach (var guestId in guests)
+            foreach (var guestId in guests.Where(x => !string.IsNullOrEmpty(x)))
             {
                 var g = RavenHelper.CurrentSession().Load<Guest>(guestId);
                 guestNames.Add(g.FirstName + " " + g.LastName);

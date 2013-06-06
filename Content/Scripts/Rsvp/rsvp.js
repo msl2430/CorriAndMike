@@ -1,5 +1,6 @@
 ﻿$(function () {
-    $("input[type=button], input[type=submit]").button();    
+    $("input[type=button], input[type=submit]").button();
+    $("#submit-rsvp").removeAttr('disabled');
     $("input[type=button]").button();
     $("select").addClass("ui-corner-all");
     $("#rsvp-login").click(function() {
@@ -16,6 +17,7 @@
 });
 
 $("#submit-rsvp").on('click', function () {
+    $(this).attr('disabled', 'disabled');
     if ($("#Invitation_Email").val() == '') {
         $("#rsvp-message").text("Please provide an email address.");
         $("#Invitation_Email").css('background-color', 'red');

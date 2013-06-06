@@ -38,25 +38,33 @@ $(function() {
 $(function () {
     $("#rsvp-countdown-link").click(function() { $("#rsvp-link").click(); });
     $(".nav-link").click(function () {
-        var linkClicked = $(this);
-        var linkId = linkClicked.attr('linkId');
-        ClickMenuItem(linkClicked);
-        var dataSrc;
-        switch (linkId) {
-            case homeLink:
-                dataSrc = homeUrl; break;
-            case rsvpLink:
-                dataSrc = rsvpUrl; break;
-            case aboutLink:
-                dataSrc = aboutUrl; break;
-            case engagementPartyLink:
-                dataSrc = engagementPartyUrl; break;
-            case engagementLink:
-                dataSrc = engagementUrl; break;
-            case weddingLink:
-                dataSrc = weddingUrl; break;
+        if ($(this).hasClass("active-link")) {
+            if ($("#content-container").is(":visible")) {
+                $("#content-container").hide('slide', { direction: 'left' }, 700);
+            } else {
+                $("#content-container").show('slide', 700);
+            }
+        } else {
+            var linkClicked = $(this);
+            var linkId = linkClicked.attr('linkId');
+            ClickMenuItem(linkClicked);
+            var dataSrc;
+            switch (linkId) {
+                case homeLink:
+                    dataSrc = homeUrl; break;
+                case rsvpLink:
+                    dataSrc = rsvpUrl; break;
+                case aboutLink:
+                    dataSrc = aboutUrl; break;
+                case engagementPartyLink:
+                    dataSrc = engagementPartyUrl; break;
+                case engagementLink:
+                    dataSrc = engagementUrl; break;
+                case weddingLink:
+                    dataSrc = weddingUrl; break;
+            }
+            LoadPage(dataSrc);
         }
-        LoadPage(dataSrc);
     });
 });
 
