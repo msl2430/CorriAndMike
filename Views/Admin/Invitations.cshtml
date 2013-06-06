@@ -44,15 +44,19 @@
     </table>
 </fieldset>
 
+<div style="float:left; padding: 20px 20px 0px 20px;">
+	<img src="http://static.ravendb.net/badges/standard/badge1.png">
+</div>
+
 <div style="clear:both;"></div>
 
-<fieldset style="width: 750px; height:600px;">
+<fieldset style="width: 750px; height:600px; border-bottom: 0px;">
     <legend>Invitations</legend>
     <div id="invitation-table-container">@Html.Partial("_InvitationTable", Model.InvitationTable)</div>
 </fieldset>
 
 <br/><br/>
-<img src="http://static.ravendb.net/badges/standard/badge1.png" />
+
 
 <div id="add-invitation-model" title="Add New Invitation">Loading...</div>
 <div id="edit-invitation-model" title="Edit Invitation">Loading...</div>
@@ -67,7 +71,7 @@
         GetNewInvitation();
         newInviteDialog.dialog('open');
     });
-    $("#add-single-guest").click(function() {
+    $("#add-single-guest").click(function () {
         guestDialog.dialog('open');
     });
 
@@ -95,7 +99,7 @@
 
         newInviteDialog.dialog("option", "buttons", [{
             text: "Add Invitation",
-            click: function() {
+            click: function () {
                 AddInvitation();
                 newInviteDialog.dialog('close');
             }
@@ -109,7 +113,7 @@
         }]);
         guestDialog.dialog("option", "buttons", [{
             text: "Add Guset",
-            click: function() {
+            click: function () {
                 AddSingleGuest();
                 $("#FirstName").val('');
                 $("#LastName").val('');
@@ -117,9 +121,9 @@
             }
         }]);
     });
-    
+
     function GetNewInvitation() {
-        $.post("@Url.Action("GetAddInvitationModel", "Admin")", {}, function(data) {
+        $.post("@Url.Action("GetAddInvitationModel", "Admin")", {}, function (data) {
             $("#add-invitation-model").html(data);
         });
     }
@@ -129,7 +133,7 @@
             type: "POST",
             url: "@(Url.Content("~/api/Guest"))",
             data: { FirstName: $("#FirstName").val(), LastName: $("#LastName").val() },
-            success: function(data, text, xhr) {
+            success: function (data, text, xhr) {
                 switch (xhr.status) {
                     case 201:
                         guestDialog.dialog('close');
@@ -145,9 +149,9 @@
             }
         });
     }
-    
+
     function OpenExistingInvitation(invitationId) {
-        $.post("@Url.Action("GetInvitationModel", "Admin")", {invitationId: invitationId}, function (data) {
+        $.post("@Url.Action("GetInvitationModel", "Admin")", { invitationId: invitationId }, function (data) {
             $("#edit-invitation-model").html(data);
         });
         editInviteDialog.dialog('open');
