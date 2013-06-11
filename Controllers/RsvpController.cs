@@ -101,13 +101,13 @@ namespace CorriAndMike.Controllers
             
             email.To.Add("me@mikeslevine.com");
             email.To.Add("corri.skinner@gmail.com");
-            email.Subject = string.Format("Invitation {0} just {1}! ({2} attending)", invitation.InvitationId, isNew ? "RSVPed" : "updated their RSVP", guests.Count == 1 ? "1 guest" : guests.Count + " guests");
+            email.Subject = string.Format("Invitation {0} just {1}! ({2} attending)", invitation.InvitationId, isNew ? "RSVPed" : "updated their RSVP", guests.Count(x => !string.IsNullOrEmpty(x)) == 1 ? "1 guest" : guests.Count(x => !string.IsNullOrEmpty(x)) + " guests");
             
             email.IsBodyHtml = true;
 
             bodyContent.AppendFormat("Invitation {0} <br/><br/>", invitation.InvitationId);
             bodyContent.AppendFormat("Total guests invited: {0} <br/>", invitation.MaxNumberOfGuests);
-            bodyContent.AppendFormat("Total guests attending: {0} <br/>", guests.Count);
+            bodyContent.AppendFormat("Total guests attending: {0} <br/>", guests.Count(x => !string.IsNullOrEmpty(x)));
             bodyContent.AppendFormat("Email provided: {0} <br/>", invitation.Email);
             bodyContent.Append("Guests attending: <br/>");
             foreach (var guest in guestNames)
