@@ -10,8 +10,8 @@
         display: inline-block;
     }
     fieldset {
-        width: 375px;
-        height: 75px;
+        width: 415px;
+        min-height: 75px;
         margin: 10px 5px;
         padding: 5px;
     }
@@ -34,12 +34,16 @@
     <legend>Stats</legend>
     <table>
         <tr>
-            <td>Total Invited Guests</td>
+            <td style="width: 250px;">Total Invited Guests</td>
             <td>@Model.TotalInvitedGuests</td>
         </tr>
         <tr>
             <td>Total Attending Guests</td>
             <td>@Model.TotalAttendingGuests</td>
+        </tr>
+        <tr>
+            <td>Remaining to RSVP</td>
+            <td>@Model.TotalWaitingInvitations</td>
         </tr>
     </table>
 </fieldset>

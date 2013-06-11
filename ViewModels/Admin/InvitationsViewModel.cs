@@ -12,5 +12,7 @@ namespace CorriAndMike.ViewModels.Admin
         public int TotalInvitedGuests { get; set; }
 
         public int TotalAttendingGuests { get; set; }
+
+        public int TotalWaitingInvitations { get; set; }
     }
 }

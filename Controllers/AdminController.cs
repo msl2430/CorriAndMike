@@ -37,7 +37,8 @@ namespace CorriAndMike.Controllers
                 {
                     InvitationTable = GetInvitationTableModel(),
                     TotalInvitedGuests = RavenHelper.CurrentSession().Query<Guest>().Customize(x => x.WaitForNonStaleResults()).Statistics(out stats).Count(),
-                    TotalAttendingGuests = RavenHelper.CurrentSession().Query<Invitation>().Select(i => new { i.InvitationId, i.AttendingGuests.Count }).ToList().Sum(x => x.Count)
+                    TotalAttendingGuests = RavenHelper.CurrentSession().Query<Invitation>().Select(i => new { i.InvitationId, i.AttendingGuests.Count }).ToList().Sum(x => x.Count),
+                    TotalWaitingInvitations = RavenHelper.CurrentSession().Query<Invitation>().Count(i => string.IsNullOrEmpty(i.Email) && i.RsvpDate == null)
                 };
 
             return View(model);
