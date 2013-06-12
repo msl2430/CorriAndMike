@@ -42,36 +42,5 @@ namespace CorriAndMike.Api
                 return Request.CreateResponse(HttpStatusCode.ExpectationFailed, ex);
             }
         }
-
-        //[HttpPost]
-        //public HttpResponseMessage AddInvitation(Guest model)
-        //{
-        //    try
-        //    {
-        //        var guest = RavenHelper.CurrentSession().Load<Guest>(model.Id);
-        //        guest.Invitations.Add(model.Invitations.FirstOrDefault());
-
-        //        return Request.CreateResponse(HttpStatusCode.OK);
-        //    } catch (Exception ex)
-        //    {
-        //        return Request.CreateResponse(HttpStatusCode.ExpectationFailed, ex);
-        //    }
-        //}
-
-        //[HttpPut]
-        //public HttpResponseMessage Put(string id, string invitationId)
-        //{
-        //    try
-        //    {
-        //        var guest = RavenHelper.CurrentSession().Load<Guest>(id);
-        //        guest.Invitations.Add(invitationId);
-
-        //        return Request.CreateResponse(HttpStatusCode.OK);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return Request.CreateResponse(HttpStatusCode.ExpectationFailed, ex);
-        //    }
-        //}
     }
 }

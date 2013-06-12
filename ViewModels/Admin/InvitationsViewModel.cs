@@ -13,6 +13,8 @@ namespace CorriAndMike.ViewModels.Admin
 
         public int TotalAttendingGuests { get; set; }
 
+        public int TotalNoGuests { get; set; }
+
         public int TotalWaitingInvitations { get; set; }
     }
 }

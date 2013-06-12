@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using CorriAndMike.Models;
-using CorriAndMike.ViewModels;
 using CorriAndMike.ViewModels.Admin;
 using Raven.Client;
 
@@ -12,24 +9,6 @@ namespace CorriAndMike.Controllers
 {
     public class AdminController : CorriAndMikeBaseController
     {
-        public ActionResult Test()
-        {
-            var guestWithInvitation = RavenHelper.CurrentSession().Query<Guest>()
-                                                 .Customize(g => g.Include<Invitation>(i => i.InvitationId))
-                                                 .Where(g => g.Invitations != null)
-                                                 .ToList();
-
-            foreach (var guest in guestWithInvitation)
-            {
-                foreach (var invite in guest.Invitations)
-                {
-                    var test = RavenHelper.CurrentSession().Load<Invitation>(invite);
-                }
-            }      
-
-            return View();
-        }
-
         public ActionResult Invitations()
         {            
             var stats = new RavenQueryStatistics();
@@ -37,7 +16,8 @@ namespace CorriAndMike.Controllers
                 {
                     InvitationTable = GetInvitationTableModel(),
                     TotalInvitedGuests = RavenHelper.CurrentSession().Query<Guest>().Customize(x => x.WaitForNonStaleResults()).Statistics(out stats).Count(),
-                    TotalAttendingGuests = RavenHelper.CurrentSession().Query<Invitation>().Select(i => new { i.InvitationId, i.AttendingGuests.Count }).ToList().Sum(x => x.Count),
+                    TotalAttendingGuests = RavenHelper.CurrentSession().Query<Invitation>().Select(i => new {i.InvitationId, i.AttendingGuests.Count}).ToList().Sum(x => x.Count),
+                    TotalNoGuests = RavenHelper.CurrentSession().Query<Invitation>().Where(i => !string.IsNullOrEmpty(i.Email) && i.RsvpDate != null).Select(i => new { i.InvitationId, i.AttendingGuests.Count, i.MaxNumberOfGuests}).ToList().Sum(i => i.MaxNumberOfGuests - i.Count),
                     TotalWaitingInvitations = RavenHelper.CurrentSession().Query<Invitation>().Count(i => string.IsNullOrEmpty(i.Email) && i.RsvpDate == null)
                 };
 

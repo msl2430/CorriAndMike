@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Web;
+﻿using System.Reflection;
 using System.Web.Http;
 using System.Web.Mvc;
-using Microsoft.Web.Optimization;
 using System.Web.Routing;
+using Microsoft.Web.Optimization;
 using Raven.Client.Document;
 using Raven.Client.Indexes;
 
@@ -33,6 +29,7 @@ namespace CorriAndMike
             Store = new DocumentStore() { ConnectionStringName = "RavenDB" };
             Store.Initialize();
 
+            //IndexCreation.CreateIndexes(typeof(NonAttendingGuestCount).Assembly, Store);
             IndexCreation.CreateIndexes(Assembly.GetCallingAssembly(), Store);
         }
     }

@@ -33,14 +33,6 @@ namespace CorriAndMike.Api
 
                 RavenHelper.CurrentSession().Store(newInvitation);
 
-                //var udpateGuests = RavenHelper.CurrentSession().Include<Guest>(g => g.Id)
-                //    .Load(Guests);
-                //foreach (var guest in udpateGuests)
-                //{
-                //    var g = RavenHelper.CurrentSession().Load<Guest>(guest.Id);
-                //    g.Invitations.Add(newInvitation.Id);
-                //}
-
                 RavenHelper.SaveChanges();
 
                 return Request.CreateResponse(HttpStatusCode.Created, newInvitation);
