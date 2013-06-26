@@ -1,0 +1,25 @@
+﻿@model CorriAndMike.ViewModels.Admin.EmailAddresses
+@{
+    ViewBag.Title = "ExportEmailAddresses";
+}
+
+<table id="email-table">
+    <thead>
+        <th>Invitation</th>
+        <th>Guests</th>
+        <th>Email Address</th>
+    </thead>
+    @foreach (var address in Model.Addresses)
+    {
+        <tr>
+            <td>@address.InvitationId</td>
+            <td>
+                @foreach (var guest in address.Guests)
+                {
+                    @guest @(address.Guests.Count > 0 && address.Guests.IndexOf(guest) != address.Guests.Count - 1 ? ", " : "")
+                }
+            </td>
+            <td>@address.Email</td>            
+        </tr>
+    }
+</table>

@@ -149,6 +149,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\MailService.cs" />
     <Compile Include="ViewModels\Admin\AddInvitationViewModel.cs" />
+    <Compile Include="ViewModels\Admin\EmailAddresses.cs" />
     <Compile Include="ViewModels\Admin\InvitationsViewModel.cs" />
     <Compile Include="ViewModels\Admin\InvitationTableViewModel.cs" />
     <Compile Include="ViewModels\Rsvp\LoginViewModel.cs" />
@@ -241,6 +242,7 @@
     <Content Include="Views\Rsvp\_RsvpEmail.cshtml" />
     <Content Include="Views\About\_Engagement.cshtml" />
     <Content Include="Views\About\_Wedding.cshtml" />
+    <Content Include="Views\Admin\ExportEmailAddresses.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

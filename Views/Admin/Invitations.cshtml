@@ -27,6 +27,7 @@
     <div id="button-panel">
         <input type="button" id="add-single-guest" value="Add Guest" />
         <input type="button" id="add-invitation" value="Add Invitation" />
+        <input type="button" id="export-email" value="Export Email Addresses" />
     </div>
 </fieldset>
 
@@ -81,6 +82,9 @@
     });
     $("#add-single-guest").click(function () {
         guestDialog.dialog('open');
+    });
+    $("#export-email").click(function () {
+        location.href = "@(Url.Action("ExportEmailAddresses"))";
     });
 
     $(function () {

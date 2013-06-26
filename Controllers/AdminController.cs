@@ -24,6 +24,33 @@ namespace CorriAndMike.Controllers
             return View(model);
         }
 
+        public ActionResult ExportEmailAddresses()
+        {
+            Response.Clear();
+            Response.AddHeader("Content-Type", "application/ms-excel");
+            Response.AddHeader("Content-Disposition", string.Format("attachment; filename=\"CorriAndMike-EmailAddresses.xls\";"));
+
+            var invites = RavenHelper.CurrentSession().Query<Invitation>().Customize(x => x.Include<Guest>(g => g.Id)).Where(i => i.Email != null && i.AttendingGuests.Any()).ToList();
+            var guests = new List<Guest>();
+            var model = new EmailAddresses() { Addresses = new List<AddressPair>() };
+            foreach (var invite in invites)
+            {
+                foreach (var temp in invite.AttendingGuests)
+                {
+                    guests.Add(RavenHelper.CurrentSession().Load<Guest>(temp));
+                }
+                model.Addresses.Add(new AddressPair()
+                    {
+                        InvitationId = invite.InvitationId,
+                        Email = invite.Email,
+                        Guests = guests.Select(g => string.Concat(g.FirstName, " ", g.LastName)).ToList()
+                    });
+                guests.Clear();
+            }
+
+            return View(model);
+        }
+
         [HttpPost]
         public ActionResult GetAddInvitationModel()
         {
