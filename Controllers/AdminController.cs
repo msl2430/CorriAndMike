@@ -1,7 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
+using System.Net.Mail;
 using System.Web.Mvc;
 using CorriAndMike.Models;
+using CorriAndMike.Services;
 using CorriAndMike.ViewModels.Admin;
 using Raven.Client;
 
@@ -117,6 +122,62 @@ namespace CorriAndMike.Controllers
                 updated.Invitations.Add(invitation.Id);
                 RavenHelper.SaveChanges();
             }
+        }
+
+        public ActionResult EmailTemplate(string emailTemplate)
+        {
+            switch (emailTemplate.ToLower())
+            {
+                case "ironmonkey":
+                    return View("EmailTemplates/_IronMonkeyInfo", new EmailTemplateViewModel());
+                case "afterparty":
+                    return View("EmailTemplates/_AfterPartyInfo", new EmailTemplateViewModel());
+                default:
+                    return View("EmailTemplates/_IronMonkeyInfo", new EmailTemplateViewModel());
+            }
+        }
+
+        public ActionResult SendIronMonkeyEmails()
+        {
+            var invites = RavenHelper.CurrentSession().Query<Invitation>().Customize(x => x.Include<Guest>(g => g.Id)).Where(i => i.Email != null && i.AttendingGuests.Any()).ToList();
+            var guests = new List<Guest>();
+            var sentEmails = new List<string>();
+            foreach (var invite in invites)
+            {
+                foreach (var temp in invite.AttendingGuests)
+                {
+                    guests.Add(RavenHelper.CurrentSession().Load<Guest>(temp));
+                }
+                var email = PrepareIronMonkeyEmail(new AddressPair()
+                    {
+                        InvitationId = invite.InvitationId,
+                        Email = invite.Email,
+                        Guests = guests.Select(g => g.FirstName).ToList()
+                    });
+                if (Convert.ToBoolean(ConfigurationManager.AppSettings["SendEmail"]) && !sentEmails.Contains(invite.Email))
+                    MailService.SendEmail(email);
+                
+                sentEmails.Add(invite.Email);
+                guests.Clear();
+            }
+
+            return RedirectToAction("Invitations", "Admin");
+        }
+
+        private MailMessage PrepareIronMonkeyEmail(AddressPair recipient) 
+        {
+            var email = new MailMessage { From = new MailAddress("do-not-reply@corriandmike.com", "CorriAndMike.com") };
+            var bodyContent = new StringWriter();
+            email.To.Add(recipient.Email);
+            email.Subject = string.Format("Engagement party information");
+            email.IsBodyHtml = true;
+
+            var viewResult = ViewEngines.Engines.FindPartialView(ControllerContext, "EmailTemplates/_IronMonkeyInfo");
+            viewResult.View.Render(new ViewContext(ControllerContext, viewResult.View, ViewData, TempData, bodyContent), bodyContent);
+
+            email.Body = bodyContent.ToString();
+
+            return email;
         }
 
         private IList<InvitationTableViewModel> GetInvitationTableModel()
