@@ -15,7 +15,7 @@
         <img src="@Url.Content("~/Content/Images/ringandshoes.png")" class="ui-corner-all" style="width: 300px;" title="The Ring...and the Shoes" />
     </div>
     <div id="countdown-footer">
-        @{ var daysLeft = Math.Abs(DateTime.Now.Subtract(new DateTime(2013, 7, 6)).Days); }
+        @*@{ var daysLeft = Math.Abs(DateTime.Now.Subtract(new DateTime(2013, 7, 6)).Days); }
         @if (daysLeft >= 2)
         {
             @:<span style="color: #9f4d95;">@daysLeft</span>&nbsp;days until our <span style="color: #CCCCFF">Engagment Party!</span>   
@@ -24,7 +24,7 @@
         {
             @:<span style="color: #9f4d95;">@daysLeft</span>&nbsp;day left until our Engagment Party! 
         }
-        <br/><span style="font-size: 15px;">Have you <a id="rsvp-countdown-link" style="color:  #CCCCFF;">RSVPed</a>?</span>
+        <br/><span style="font-size: 15px;">Have you <a id="rsvp-countdown-link" style="color:  #CCCCFF;">RSVPed</a>?</span>*@
     </div>
 </div>
 
