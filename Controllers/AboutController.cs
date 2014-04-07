@@ -9,21 +9,21 @@ namespace CorriAndMike.Controllers
     public class AboutController : CorriAndMikeBaseController
     {
         [HttpPost]
-        public ActionResult AboutTheCouple()
-        {
-            return PartialView("_AboutTheCouple");
-        }
-
-        [HttpPost]
-        public ActionResult Engagement()
-        {
-            return PartialView("_Engagement");
-        }
-
-        [HttpPost]
         public ActionResult Wedding()
         {
             return PartialView("_Wedding");
+        }
+
+        [HttpPost]
+        public ActionResult CorriAndMike()
+        {
+            return PartialView("_CorriAndMike");
+        }
+
+        [HttpPost]
+        public ActionResult AfterParty()
+        {
+            return PartialView("_AfterParty");
         }
     }
 }

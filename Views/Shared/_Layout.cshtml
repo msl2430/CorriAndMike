@@ -14,6 +14,8 @@
     <script src="~/Content/Scripts/Supersized/jquery.easing.min.js"></script>
     <script src="~/Content/Scripts/Supersized/supersized.3.2.7.min.js"></script>
     <script src="~/Content/Scripts/qTip/jquery.qtip.min.js"></script>
+    <script src="~/Content/Scripts/FlipCountDown/jquery.flipcountdown.js"></script>
+    <script src="~/Content/Scripts/Countdown/jquery.countdown.js"></script>
     
     <link href="~/Content/Scripts/jQueryUi/css/eggplant/jquery-ui-1.10.2.custom.min.css" rel="stylesheet" />
     <link href="~/Content/Styles/DataTables/jquery.dataTables.css" rel="stylesheet"/>
@@ -22,6 +24,8 @@
     <link href="~/Content/Styles/Supersized/supersized.css" rel="stylesheet" />
     <link href="~/Content/Styles/Supersized/supersized.shutter.css" rel="stylesheet" />
     <link href="~/Content/Styles/qTip/jquery.qtip.min.css" rel="stylesheet" />
+    <link href="~/Content/Styles/FlipCountDown/jquery.flipcountdown.css" rel="stylesheet"/>
+    <link href="~/Content/Styles/Countdown/jquery.countdown.css" rel="stylesheet"/>
 </head>
     <body>
         <div id="main-container">
@@ -35,13 +39,15 @@
                 <div id="menu-container" class="ui-corner-br ui-corner-bl">
                     <img id="header-logo" src="~/Content/Images/Layout/header.png" style="margin-left: -30px;"/>
                     <ul id="menu-list">
-                        <li><a id="home-link" class="nav-link" linkId="@(GlobalConstants.NavigationLinks.Home)">Home</a></li>
-                        <li><a id="about-us-link" class="nav-link" linkId="@(GlobalConstants.NavigationLinks.AboutTheCouple)">About the couple</a></li>
-                        <li><a id="engagement-link" class="nav-link" linkId="@(GlobalConstants.NavigationLinks.Engagement)">The Engagement&nbsp;&nbsp;</a></li>
-                        <li><a id="wedding-link" class="nav-link" linkId="@(GlobalConstants.NavigationLinks.Wedding)">The Wedding&nbsp;&nbsp;</a></li>
-                        @*<li><a id="rsvp-link" class="nav-link" linkId="@(GlobalConstants.NavigationLinks.Rsvp)">RSVP</a></li>*@
-                        <li><a id="engagement-party-link" class="nav-link" linkId="@(GlobalConstants.NavigationLinks.EngagementParty)">Engagement Party&nbsp;&nbsp;</a></li>                        
+                        <li><a id="corri-and-mike-link" class="nav-link" linkId="@(GlobalConstants.NavigationLinks.CorriAndMike)"><label class="nav-label">CORRI & MIKE</label></a></li>
+                        <li><a id="wedding-link" class="nav-link" linkId="@(GlobalConstants.NavigationLinks.WeddingInStLucia)"><label class="nav-label">WEDDING IN ST. LUCIA</label></a></li>
+                        <li><a id="after-party-link" class="nav-link" linkId="@(GlobalConstants.NavigationLinks.AfterParty)"><label class="nav-label">AFTER PARTY</label></a></li>
+                        <li><a id="engagement-party-link" class="nav-link" linkId="@(GlobalConstants.NavigationLinks.EngagementParty)"><label class="nav-label">ENGAGEMENT PARTY</label></a></li>
                     </ul>
+                    <div id="wedding-countdown-container">
+                        <h2>MARCH 23, 2015</h2>                        
+                        <div id="wedding-countdown"></div>                        
+                    </div>
                 </div>
                     <div id="content-container" class="ui-corner-all">
                         @RenderBody()        
@@ -50,21 +56,40 @@
         </div>
     
         <script type="text/javascript">
-            var homeLink = "@(GlobalConstants.NavigationLinks.Home)";
-            var aboutLink = "@(GlobalConstants.NavigationLinks.AboutTheCouple)";
-            var rsvpLink = "@(GlobalConstants.NavigationLinks.Rsvp)";
-            var engagementPartyLink = "@(GlobalConstants.NavigationLinks.EngagementParty)"
-            var engagementLink = "@(GlobalConstants.NavigationLinks.Engagement)";
-            var weddingLink = "@(GlobalConstants.NavigationLinks.Wedding)";
+            var corriAndMikeLink = "@(GlobalConstants.NavigationLinks.CorriAndMike)";
+            var weddingLink = "@(GlobalConstants.NavigationLinks.WeddingInStLucia)";
+            var afterPartyLink = "@(GlobalConstants.NavigationLinks.AfterParty)";
+            var engagementPartyLink = "@(GlobalConstants.NavigationLinks.EngagementParty)";
 
-            var homeUrl = "@(Url.Action("Home", "Home"))";
-            var aboutUrl = "@(Url.Action("AboutTheCouple", "About"))";
-            var rsvpUrl = "@(Url.Action("Login", "Rsvp"))";
+            var corriAndMikeUrl = "@(Url.Action("CorriAndMike", "About"))";
             var engagementPartyUrl = "@(Url.Action("EngagementParty", "Events"))";
-            var engagementUrl = "@(Url.Action("Engagement", "About"))";
             var weddingUrl = "@(Url.Action("Wedding", "About"))";
+            var afterPartyUrl = "@(Url.Action("AfterParty", "About"))";
 
-            var spinnerImgSrc = "@(Url.Content("~/Content/Images/Spinner/sprites.gif"))";            
+            var spinnerImgSrc = "@(Url.Content("~/Content/Images/Spinner/sprites.gif"))";
+            var baseUrl = "@(Url.Content("~"))";
+            var weddingDate = Math.round((new Date('3/03/2015 00:00:01')).getTime()/1000);
+            $(function() {
+                //$("#wedding-countdown").flipcountdown({
+                //    size: "xs",
+                //    showDays:true,
+                //    tick: function(){
+                //        var nol = function(h){
+                //            return h>9?h:'0'+h;
+                //        }
+                //        var	range  	= 	weddingDate-Math.round((new Date()).getTime()/1000),
+                //            secday	= 	86400, sechour = 3600,
+                //            days	= 	parseInt(range/secday),
+                //            hours	= 	parseInt((range%secday)/sechour),
+                //            min	= 	parseInt(((range%secday)%sechour)/60),
+                //            sec	= 	((range%secday)%sechour)%60;
+                //        return nol(days)+' '+nol(hours)+' '+nol(min)+' '+nol(sec);
+                //    }
+                //});
+                $("#wedding-countdown").countdown({
+                    timestamp: new Date('3/03/2015 00:00:01')
+                });
+            });
         </script>
         <script type="text/javascript" src="~/Content/Scripts/corriandmike.js"></script>
         @if (Request.Url.GetLeftPart(UriPartial.Authority) != "http://localhost")

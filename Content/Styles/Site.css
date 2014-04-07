@@ -1,10 +1,10 @@
 ﻿/*Core styles*/
 @font-face {
-    font-family: lobster;
-    src: url('Fonts/Lobster_1.ttf');
+    font-family: Garamond;
+    /*src: url('Fonts/garamond_1.ttf');*/
 }
 body, a, label {
-    font-family: lobster;
+    font-family: Garamond;
     letter-spacing: 2px;
 }
 
@@ -34,25 +34,31 @@ a:hover
 }
 #top-bar-container {
     width: 100%;
-    height: 50px;
+    height: 25px;
     position: relative;        
 }
 #top-bar, #menu-container {
-    background-color: #262626;
-    opacity:0.8;
-    filter:alpha(opacity=80); /* For IE8 and earlier */
-}
-
-.content {
-    min-height: 300px;
-    width: 500px;
-    background-color: #262626;
+    background-color: white;
     opacity:0.9;
     filter:alpha(opacity=90); /* For IE8 and earlier */
 }
 
+.content {
+    min-height: 300px;
+    background-color: white;
+    opacity:0.9;
+    filter:alpha(opacity=90); /* For IE8 and earlier */
+    width: 600px;
+    height: 592px;
+    text-align: center;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border: solid 1px #cecece;
+}
+
 #top-bar {
-    height: 50px;
+    height: 25px;
     margin: 0px 0px 0px 30px;
     display: none;
 }
@@ -63,11 +69,13 @@ a:hover
     display: block;
     display: none;
     float: left;
+    position: relative;
 }
 #menu-list {
     list-style-type: none;
     margin: 10px 0px 0px;
     padding: 0px;
+    height: 350px;
 }
 #menu-list li {
     height: 50px;
@@ -75,14 +83,14 @@ a:hover
     margin: 10px 0px 0px;      
 }
 #menu-list li a {       
-    color: #ccccff;
-    font-size: 14pt;
+    color: #9e9efd;
+    font-size: 13px;
     text-decoration: none;
     width: 250px;
     height: 50px;
     display: block;
-    padding-top: 12px;
-    text-align: center;
+    padding-top: 16px;
+    text-align: left;
     margin-left: -7px;
 }
 #menu-list li a.active-link {
@@ -97,21 +105,25 @@ a:hover
     background: url('../Images/Layout/menuarrows.png') no-repeat -291px -1.5px;
     color: white;
 }
+label.nav-label {
+    padding-left: 20px;
+    text-align: left;   
+}
 #content-container {
     width: 700px;
     height: 800px;
     display: block;
-    margin: 30px 0px 0px 50px;
+    margin: 10px 0px 0px 20px;
     display: none;
     float: left;
-    color: white;
+    color: #4d2548;
 }
 #show-slideshow {
-    color: #ccccff;
+    color: #4d2548;
     cursor: pointer;
     position: absolute;
-    font-size: 12pt;
-    top: 12px;
+    font-size: 10pt;
+    top: 4px;
     right: 15px;
     font-family: Trebuchet;
     letter-spacing: 1px;
@@ -126,7 +138,19 @@ a:hover
     font-size: 12pt;
     line-height: 23px;
     text-align: center;
-    background-color: #ccccff;
+    background-color: #9a9ac1;
     border: solid 1px #9a9ac1;
     letter-spacing: 1px;
+}
+#wedding-countdown-container {
+    height: 150px;
+    display: block;
+    text-align: center;
+    padding-top: 26px;
+}
+#wedding-countdown-container h2 {
+    color: #9a9ac1;
+    text-decoration: underline;
+    padding-bottom: 5px;
+    font-size: 13px;
 }

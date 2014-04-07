@@ -157,6 +157,8 @@
     <Compile Include="ViewModels\Rsvp\RsvpInvitationViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Images\C&amp;M engagement party 1.JPG" />
+    <Content Include="Content\Images\C&amp;M engagement party 2.JPG" />
     <Content Include="Content\Images\IM-HEADER.png" />
     <Content Include="Content\Images\ironmonkey.jpg" />
     <Content Include="Content\Images\Layout\header.png" />
@@ -174,7 +176,9 @@
     <Content Include="Content\Images\Slideshow\Levine1142.jpg" />
     <Content Include="Content\Images\Slideshow\Levine1161.jpg" />
     <Content Include="Content\Scripts\corriandmike.js" />
+    <Content Include="Content\Scripts\Countdown\jquery.countdown.js" />
     <Content Include="Content\Scripts\DataTables\jquery.dataTables.min.js" />
+    <Content Include="Content\Scripts\FlipCountDown\jquery.flipcountdown.js" />
     <Content Include="Content\Scripts\jQuery\jquery-1.9.1.js" />
     <Content Include="Content\Scripts\jQueryUi\css\eggplant\images\animated-overlay.gif" />
     <Content Include="Content\Scripts\jQueryUi\css\eggplant\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -202,9 +206,17 @@
     <Content Include="Content\Scripts\Supersized\supersized.3.2.7.min.js" />
     <Content Include="Content\Scripts\Supersized\supersized.core.3.2.1.min.js" />
     <Content Include="Content\Scripts\Supersized\supersized.shutter.min.js" />
-    <Content Include="Content\Styles\About\aboutthecouple.css" />
+    <Content Include="Content\Styles\content.css" />
+    <Content Include="Content\Styles\Countdown\jquery.countdown.css" />
     <Content Include="Content\Styles\DataTables\jquery.dataTables.css" />
+    <Content Include="Content\Styles\FlipCountDown\screen\1.png" />
+    <Content Include="Content\Styles\FlipCountDown\screen\2.png" />
+    <Content Include="Content\Styles\FlipCountDown\jquery.flipcountdown.css" />
     <Content Include="Content\Styles\Home\home.css" />
+    <Content Include="Content\Styles\FlipCountDown\img\digit-lg.png" />
+    <Content Include="Content\Styles\FlipCountDown\img\digit-md.png" />
+    <Content Include="Content\Styles\FlipCountDown\img\digit-sm.png" />
+    <Content Include="Content\Styles\FlipCountDown\img\digit-xs.png" />
     <Content Include="Content\Styles\qTip\jquery.qtip.min.css" />
     <Content Include="Content\Styles\Rsvp\rsvp.css" />
     <Content Include="Content\Styles\Site.css" />
@@ -214,6 +226,9 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Styles\Fonts\Lobster_1.3.otf" />
     <Content Include="Content\Styles\Fonts\Lobster_1.ttf" />
+    <Content Include="Content\Styles\FlipCountDown\img\digit-lg-dark.psd" />
+    <Content Include="Content\Styles\FlipCountDown\img\digit-lg.psd" />
+    <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\Local Publish.pubxml" />
     <None Include="Properties\PublishProfiles\Publish Locally.pubxml" />
     <Content Include="Web.config">
@@ -246,10 +261,13 @@
     <Content Include="Views\Admin\ExportEmailAddresses.cshtml" />
     <Content Include="Views\Admin\EmailTemplates\_IronMonkeyInfo.cshtml" />
     <Content Include="Views\Admin\EmailTemplates\_AfterPartyInfo.cshtml" />
+    <Content Include="Views\About\_CorriAndMike.cshtml" />
+    <Content Include="Views\About\_AfterParty.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Scripts\Supersized\img\" />
+    <Folder Include="Content\Styles\About\" />
     <Folder Include="Models\Indexes\" />
     <Folder Include="ViewModels\Home\" />
   </ItemGroup>

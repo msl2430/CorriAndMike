@@ -9,12 +9,15 @@ namespace CorriAndMike.Constants
     {
         public enum NavigationLinks
         {
-            Home,
-            AboutTheCouple,
-            Rsvp,
+            //Home,
+            //AboutTheCouple,
+            //Rsvp,
+            CorriAndMike,
+            WeddingInStLucia,
+            AfterParty,
             EngagementParty,
-            Engagement,
-            Wedding
+            //Engagement,
+            //Wedding
         }
     }
 }

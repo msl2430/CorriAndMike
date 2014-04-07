@@ -1,16 +1,9 @@
 ﻿var activeMenuItem;
+var contentWindowVisible = false;
     
 $(function() {
     $("#top-bar").show("slide", 1000);
     setTimeout(function () { $("#menu-container").slideDown(700); }, 500);
-    setTimeout(function () {
-        $.post(homeUrl, {}, function (data) {
-            $("#content-container").html(data);
-            $("#content-container").show("slide", 700);            
-        }); 
-        $("#home-link").addClass("active-link");
-        activeMenuItem = $("#home-link");
-    }, 1500);
     $("#show-slideshow").click(function () {
         if ($("#menu-container").is(":visible"))
             MinimizeAllWindows();
@@ -50,18 +43,14 @@ $(function () {
             ClickMenuItem(linkClicked);
             var dataSrc;
             switch (linkId) {
-                case homeLink:
-                    dataSrc = homeUrl; break;
-                case rsvpLink:
-                    dataSrc = rsvpUrl; break;
-                case aboutLink:
-                    dataSrc = aboutUrl; break;
+                case corriAndMikeLink:
+                    dataSrc = corriAndMikeUrl; break;
                 case engagementPartyLink:
                     dataSrc = engagementPartyUrl; break;
-                case engagementLink:
-                    dataSrc = engagementUrl; break;
                 case weddingLink:
                     dataSrc = weddingUrl; break;
+                case afterPartyLink:
+                    dataSrc = afterPartyUrl; break;
             }
             LoadPage(dataSrc);
         }
@@ -76,6 +65,7 @@ function LoadPage(dataSrc) {
             $("#content-container").show('slide', 700);
         });
     }, 700);
+    contentWindowVisible = true;
 }
 
 function ClickMenuItem(linkClicked) {
@@ -85,9 +75,13 @@ function ClickMenuItem(linkClicked) {
 }
 
 function MinimizeAllWindows() {
-    $("#content-container").hide('slide', { direction: 'left' }, 700);
+    if (contentWindowVisible == true) {
+        $("#content-container").hide('slide', { direction: 'left' }, 700);
+    }
     setTimeout(function () {
-        activeMenuItem.removeClass("active-link");
+        if (contentWindowVisible == true) {
+            activeMenuItem.removeClass("active-link");
+        }
         $("#menu-container").slideUp(700);
         setTimeout(function () { $("#top-bar").addClass("ui-corner-bl"); }, 710);
         $("#show-slideshow").html("<span class=\"ui-icon ui-icon-circlesmall-plus\"></span>&nbsp;<span style=\"text-decoration: underline;\">Show menu</span>");
@@ -97,8 +91,10 @@ function MaximizeAllWindows() {
     $("#top-bar").removeClass("ui-corner-bl");
     $("#menu-container").slideDown(700);
     setTimeout(function () {
-        activeMenuItem.addClass("active-link");
-        $("#content-container").show('slide', 700);
+        if (contentWindowVisible == true) {
+            $("#content-container").show('slide', 700);
+            activeMenuItem.addClass("active-link");
+        }
         $("#show-slideshow").html("<span class=\"ui-icon ui-icon-circlesmall-minus\"></span>&nbsp;<span style=\"text-decoration: underline;\">Hide menu</span>");
     }, 710);
 }
@@ -147,17 +143,17 @@ $(function () {
         thumb_links: 1,			// Individual thumb links for each slide
         thumbnail_navigation: 0,			// Thumbnail navigation
         slides: [			// Slideshow Images
-                { image: 'Content/Images/Slideshow/levine1142.jpg', title: 'EngagementPhoto1' },
-                { image: 'Content/Images/Slideshow/levine1003.jpg', title: 'EngagementPhoto2' },
-                { image: 'Content/Images/Slideshow/levine1009.jpg', title: 'EngagementPhoto3' },
-                { image: 'Content/Images/Slideshow/levine1014.jpg', title: 'EngagementPhoto4' },
-                { image: 'Content/Images/Slideshow/levine1044.jpg', title: 'EngagementPhoto5' },
-                { image: 'Content/Images/Slideshow/levine1054.jpg', title: 'EngagementPhoto6' },
-                { image: 'Content/Images/Slideshow/levine1096.jpg', title: 'EngagementPhoto7' },
-                { image: 'Content/Images/Slideshow/levine1100.jpg', title: 'EngagementPhoto8' },
-                { image: 'Content/Images/Slideshow/levine1118.jpg', title: 'EngagementPhoto9' },
-                { image: 'Content/Images/Slideshow/levine1124.jpg', title: 'EngagementPhoto10' },
-                { image: 'Content/Images/Slideshow/levine1161.jpg', title: 'EngagementPhoto11' }
+                { image: baseUrl + 'Content/Images/Slideshow/levine1142.jpg', title: 'EngagementPhoto1' },
+                { image: baseUrl + 'Content/Images/Slideshow/levine1003.jpg', title: 'EngagementPhoto2' },
+                { image: baseUrl + 'Content/Images/Slideshow/levine1009.jpg', title: 'EngagementPhoto3' },
+                { image: baseUrl + 'Content/Images/Slideshow/levine1014.jpg', title: 'EngagementPhoto4' },
+                { image: baseUrl + 'Content/Images/Slideshow/levine1044.jpg', title: 'EngagementPhoto5' },
+                { image: baseUrl + 'Content/Images/Slideshow/levine1054.jpg', title: 'EngagementPhoto6' },
+                { image: baseUrl + 'Content/Images/Slideshow/levine1096.jpg', title: 'EngagementPhoto7' },
+                { image: baseUrl + 'Content/Images/Slideshow/levine1100.jpg', title: 'EngagementPhoto8' },
+                { image: baseUrl + 'Content/Images/Slideshow/levine1118.jpg', title: 'EngagementPhoto9' },
+                { image: baseUrl + 'Content/Images/Slideshow/levine1124.jpg', title: 'EngagementPhoto10' }
+                //{ image: baseUrl + 'Content/Images/Slideshow/levine1161.jpg', title: 'EngagementPhoto11' }
             ],
 
         // Theme Options			   
