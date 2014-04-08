@@ -49,7 +49,7 @@ a:hover
     opacity:0.9;
     filter:alpha(opacity=90); /* For IE8 and earlier */
     width: 600px;
-    height: 592px;
+    height: 588px;
     text-align: center;
     position: relative;
     overflow-x: hidden;

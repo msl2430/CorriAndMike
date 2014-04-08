@@ -176,7 +176,6 @@
     <Content Include="Content\Images\Slideshow\Levine1142.jpg" />
     <Content Include="Content\Images\Slideshow\Levine1161.jpg" />
     <Content Include="Content\Scripts\corriandmike.js" />
-    <Content Include="Content\Scripts\Countdown\jquery.countdown.js" />
     <Content Include="Content\Scripts\DataTables\jquery.dataTables.min.js" />
     <Content Include="Content\Scripts\FlipCountDown\jquery.flipcountdown.js" />
     <Content Include="Content\Scripts\jQuery\jquery-1.9.1.js" />
@@ -206,8 +205,10 @@
     <Content Include="Content\Scripts\Supersized\supersized.3.2.7.min.js" />
     <Content Include="Content\Scripts\Supersized\supersized.core.3.2.1.min.js" />
     <Content Include="Content\Scripts\Supersized\supersized.shutter.min.js" />
+    <Content Include="Content\Styles\Bootstrap\bootstrap-theme.css" />
+    <Content Include="Content\Styles\Bootstrap\bootstrap-theme.min.css" />
+    <Content Include="Content\Styles\Bootstrap\bootstrap.min.css" />
     <Content Include="Content\Styles\content.css" />
-    <Content Include="Content\Styles\Countdown\jquery.countdown.css" />
     <Content Include="Content\Styles\DataTables\jquery.dataTables.css" />
     <Content Include="Content\Styles\FlipCountDown\screen\1.png" />
     <Content Include="Content\Styles\FlipCountDown\screen\2.png" />
@@ -217,6 +218,7 @@
     <Content Include="Content\Styles\FlipCountDown\img\digit-md.png" />
     <Content Include="Content\Styles\FlipCountDown\img\digit-sm.png" />
     <Content Include="Content\Styles\FlipCountDown\img\digit-xs.png" />
+    <Content Include="Content\Styles\MobileSite.css" />
     <Content Include="Content\Styles\qTip\jquery.qtip.min.css" />
     <Content Include="Content\Styles\Rsvp\rsvp.css" />
     <Content Include="Content\Styles\Site.css" />
@@ -229,6 +231,8 @@
     <Content Include="Content\Styles\FlipCountDown\img\digit-lg-dark.psd" />
     <Content Include="Content\Styles\FlipCountDown\img\digit-lg.psd" />
     <Content Include="packages.config" />
+    <Content Include="Content\Styles\Bootstrap\bootstrap.css.map" />
+    <Content Include="Content\Styles\Bootstrap\bootstrap-theme.css.map" />
     <None Include="Properties\PublishProfiles\Local Publish.pubxml" />
     <None Include="Properties\PublishProfiles\Publish Locally.pubxml" />
     <Content Include="Web.config">
@@ -263,13 +267,12 @@
     <Content Include="Views\Admin\EmailTemplates\_AfterPartyInfo.cshtml" />
     <Content Include="Views\About\_CorriAndMike.cshtml" />
     <Content Include="Views\About\_AfterParty.cshtml" />
+    <Content Include="Views\Home\Index.Mobile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Scripts\Supersized\img\" />
     <Folder Include="Content\Styles\About\" />
-    <Folder Include="Models\Indexes\" />
-    <Folder Include="ViewModels\Home\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

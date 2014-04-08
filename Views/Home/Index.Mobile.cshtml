@@ -1,0 +1,144 @@
+﻿@using CorriAndMike.Constants
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="Corri & Mike's official wedding website." />
+    <title>Corri & Mike</title>
+
+    <script src="~/Content/Scripts/jQuery/jquery-1.9.1.js"></script>
+    <script src="~/Content/Scripts/FlipCountDown/jquery.flipcountdown.js"></script>
+
+    <link href="~/Content/Styles/Bootstrap/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Content/Styles/Site.css" rel="stylesheet" />
+    <link href="~/Content/Styles/FlipCountDown/jquery.flipcountdown.css" rel="stylesheet" />
+    <link href="~/Content/Styles/MobileSite.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container-fluid">
+        <section class="header-section row">
+            <img id="header-logo" src="~/Content/Images/Layout/header.png" class="col-sm-12" />
+            <h3>March 23, 2015</h3>
+            <div id="wedding-countdown"></div>
+        </section>
+        <section class="content-section row">
+            <h3 class="col-sm-12 content-header">Corri & Mike</h3>
+            <div class="mobile-content col-sm-12">
+                <h4>How they met...</h4>
+                <p>
+                    Corri and Mike met in the grandest of fashions—<strong>at work!</strong>  After several failed attempts to woo each other at the office,
+                    it took Mike’s cousin kidnapping Corri and whisking her off to Jersey to get the sparks flying.  Their relationship was a
+                    secret for only a couple weeks until coworkers caught them kissing at a Christmas party.
+                    <br /><br />
+                    It was clear early on that they met
+                    their matches for life—both are a little bit nerdy and have ridiculous shoe obsessions.  After several trips between the
+                    Jerz and Harlem, Mike shooting his first gun in Idaho, Corri moving to Jersey where Mike attempted (and failed) to teach her
+                    how to drive a manual car, the adoption of a crazy puppy named Jax and Hurricane Sandy the question was popped!
+                </p>
+                <h4>The engagement...</h4>
+                <p>
+                    Two days before Corri’s birthday in early March, Mike said he had an early birthday present to give her.  Corri knew it was serious because Mike put Jax in
+                    his crate and sat her down.  First he presented her with a shoe box of the most beautiful and luxurious pair of shoes, which sent Corri into a hyperventilating fit.
+                    These particular shoes represented “making it” and “success”— a goal Corri had been working towards since moving to New York.
+                    <br /><br />
+                    As Mike got down on one knee to slip
+                    the beautiful shoe onto her foot, he also reached into his pocket for a tiny blue box and talked about setting a new goal since she already reached her first.
+                    As Corri caught on to what was happening, the hyperventilating increased and she immediately said “yes” about 52 times.  To this day, she still has no idea what
+                    Mike planned on saying or if she was answering a particular question.
+                </p>
+            </div>
+        </section>
+        <section class="content-section row">
+            <h3 class="col-sm-12 content-header">Wedding in St. Lucia</h3>
+            <div class="mobile-content col-sm-12">
+                <h4>Wedding plans...</h4>
+                <p>
+                    In short, there are none!  We are enjoying engaged life and taking our time making wedding plans.  As we make decisions, we will post them to the site!
+                </p>
+            </div>
+        </section>
+        <section class="content-section row">
+            <h3 class="col-sm-12 content-header">After Party</h3>
+            <div class="mobile-content col-sm-12">
+                <h4>Party back home...</h4>
+                <p>
+
+                </p>
+            </div>
+        </section>
+        <section class="content-section row">
+            <h3 class="col-sm-12 content-header">Engagement Party</h3>
+            <div class="mobile-content col-sm-12">
+                <h4>Engagement party</h4>
+                <p>
+                    Thanks to everyone for making the trip and dealing with the hot and cramped day. We had an amazing time and can't wait to get our family and friends together again to celebrate!
+                </p>
+                <img src="~/Content/Images/C&M engagement party 1.JPG" style="width: 150px; margin: 10px auto;" />
+            </div>
+        </section>
+    </div>
+    <script type="text/javascript">
+            var corriAndMikeLink = "@(GlobalConstants.NavigationLinks.CorriAndMike)";
+            var weddingLink = "@(GlobalConstants.NavigationLinks.WeddingInStLucia)";
+            var afterPartyLink = "@(GlobalConstants.NavigationLinks.AfterParty)";
+            var engagementPartyLink = "@(GlobalConstants.NavigationLinks.EngagementParty)";
+
+            var corriAndMikeUrl = "@(Url.Action("CorriAndMike", "About"))";
+            var engagementPartyUrl = "@(Url.Action("EngagementParty", "Events"))";
+            var weddingUrl = "@(Url.Action("Wedding", "About"))";
+            var afterPartyUrl = "@(Url.Action("AfterParty", "About"))";
+
+            var spinnerImgSrc = "@(Url.Content("~/Content/Images/Spinner/sprites.gif"))";
+            var baseUrl = "@(Url.Content("~"))";
+            var weddingDate = Math.round((new Date('3/03/2015 00:00:01')).getTime()/1000);
+            $(function () {
+                $("h3.content-header").click(function () {
+                    var content = $(this).next("div.mobile-content").first();
+                    $("div.mobile-content").each(function() {
+                        $(this).hide();
+                    });
+                    if (content.is(":visible"))
+                        content.hide();
+                    else
+                        content.show();
+                });
+                $("#wedding-countdown").flipcountdown({
+                    size: "xs",
+                    showDays:true,
+                    tick: function(){
+                        var nol = function(h){
+                            return h>9?h:'0'+h;
+                        }
+                        var	range  	= 	weddingDate-Math.round((new Date()).getTime()/1000),
+                            secday	= 	86400, sechour = 3600,
+                            days	= 	parseInt(range/secday),
+                            hours	= 	parseInt((range%secday)/sechour),
+                            min	= 	parseInt(((range%secday)%sechour)/60),
+                            sec	= 	((range%secday)%sechour)%60;
+                        return nol(days)+' '+nol(hours)+' '+nol(min)+' '+nol(sec);
+                    }
+                });
+            });
+    </script>
+    @if (Request.Url.GetLeftPart(UriPartial.Authority) != "http://localhost")
+    {
+        <script>
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function() {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+            ga('create', 'UA-41157913-1', 'corriandmike.com');
+            ga('send', 'pageview');
+        </script>
+    }
+</body>
+</html>
