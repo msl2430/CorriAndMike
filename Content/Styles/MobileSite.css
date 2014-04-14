@@ -4,10 +4,14 @@
     margin: 0;
 }
 p {
-    color: #4d2548;
+    color: #4d2548;    
+}
+a {
+    word-break: break-all;
 }
 .content-header {
     color: #9e9efd;
+    font-family: 'Waiting for the Sunrise', garamond, serif !important;
     padding: 10px;
     margin: 7px 0;
     background: #4d2548; /* Old browsers */
@@ -24,6 +28,14 @@ p {
     text-align: center;
     display: none;
     padding-top: 5px;
+    font-family: 'Trebuchet', garamond, serif !important;
+}
+.mobile-content h4 {
+    font-family: 'Waiting for the Sunrise', garamond, serif !important;
+    font-size: 26px;
+}
+.mobile-content p {
+    margin: 5px 0 15px 0;
 }
 .header-section {
     text-align: center;
@@ -31,4 +43,12 @@ p {
 }
 .content-section {
     margin: 3px 0;
+}
+.left-align {
+    text-align: left !important;
+}
+#packing-list {
+    list-style-type: square;
+    margin-left: 10px;
+    color: #4d2548;
 }

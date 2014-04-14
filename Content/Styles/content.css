@@ -1,17 +1,23 @@
-﻿#about-container {
-    width: 600px;
-    height: 592px;
-    text-align: center;
-    position: relative;
-    overflow-x: hidden;
-    overflow-y: auto;
-    border: solid 1px #cecece;
-}
-p {
+﻿p {
     width: 540px;
     text-align: center;
     margin: 5px auto;
 }
+p.left-align {
+    padding: 5px 0;
+}
 h2 {
     color: #9e9efd;
+}
+
+.left-align {
+    text-align: left !important;
+}
+p, #packing-list li {
+    font-family: 'Trebuchet', serif !important;    
+    color: #4d2548;
+}
+#packing-list {
+    list-style-type: square;
+    margin-left: 50px;
 }

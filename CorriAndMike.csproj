@@ -175,6 +175,8 @@
     <Content Include="Content\Images\Slideshow\Levine1124.jpg" />
     <Content Include="Content\Images\Slideshow\Levine1142.jpg" />
     <Content Include="Content\Images\Slideshow\Levine1161.jpg" />
+    <Content Include="Content\Images\St. Lucia 1.jpg" />
+    <Content Include="Content\Images\St.Lucia 2.jpg" />
     <Content Include="Content\Scripts\corriandmike.js" />
     <Content Include="Content\Scripts\DataTables\jquery.dataTables.min.js" />
     <Content Include="Content\Scripts\FlipCountDown\jquery.flipcountdown.js" />
@@ -230,9 +232,12 @@
     <Content Include="Content\Styles\Fonts\Lobster_1.ttf" />
     <Content Include="Content\Styles\FlipCountDown\img\digit-lg-dark.psd" />
     <Content Include="Content\Styles\FlipCountDown\img\digit-lg.psd" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content\Styles\Bootstrap\bootstrap.css.map" />
     <Content Include="Content\Styles\Bootstrap\bootstrap-theme.css.map" />
+    <Content Include="Content\Styles\Fonts\Lato-Regular.ttf" />
     <None Include="Properties\PublishProfiles\Local Publish.pubxml" />
     <None Include="Properties\PublishProfiles\Publish Locally.pubxml" />
     <Content Include="Web.config">

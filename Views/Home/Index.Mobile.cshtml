@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="description" content="Corri & Mike's official wedding website." />
     <title>Corri & Mike</title>
+    
+    <link href='http://fonts.googleapis.com/css?family=Josefin+Slab' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Waiting+for+the+Sunrise' rel='stylesheet' type='text/css'>
 
     <script src="~/Content/Scripts/jQuery/jquery-1.9.1.js"></script>
     <script src="~/Content/Scripts/FlipCountDown/jquery.flipcountdown.js"></script>
@@ -52,18 +55,37 @@
         <section class="content-section row">
             <h3 class="col-sm-12 content-header">Wedding in St. Lucia</h3>
             <div class="mobile-content col-sm-12">
-                <h4>Wedding plans...</h4>
-                <p>
-                    In short, there are none!  We are enjoying engaged life and taking our time making wedding plans.  As we make decisions, we will post them to the site!
+                <h4>Wedding in St. Lucia...</h4>
+                <p class="left-align">
+                    <strong>Resort:</strong> <a href="http://stlucianow.com/resorts/all-inclusive/smugglers-cove-resort-and-spa" target="_blank">Smuggler's Cove</a>: More details on booking coming soon!
+                <p class="left-align">
+                    <strong>Flight:</strong> Direct flights - about 4.5 hours - are traveling from New York (JFK) and Newark (EWR) to St. Lucia (UVF).
                 </p>
+                <p class="left-align">    
+                    <strong>Passports:</strong> Valid passports are required for travel into St. Lucia. To apply for or renew your passport, start <a href="http://travel.state.gov/content/passports/english.html" target="_blank">here</a>.
+                </p>
+                <p class="left-align">
+                    <strong>Packing List:</strong>
+                </p>
+                <ul id="packing-list" class="left-align">
+                    <li>Sunscreen, lots of it!</li>
+                    <li>Hat. Seriously, there is a lot of sun.</li>
+                    <li>Sunglasses. You get the idea.</li>
+                    <li>Men are required to wear long pants for dinner at the resort (it is cooler at night).</li>
+                    <li>Small bills. Both US Dollars and Carribean Dollars are widely accepted. Exchange rate is currently $2.7 Carribean => $1 US.</li>
+                </ul>
+                <br/>
+                <img src="~/Content/Images/St. Lucia 1.jpg" style="width: 150px; margin: 10px auto;"/><br/>
+                <img src="~/Content/Images/St.Lucia 2.jpg" style="width: 150px; margin: 10px auto;"/>
+                <br/>
             </div>
         </section>
         <section class="content-section row">
             <h3 class="col-sm-12 content-header">After Party</h3>
             <div class="mobile-content col-sm-12">
-                <h4>Party back home...</h4>
+                <h4>After party...</h4>
                 <p>
-
+                    Can't make it to St. Lucy for the wedding?  Don't worry, we're throwing a party at home when we get back!  More details coming soon. 
                 </p>
             </div>
         </section>
@@ -94,14 +116,15 @@
             var weddingDate = Math.round((new Date('3/03/2015 00:00:01')).getTime()/1000);
             $(function () {
                 $("h3.content-header").click(function () {
-                    var content = $(this).next("div.mobile-content").first();
-                    $("div.mobile-content").each(function() {
+                    var content = $(this).next("div.mobile-content");
+                    if (content.is(":visible") == true) {
+                        content.hide();
+                        return;
+                    }
+                    $("div.mobile-content").each(function () {
                         $(this).hide();
                     });
-                    if (content.is(":visible"))
-                        content.hide();
-                    else
-                        content.show();
+                    content.show();
                 });
                 $("#wedding-countdown").flipcountdown({
                     size: "xs",
