@@ -1,27 +1,215 @@
 ﻿<link href="~/Content/Styles/content.css" rel="stylesheet" />
 
 <div id="wedding-container" class="content ui-corner-all">
-    <h2>Wedding in St. Lucia...</h2>
-    <p class="left-align">
-        <strong>Resort:</strong> <a href="http://stlucianow.com/resorts/all-inclusive/smugglers-cove-resort-and-spa" target="_blank">Smuggler's Cove</a>: More details on booking coming soon!
-    <p class="left-align">
-        <strong>Flight:</strong> Direct flights - about 4.5 hours - are traveling from New York (JFK) and Newark (EWR) to St. Lucia (UVF).
-    </p>
-    <p class="left-align">    
-        <strong>Passports:</strong> Valid passports are required for travel into St. Lucia. To apply for or renew your passport, start <a href="http://travel.state.gov/content/passports/english.html" target="_blank">here</a>.
-    </p>
-    <p class="left-align">
-        <strong>Packing List:</strong>
-    </p>
-    <ul id="packing-list" class="left-align">
-        <li>Sunscreen, lots of it!</li>
-        <li>Hat. Seriously, there is a lot of sun.</li>
-        <li>Sunglasses. You get the idea.</li>
-        <li>Men are required to wear long pants for dinner at the resort (it is cooler at night).</li>
-        <li>Small bills. Both US Dollars and Carribean Dollars are widely accepted.<br/>Exchange rate is currently $2.7 Carribean => $1 US.</li>
-    </ul>
-    <br/>
-    <img src="~/Content/Images/St. Lucia 1.jpg" style="width: 350px; margin: 10px auto;"/><br/>
-    <img src="~/Content/Images/St.Lucia 2.jpg" style="width: 350px; margin: 10px auto;"/>
-    <br/>
+    <div id="booking-info" style="display: none;">
+        <h2>Booking Information</h2>
+        <a href="#" onclick="$('#booking-info').hide(); $('#main-info').show();">Back to main page</a>
+        <address>
+            <span style="color:#9f4d95;">Smuggler's Cove</span><br/>
+            Cap Estate <br/>
+            St. Lucia, West Indies <br/>
+            Phone: 1 758 450 0551<br/>
+            Fax: 1 758 450 0398<br/>
+            Email: <a href="mailto:info@smugglersbeachresort.com">info@smugglersbeachresort.com</a><br/>
+            Website: <a href="http://www.smugglersbeachresort.com/">www.smugglersbeachresort.com/</a>
+        </address>
+        <br/>
+        <table style="width: 550px; margin: auto;" border="1">
+            <thead>
+                <th>Period</th>
+                <th>Room Type</th>
+                <th colspan="4">Rate Per Person</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>March 19-24, 2015</td>
+                    <td></td>
+                    <td>Single</td>
+                    <td>Double</td>
+                    <td>Triple</td>
+                    <td>Quad</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Standard Rooms</td>
+                    <td>$139.00</td>
+                    <td>$110.00</td>
+                    <td>$82.00</td>
+                    <td>N/A</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Deluxe Garden View</td>
+                    <td>$148.00</td>
+                    <td>$116.00</td>
+                    <td>$86.00</td>
+                    <td>N/A</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Superior Deluxe Garden View</td>
+                    <td>$155.00</td>
+                    <td>$123.00</td>
+                    <td>$90.00</td>
+                    <td>N/A</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Superior Deluxe Beachfront</td>
+                    <td>$203.00</td>
+                    <td>$155.00</td>
+                    <td>N/A</td>
+                    <td>N/A</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>One Bedroom Suite Garden View</td>
+                    <td>$161.00</td>
+                    <td>$129.00</td>
+                    <td>$97.00</td>
+                    <td>$80.00</td>
+                </tr>
+            </tbody>
+        </table>
+        <br/>
+        <p>
+            <strong>ACCOMMODATIONS</strong> All 357 rooms and suites are located in low rise, single-story buildings set in the tropical gardens or overlooking 
+            the secluded bay of Smuggler's Cove. All rooms are newly refurbished and offer terrace, air-conditioning, private bath and shower, in-room safe, king or 
+            twin beds (according to request), satellite color TV, hairdryers tea & coffee making facilities, iron & board. (internet access in lobby at extra charge). 
+        </p>
+        <br/>
+        <p>
+            <strong>Standard Rooms</strong> Located throughout the property, these rooms have vaulted ceilings and spectacular garden views. Max. occupancy: 3 adults or 2 adults + 2 children 0-16 years. 
+        </p>
+        <br/>
+        <p>
+            <strong>Deluxe Garden Rooms</strong> Located on the hillside near the racquet club with tropical garden view and offers an oasis of peace and 
+            quiet area from the main activity areas of the resort. One king bed or two queen beds. 
+        </p>
+        <br/>
+        <p>
+            <strong>Superior Deluxe Garden View</strong> consists of a spacious bedroom with an adjoining living room. One king bed and queen size pull out sofa. 
+        </p>
+        <br/>
+        <p>
+            <strong>Superior Deluxe Beachfront Rooms</strong> Located near the beach or atop a hillside, are spacious rooms with Japanese Soaking tubs which are perfect for watching a Caribbean 
+            sunset over the ocean, these can only accommodate two persons – One king bed. 
+        </p>
+        <br/>
+        <p>
+            <strong>One Bedroom Garden View Suite</strong> consists of a spacious bedroom with an adjoining living room. One king bed and queen size pull out sofa. 
+        </p>
+        <br/>
+        <p>
+            Room rate includes: Taxes, service charge and gratuities Daily breakfast - (International Buffet in restaurant) Non-motorized and motorized Water Sports Internet Access (at the Piton Lounge) 
+            Beverages including brand name liquor, beer, tropical coolers, house wines by the glass and soft drinks. Beach/Pool lounge chairs and towels Kids Club Use of Fitness Centre & Pools Management 
+            Cocktail Party on Mondays Turndown service Car Parking Services at an additional Cost: Treatments at the Namaste Spa Golf – green fees at Cap Estate Golf Course (Saint Lucia Golf Course) Golf Carts, 
+            clubs, balls, bags and tees. Airport transfers Saint Lucia airport departure taxes Wine by the bottle. Surcharges on Steak and lobster may apply. 
+        </p>
+        <br/>
+        <p>
+            <strong>AMENITIES</strong> Minibar in most rooms In-room safe In-room coffee maker Iron & Ironing Board Bathroom Amenities <br/>
+            <strong>Cancellation/No Show Policy</strong> As long as reservations are cancelled 15 days prior to arrival, the deposit will be refunded. For cancellations 15 -7 days before arrival = 3 night 
+            penalty fee (Excluding Christmas period) 6 – 0 days before arrival = 4 night penalty fee (Excluding Christmas period)
+        </p>
+        <br/>
+        <img src="http://www.corriandmike.com/Content/Images/smugglercove.png" />
+        <br/><br/>
+        <h3><strong>Q + A:</strong></h3>
+        <br/>
+        <ol>
+            <li><strong>Our wedding activities are from March 19 - 24, but is it possible for guests to customize their dates and number of nights?</strong></li>
+            <p>We will offer the same rates 5 days before your activity dates and five days after.</p>
+            <li><strong>Is there a separate rate for kids? </strong></li>
+            <p>Children between the ages of 3-16 should pay US$50 per person, per night. Children under 3 are free.</p>
+            <li><strong>Can we guarantee that rooms will be next to others in our party?</strong></li>
+            <p>We cannot guarantee that all of the rooms will be close together; this is based on availability at the time of rooming.</p>
+            <li><strong>Some rooms are very far from the main activity areas.  Are there special accommodations for guests who may have a difficult time getting around?</strong></li>
+            <p>
+                We will try our best to accommodate with rooms closer to the main activity areas.  However, if availability does not allow at the time of rooming we have a buggy 
+                service that will take them to their rooms when requested.
+            </p>
+            <li><strong>Do our guests have to book a specific way to get the group rate?  </strong></li>
+            <p>Guests will need to book online through a specific wedding link that we will create and provide for your group.  <em>Coming soon!</em></p>
+            <li><strong>Is a deposit required to hold each room?  Is it refundable?  </strong></li>
+            <p>
+                A 13% deposit is collected right at the time of booking by Regatta (reservation services company providing our group discount) in order to secure the room. 
+                It is applied towards the total cost of the room. Then, the hotel will collect a further 50% deposit per room with-in a few days of booking, leaving only the balance due on arrival.
+                <br/>
+                The deposit is refundable as long as you cancel 15 days prior to arrival.
+            </p>
+            <li><strong>When is final payment due by?</strong></li>
+            <p>The final payment is due upon arrival.</p>
+            <li><strong>Which airport are we flying into?</strong></li>
+            <p>
+                Hewanorra International Airport, Saint Lucia<br/>
+                Vieux Fort, Saint Lucia<br/>
+                UVF<br/>
+            </p>
+            <li><strong>How are we getting from the airport to the hotel?</strong></li>
+            <p>
+                The airport is about an hour and a half from the hotel.  Enjoy views of the breathtaking island on the drive from the south end to the north of the island.  
+                Transportation from the airport is not included in the rates. It can be arranged privately by the guests.
+                <br/><br/>
+                <strong><em>Hewanorra International Airport (UVF) - Smugglers Cove Beach Resort & Spa</em></strong>
+                <br/>
+                <strong><em>Category: Regular</em></strong><br/>
+                <table style="width: 500px; margin: auto;">
+                    <tr>
+                        <td>1 Person</td>
+                        <td>US $110</td>
+                    </tr>
+                    <tr>
+                        <td>2 Persons</td>
+                        <td>US $110</td>
+                    </tr>
+                    <tr>
+                        <td>3-9 Persons</td>
+                        <td>US $40</td>
+                    </tr>
+                    <tr>
+                        <td>Infants(0-3yrs)</td>
+                        <td>Complimentary</td>
+                    </tr>
+                    <tr>
+                        <td>Chilren(4-11yrs)</td>
+                        <td>50% Adult Rate</td>
+                    </tr>
+                    <tr>
+                        <td>Car Seats</td>
+                        <td>US $15</td>
+                    </tr>
+                </table>
+            </p>
+        </ol>
+        <br/><br/>
+    </div>
+    <div id="main-info">
+        <h2>Wedding in St. Lucia...</h2>
+        <p class="left-align">
+            <strong>Resort:</strong> <a href="http://stlucianow.com/resorts/all-inclusive/smugglers-cove-resort-and-spa" target="_blank">Smuggler's Cove</a>
+            <br/>
+            Click here for <a href="#" onclick="$('#booking-info').show(); $('#main-info').hide();">Booking Information</a>
+        </p>
+        <p class="left-align">
+            <strong>Flight:</strong> Direct flights - about 4.5 hours - are traveling from New York (JFK) and Newark (EWR) to St. Lucia (UVF).
+        </p>
+        <p class="left-align">    
+            <strong>Passports:</strong> Valid passports are required for travel into St. Lucia. To apply for or renew your passport, start <a href="http://travel.state.gov/content/passports/english.html" target="_blank">here</a>.
+        </p>
+        <p class="left-align">
+            <strong>Packing List:</strong>
+        </p>
+        <ul id="packing-list" class="left-align">
+            <li>Sunscreen, lots of it!</li>
+            <li>Hat. Seriously, there is a lot of sun.</li>
+            <li>Sunglasses. You get the idea.</li>
+            <li>Men are required to wear long pants for dinner at the resort (it is cooler at night).</li>
+            <li>Small bills. Both US Dollars and Carribean Dollars are widely accepted.<br/>Exchange rate is currently $2.7 Carribean => $1 US.</li>
+        </ul>
+        <br/>
+        <img src="~/Content/Images/St. Lucia 1.jpg" style="width: 350px; margin: 10px auto;"/><br/>
+        <img src="~/Content/Images/St.Lucia 2.jpg" style="width: 350px; margin: 10px auto;"/>
+        <br/>
+    </div>
 </div>

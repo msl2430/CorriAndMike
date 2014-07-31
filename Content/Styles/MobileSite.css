@@ -52,3 +52,14 @@ a {
     margin-left: 10px;
     color: #4d2548;
 }
+
+#wedding-booking-info p, #wedding-booking-info address, #wedding-booking-info td, #wedding-booking-info th, #wedding-booking-info h3, #wedding-booking-info li {
+    font-family: 'Trebuchet', serif !important;    
+    text-align: left !important;
+    font-weight: normal !important;
+    padding: 0 7px;
+}
+
+#wedding-booking-info li {
+    font-weight: bold;
+}

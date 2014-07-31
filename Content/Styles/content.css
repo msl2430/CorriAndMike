@@ -13,11 +13,18 @@ h2 {
 .left-align {
     text-align: left !important;
 }
-p, #packing-list li {
+p, #packing-list li, ol>li {
     font-family: 'Trebuchet', serif !important;    
     color: #4d2548;
 }
 #packing-list {
     list-style-type: square;
     margin-left: 50px;
+}
+
+#booking-info p, #booking-info address, #booking-info td, #booking-info th, #booking-info h3, #booking-info li {
+    font-family: 'Trebuchet', serif !important;    
+    text-align: left !important;
+    font-weight: normal !important;
+    padding: 0 7px;
 }
