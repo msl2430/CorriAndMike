@@ -143,6 +143,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\EmailList.cs" />
     <Compile Include="Models\Invitation.cs" />
     <Compile Include="Models\Guest.cs" />
     <Compile Include="Models\RavenHelper.cs" />
@@ -175,6 +176,7 @@
     <Content Include="Content\Images\Slideshow\Levine1124.jpg" />
     <Content Include="Content\Images\Slideshow\Levine1142.jpg" />
     <Content Include="Content\Images\Slideshow\Levine1161.jpg" />
+    <Content Include="Content\Images\smugglercove.png" />
     <Content Include="Content\Images\St. Lucia 1.jpg" />
     <Content Include="Content\Images\St.Lucia 2.jpg" />
     <Content Include="Content\Scripts\corriandmike.js" />
@@ -273,6 +275,7 @@
     <Content Include="Views\About\_CorriAndMike.cshtml" />
     <Content Include="Views\About\_AfterParty.cshtml" />
     <Content Include="Views\Home\Index.Mobile.cshtml" />
+    <Content Include="Views\Admin\EmailTemplates\_HotelInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

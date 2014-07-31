@@ -128,6 +128,8 @@ namespace CorriAndMike.Controllers
         {
             switch (emailTemplate.ToLower())
             {
+                case "hotelinfo":
+                    return View("EmailTemplates/_HotelInfo", new EmailTemplateViewModel());
                 case "ironmonkey":
                     return View("EmailTemplates/_IronMonkeyInfo", new EmailTemplateViewModel());
                 case "afterparty":
@@ -162,6 +164,24 @@ namespace CorriAndMike.Controllers
             }
 
             return RedirectToAction("Invitations", "Admin");
+        }
+
+        public ActionResult SendHotelInformationEmail()
+        {
+            var email = new MailMessage { From = new MailAddress("do-not-reply@corriandmike.com", "CorriAndMike.com") };
+            var bodyContent = new StringWriter();
+            email.To.Add("me@mikeslevine.com");
+            email.Subject = string.Format("Corri & Mike - Wedding Hotel Information");
+            email.IsBodyHtml = true;
+
+            var viewResult = ViewEngines.Engines.FindPartialView(ControllerContext, "EmailTemplates/_HotelInfo");
+            viewResult.View.Render(new ViewContext(ControllerContext, viewResult.View, ViewData, TempData, bodyContent), bodyContent);
+
+            email.Body = bodyContent.ToString();
+
+            MailService.SendEmail(email);
+
+            return RedirectToAction("EmailTemplate", "Admin", new {emailTemplate = "hotelinfo"});
         }
 
         private MailMessage PrepareIronMonkeyEmail(AddressPair recipient) 

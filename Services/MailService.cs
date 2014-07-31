@@ -11,7 +11,7 @@ namespace CorriAndMike.Services
     {
         private const string SmtpServer = "smtp.gmail.com";
         private const string SmtpUsername = "msl2430@gmail.com";
-        private const string SmtpPassword = "1ftm2fts";
+        private const string SmtpPassword = "1ftMoney2ftShow";
         private const int PortNumber = 587;
 
         public static void SendEmail(MailMessage email)
