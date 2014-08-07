@@ -2,14 +2,16 @@
 
 namespace CorriAndMike.Models
 {
-    public class EmailList
+    public static class EmailList
     {
-        public List<string> Emails
+        public static List<string> Emails
         {
             get
             {
                 return new List<string>()
                 {
+                    "me@mikeslevine.com",
+                    "corri.skinner@gmail.com",
                     "laurenkazmark@optonline.net",
                     "Cassie11r@hotmail.com",
                     "sara.skinner7@gmail.com",

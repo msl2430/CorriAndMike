@@ -168,19 +168,25 @@ namespace CorriAndMike.Controllers
 
         public ActionResult SendHotelInformationEmail()
         {
-            var email = new MailMessage { From = new MailAddress("do-not-reply@corriandmike.com", "CorriAndMike.com") };
-            var bodyContent = new StringWriter();
-            email.To.Add("me@mikeslevine.com");
-            email.Subject = string.Format("Corri & Mike - Wedding Hotel Information");
-            email.IsBodyHtml = true;
+            if (!Convert.ToBoolean(ConfigurationManager.AppSettings["SendEmail"]))
+                return RedirectToAction("EmailTemplate", "Admin", new {emailTemplate = "hotelinfo"});
 
-            var viewResult = ViewEngines.Engines.FindPartialView(ControllerContext, "EmailTemplates/_HotelInfo");
-            viewResult.View.Render(new ViewContext(ControllerContext, viewResult.View, ViewData, TempData, bodyContent), bodyContent);
+            foreach (var address in EmailList.Emails)
+            {
+                var email = new MailMessage { From = new MailAddress("do-not-reply@corriandmike.com", "CorriAndMike.com") };
+                var bodyContent = new StringWriter();
+                email.To.Add(address);
+                email.Subject = string.Format("Corri & Mike - Wedding Hotel Information");
+                email.IsBodyHtml = true;
 
-            email.Body = bodyContent.ToString();
+                var viewResult = ViewEngines.Engines.FindPartialView(ControllerContext, "EmailTemplates/_HotelInfo");
+                viewResult.View.Render(new ViewContext(ControllerContext, viewResult.View, ViewData, TempData, bodyContent), bodyContent);
 
-            MailService.SendEmail(email);
+                email.Body = bodyContent.ToString();
 
+                MailService.SendEmail(email);    
+            }
+            
             return RedirectToAction("EmailTemplate", "Admin", new {emailTemplate = "hotelinfo"});
         }
 
