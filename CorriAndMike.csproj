@@ -276,6 +276,7 @@
     <Content Include="Views\About\_AfterParty.cshtml" />
     <Content Include="Views\Home\Index.Mobile.cshtml" />
     <Content Include="Views\Admin\EmailTemplates\_HotelInfo.cshtml" />
+    <Content Include="Views\Admin\EmailTemplates\_Booking.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
