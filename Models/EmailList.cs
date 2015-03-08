@@ -20,7 +20,7 @@ namespace CorriAndMike.Models
                     "jesswildman@yahoo.com",
                     "Greengo777@aol.com",
                     "kaygee20000@aol.com",
-                    "jo1031@comcast.net",
+                    //"jo1031@comcast.net",
                     "Spizzigno@yahoo.com",
                     "kmann182@hotmail.com",
                     "prokop.brian@gmail.com",
@@ -29,18 +29,18 @@ namespace CorriAndMike.Models
                     "sirchunx@aol.com",
                     "microworldgames@gmail.com",
                     "amylmasters@gmail.com",
-                    "lac5008@gmail.com",
+                    //"lac5008@gmail.com",
                     "heather.laubscher@morganstanley.com",
                     "Karasinski1@yahoo.com",
                     "brentonland@gmail.com",
-                    "smith-aa@hotmail.com",
-                    "robcopp23@yahoo.com",
+                    //"smith-aa@hotmail.com",
+                    //"robcopp23@yahoo.com",
                     "mmiller@firstquality.com",
                     "greene1996@gmail.com",
-                    "jspeechteach@aol.com",
+                    //"jspeechteach@aol.com",
                     "Wild1216@yahoo.com",
-                    "maryvento2@aol.com",
-                    "kerileigh.greene@gmail.com"
+                    //"maryvento2@aol.com",
+                    //"kerileigh.greene@gmail.com"
                 };
             }
         }

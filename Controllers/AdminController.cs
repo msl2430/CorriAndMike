@@ -136,6 +136,8 @@ namespace CorriAndMike.Controllers
                     return View("EmailTemplates/_IronMonkeyInfo", new EmailTemplateViewModel());
                 case "afterparty":
                     return View("EmailTemplates/_AfterPartyInfo", new EmailTemplateViewModel());
+                case "arrival":
+                    return View("EmailTemplates/_ArrivalInformation", new EmailTemplateViewModel());
                 default:
                     return View("EmailTemplates/_IronMonkeyInfo", new EmailTemplateViewModel());
             }
@@ -214,6 +216,30 @@ namespace CorriAndMike.Controllers
             }
 
             return RedirectToAction("EmailTemplate", "Admin", new { emailTemplate = "booking" });
+        }
+
+        public ActionResult SendArrivalInformationEmail()
+        {
+            if (!Convert.ToBoolean(ConfigurationManager.AppSettings["SendEmail"]))
+                return RedirectToAction("EmailTemplate", "Admin", new { emailTemplate = "arrival" });
+
+            foreach (var address in EmailList.Emails)
+            {
+                var email = new MailMessage { From = new MailAddress("do-not-reply@corriandmike.com", "CorriAndMike.com") };
+                var bodyContent = new StringWriter();
+                email.To.Add(address);
+                email.Subject = string.Format("Corri & Mike - St. Lucia Arrival Information");
+                email.IsBodyHtml = true;
+
+                var viewResult = ViewEngines.Engines.FindPartialView(ControllerContext, "EmailTemplates/_ArrivalInformation");
+                viewResult.View.Render(new ViewContext(ControllerContext, viewResult.View, ViewData, TempData, bodyContent), bodyContent);
+
+                email.Body = bodyContent.ToString();
+
+                MailService.SendEmail(email);
+            }
+
+            return RedirectToAction("EmailTemplate", "Admin", new { emailTemplate = "arrival" });
         }
 
         private MailMessage PrepareIronMonkeyEmail(AddressPair recipient) 
