@@ -138,6 +138,8 @@ namespace CorriAndMike.Controllers
                     return View("EmailTemplates/_AfterPartyInfo", new EmailTemplateViewModel());
                 case "arrival":
                     return View("EmailTemplates/_ArrivalInformation", new EmailTemplateViewModel());
+                case "excursion":
+                    return View("EmailTemplates/_ExcursionUpdate", new EmailTemplateViewModel());
                 default:
                     return View("EmailTemplates/_IronMonkeyInfo", new EmailTemplateViewModel());
             }
@@ -240,6 +242,31 @@ namespace CorriAndMike.Controllers
             }
 
             return RedirectToAction("EmailTemplate", "Admin", new { emailTemplate = "arrival" });
+        }
+
+        public ActionResult SendExcursionUpdateEmail()
+        {
+            if (!Convert.ToBoolean(ConfigurationManager.AppSettings["SendEmail"]))
+                return RedirectToAction("EmailTemplate", "Admin", new { emailTemplate = "excursion" });
+
+            foreach (var address in EmailList.Emails)
+            {
+                var email = new MailMessage { From = new MailAddress("do-not-reply@corriandmike.com", "CorriAndMike.com") };
+                var bodyContent = new StringWriter();
+                email.To.Add(address);
+                email.Subject = string.Format("Corri & Mike - Excursion Update");
+                email.IsBodyHtml = true;
+
+                var viewResult = ViewEngines.Engines.FindPartialView(ControllerContext, "EmailTemplates/_ExcursionUpdate");
+                viewResult.View.Render(new ViewContext(ControllerContext, viewResult.View, ViewData, TempData, bodyContent), bodyContent);
+
+                email.Body = bodyContent.ToString();
+                email.Priority = MailPriority.High;
+
+                MailService.SendEmail(email);
+            }
+
+            return RedirectToAction("EmailTemplate", "Admin", new { emailTemplate = "excursion" });
         }
 
         private MailMessage PrepareIronMonkeyEmail(AddressPair recipient) 
