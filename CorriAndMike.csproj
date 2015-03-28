@@ -113,12 +113,22 @@
     <Compile Include="ViewModels\Rsvp\RsvpInvitationViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Images\allboat.png" />
+    <Content Include="Content\Images\boatdance.png" />
+    <Content Include="Content\Images\boatjamison.png" />
     <Content Include="Content\Images\C&amp;M engagement party 1.JPG" />
     <Content Include="Content\Images\C&amp;M engagement party 2.JPG" />
+    <Content Include="Content\Images\dinner.png" />
+    <Content Include="Content\Images\firstdance.png" />
     <Content Include="Content\Images\IM-HEADER.png" />
     <Content Include="Content\Images\ironmonkey.jpg" />
     <Content Include="Content\Images\Layout\header.png" />
     <Content Include="Content\Images\Layout\menuarrows.png" />
+    <Content Include="Content\Images\limbo.png" />
+    <Content Include="Content\Images\marshabrown.png" />
+    <Content Include="Content\Images\oceandip.png" />
+    <Content Include="Content\Images\pinkhouse.png" />
+    <Content Include="Content\Images\poolbar.png" />
     <Content Include="Content\Images\ringandshoes.png" />
     <Content Include="Content\Images\Slideshow\Levine1003.jpg" />
     <Content Include="Content\Images\Slideshow\Levine1009.jpg" />
@@ -134,6 +144,8 @@
     <Content Include="Content\Images\smugglercove.png" />
     <Content Include="Content\Images\St. Lucia 1.jpg" />
     <Content Include="Content\Images\St.Lucia 2.jpg" />
+    <Content Include="Content\Images\thankyou.png" />
+    <Content Include="Content\Images\unclebrian.png" />
     <Content Include="Content\Scripts\corriandmike.js" />
     <Content Include="Content\Scripts\DataTables\jquery.dataTables.min.js" />
     <Content Include="Content\Scripts\FlipCountDown\jquery.flipcountdown.js" />
@@ -236,6 +248,7 @@
     <Content Include="Views\Admin\EmailTemplates\_Booking.cshtml" />
     <Content Include="Views\Admin\EmailTemplates\_ArrivalInformation.cshtml" />
     <Content Include="Views\Admin\EmailTemplates\_ExcursionUpdate.cshtml" />
+    <Content Include="Views\Admin\EmailTemplates\_StLuciaThankYou.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

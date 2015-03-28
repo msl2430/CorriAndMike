@@ -28,3 +28,7 @@ p, #packing-list li, ol>li {
     font-weight: normal !important;
     padding: 0 7px;
 }
+
+.thankyou-list > p {
+    text-align: left !important;
+}

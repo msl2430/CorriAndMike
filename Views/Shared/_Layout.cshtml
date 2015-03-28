@@ -44,7 +44,7 @@
                     <ul id="menu-list">
                         <li><a id="corri-and-mike-link" class="nav-link" linkId="@(GlobalConstants.NavigationLinks.CorriAndMike)"><label class="nav-label">CORRI & MIKE</label></a></li>
                         <li><a id="wedding-link" class="nav-link" linkId="@(GlobalConstants.NavigationLinks.WeddingInStLucia)"><label class="nav-label">WEDDING IN ST. LUCIA</label></a></li>
-                        <li><a id="after-party-link" class="nav-link" linkId="@(GlobalConstants.NavigationLinks.AfterParty)"><label class="nav-label">AFTER PARTY</label></a></li>
+                        <li><a id="after-party-link" class="nav-link" linkId="@(GlobalConstants.NavigationLinks.AfterParty)"><label class="nav-label">STATESIDE CELEBRATION</label></a></li>
                         <li><a id="engagement-party-link" class="nav-link" linkId="@(GlobalConstants.NavigationLinks.EngagementParty)"><label class="nav-label">ENGAGEMENT PARTY</label></a></li>
                     </ul>
                     <div id="wedding-countdown-container">
@@ -73,22 +73,22 @@
             var baseUrl = "@(Url.Content("~"))";
             var weddingDate = Math.round((new Date('3/23/2015 00:00:01')).getTime()/1000);
             $(function() {
-                $("#wedding-countdown").flipcountdown({
-                    size: "xs",
-                    showDays:true,
-                    tick: function(){
-                        var nol = function(h){
-                            return h>9?h:'0'+h;
-                        }
-                        var	range  	= 	weddingDate-Math.round((new Date()).getTime()/1000),
-                            secday	= 	86400, sechour = 3600,
-                            days	= 	parseInt(range/secday),
-                            hours	= 	parseInt((range%secday)/sechour),
-                            min	= 	parseInt(((range%secday)%sechour)/60),
-                            sec	= 	((range%secday)%sechour)%60;
-                        return nol(days)+' '+nol(hours)+' '+nol(min)+' '+nol(sec);
-                    }
-                });
+                //$("#wedding-countdown").flipcountdown({
+                //    size: "xs",
+                //    showDays:true,
+                //    tick: function(){
+                //        var nol = function(h){
+                //            return h>9?h:'0'+h;
+                //        }
+                //        var	range  	= 	weddingDate-Math.round((new Date()).getTime()/1000),
+                //            secday	= 	86400, sechour = 3600,
+                //            days	= 	parseInt(range/secday),
+                //            hours	= 	parseInt((range%secday)/sechour),
+                //            min	= 	parseInt(((range%secday)%sechour)/60),
+                //            sec	= 	((range%secday)%sechour)%60;
+                //        return nol(days)+' '+nol(hours)+' '+nol(min)+' '+nol(sec);
+                //    }
+                //});
             });
         </script>
         <script type="text/javascript" src="~/Content/Scripts/corriandmike.js"></script>
